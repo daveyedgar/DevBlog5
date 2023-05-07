@@ -1,0 +1,121 @@
+:root {
+    --primary-color: #1d5888;
+    --secondary-color: #ff993b;
+    --dark-color: #292929;
+    --white-color: #e7e7e7;
+}
+
+html {
+    font-size: 16px;
+    color: black;
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+a{
+    color: black;
+}
+
+
+.showEmail {
+    cursor: pointer;
+}
+
+.showEmail:hover {
+    background-color: #0094ff;
+}
+
+.showPhone {
+    cursor: pointer;
+}
+
+.showPhone:hover {
+    background-color: #0094ff;
+}
+
+.catg_title {
+    color: black;
+}
+
+.navbar{
+    margin:0;
+}
+
+.header_top_right{
+    display: flex;
+    justify-content: end;
+}
+
+
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.sticky-footer {
+    padding: 0.8rem 0;
+    position: sticky;
+    background-color: #303030;
+    color: #ccc;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer-social > a {
+    padding: 0 1rem;
+    color: #d083cf;
+    /*opacity: 0.75;*/
+}
+
+    .footer-social > a:hover {
+        color: #d083cf;
+        opacity: 0.7;
+    }
+
+
+
+.note-editable {
+    background-color: white !important;
+    color: black !important;
+}
+
+/*tag select box*/
+#TagList{
+    font-weight: 600;
+}
+
+button.btn-sm, a.btn-sm{
+    line-height: 0.5;
+    border-radius: 10px;
+}
+
+/*sweetalert2*/
+div.swal2-container.swal2-center.swal2-backdrop-show > div{
+    outline: 4px solid black;
+    border: 2px solid blue;
+    border-radius: 10px;
+}
+
+
+/*media queries*/
+@media(max-width:767px ) {
+    html {
+        font-size: 16px;
+    }
+ 
+    .header_top_right {
+        display: flex;
+        justify-content: start;
+    }
+}

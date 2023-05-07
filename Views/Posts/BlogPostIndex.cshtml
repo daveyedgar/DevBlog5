@@ -1,0 +1,131 @@
+﻿@using DevBlog5.Services
+@using DevBlog5.Models
+@model IPagedList<DevBlog5.Models.Post>
+@inject IImageService _imageService
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<h1>
+    Posts for @ViewData["BlogName"]<br />
+    BlogId: @ViewData["BlogId"]<br />
+    PageCount: @Model.PageCount
+</h1>
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-action="Create" asp-route-id="@ViewData["BlogId"]">Create New</a>
+        @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Image
+            </th>
+            <th>
+                Blog Name
+            </th>
+            <th>
+                Blog Id
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Abstract
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Updated
+            </th>
+            <th>
+                ReadyStatus
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="img-fluid" width="100px" src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blog.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlogId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abstract)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReadyStatus)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-slug="@item.Slug">Edit</a> |
+                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-action="Details" asp-route-slug="@item.Slug">Details</a> |
+                    <a asp-action="Delete" asp-route-slug="@item.Slug">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+@*pagination controls*@
+
+<div class="row">
+    <div class="col">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @Html.PagedListPager(Model, page => Url.Action("BlogPostIndex", new {id = Model.FirstOrDefault().BlogId, page = page}),
+        new PagedListRenderOptionsBase
+        {
+        LiElementClasses = new string[] {"page-item"},
+        PageClasses = new string[] {"page-link"}
+        });
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        getId();
+    </script>
+
+    <script>
+        function openSuccessModal(strMessage){
+            var myDiv = document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+            $("#myModalSuccess").modal("show");
+        }
+
+        $(document).ready(function(){
+            var msg="@TempData["SuccessMessage"]";
+            if(msg)
+                openSuccessModal(msg);
+            
+        });
+    </script>
+}

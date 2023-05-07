@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 8.4666662 8.4666662"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="favicon_a.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#666666"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="5.9010101"
+     inkscape:cx="60.243923"
+     inkscape:cy="19.064533"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="M 1.5052147,6.3845976 3.8874151,4.3710017 1.5052147,2.0752441 V 1.074859 L 4.4813855,4.0888421 V 4.7301143 L 1.5052147,7.3849825 Z"
+       id="path3405-9"
+       style="font-size:41.8665px;fill:#6effdc;stroke-width:0.750189" />
+    <g
+       aria-label="&gt;"
+       transform="matrix(0.17691733,0,0,0.26134006,-4.1023331,-20.165594)"
+       id="text363-5"
+       style="font-size:35.7162px;fill:#6effdc;stroke-width:2.97635">
+      <path
+         d="m 52.305128,96.098866 13.465008,-5.607444 -13.465008,-6.3932 v -2.785864 l 16.822331,8.393308 v 1.78581 L 52.305128,98.88473 Z"
+         id="path3408-3" />
+    </g>
+    <g
+       aria-label="&gt;"
+       transform="matrix(0.18691206,0,0,0.24736546,-4.1023331,-20.165594)"
+       id="text367-0"
+       style="font-size:33.8064px;fill:#6effdc;stroke-width:2.8172">
+      <path
+         d="m 49.508279,108.77399 12.745013,-5.30761 -12.745013,-6.051344 v -2.636899 l 15.922814,7.944503 v 1.69032 l -15.922814,6.99793 z"
+         id="path3411-8" />
+    </g>
+    <g
+       aria-label="|"
+       transform="matrix(0.23363837,0,0,0.24356991,-5.6635234,-20.165594)"
+       id="text3355-4"
+       style="font-weight:bold;font-size:26.3012px;-inkscape-font-specification:'sans-serif, Bold';fill:#6effdc;stroke-width:0.54794">
+      <path
+         d="m 25.24452,87.220774 h 2.814228 V 113.10116 H 25.24452 Z"
+         id="path3414-8" />
+    </g>
+  </g>
+</svg>

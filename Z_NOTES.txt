@@ -1,0 +1,82 @@
+﻿# DevBlog5
+
+// this isn't working on the layout page
+// need to add this to create/edit/delete actions in index pages
+@if (User.IsInRole("Administrator"))
+{
+	<li class="nav-item">
+		<a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+	</li>
+}
+
+remove all commented code
+
+detail view back to list link 
+This trick worked on the post controller details method
+				.Include(p => p.Blog)    /*added to try to access blog id for back to list link*/
+				ViewData["BlogId"] = post.BlogId;
+				<a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]">Back to List</a>
+
+
+the back to list link doesn't go to the page you were on 
+
+the blog name isn't showing up in the create view
+can i do this ViewData["BlogId"] with the post create?
+
+hide all secrets
+
+admin page for users, comments tags and postsapproval process for posts
+
+
+ on create page, indicate blog name
+	try js
+
+
+
+if can't find page throw error like if i type in page greater than total.
+
+global popup for erros and success
+https://www.aspsnippets.com/questions/124358/Display-Exception-Message-from-Controller-to-View-using-Modal-Popup-in-ASPNet-Core-MVC/
+
+error handling
+error controller?
+https://www.c-sharpcorner.com/article/introduction-to-nlog-with-asp-net-core2/
+
+
+/// errors
+error red ramin under Post, should be Posts
+
+error with services use the below
+
+@using DevBlog5.Services
+@using DevBlog5.Enums
+@using Microsoft.AspNetCore.Identity
+@inject IImageService _imageService
+@inject UserManager<BlogUser> userManager
+
+
+
+
+
+
+
+I have some questions about the viewmodels.
+The post detail view is based on the PostDetailViewModel. I'm assuming that this view can
+access the tags because of this line in the model? - public List<string> Tags { get; set; } = new List<string>();
+The post detail view also has the line - (@ViewData["HeaderImage"]). But the PostDetailViewModel doesn't have a ViewData line in it.
+Is the detail view accessing both the Post, Tag and Comment models at the same time it is accessing the PostDetailViewModel?
+It seems that the PostDetailViewModel is redundant.
+For example the post detail view references the "Model.Post.Id", which I assume comes from the Post model, especially since
+the PostDetailViewModel doesn't have a Post.Id.
+
+So the ApplicationDbContext _context; line along with its constructor allows me to access anything in the database yes?
+So any methods in that controller can access anything from Blog.Title to Comment.Text for example.
+If that's the case I can access any and all of the table columns in the database inside a controller method like Index for example,
+which would allow me to access all of that in the view correct?
+And just to confirm the ViewModels are used for data that is not stored in a table in the database, and passes along
+data for whatever reason other than storing in the database?
+If thats the case why do we need the PostDetailViewModel? The info in there seems redundant.
+
+What I am leading to is I would like to have a list of recent posts, recent blogs and system tags on my landing page,
+that being the _layout page. I've tried using and inject statements in the _layout page but no success yet.
+

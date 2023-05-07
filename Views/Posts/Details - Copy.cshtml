@@ -1,0 +1,249 @@
+﻿@model DevBlog5.Models.Post
+@using DevBlog5.Services
+@using DevBlog5.Enums
+@using Microsoft.AspNetCore.Identity
+@inject IImageService _imageService
+@inject UserManager<BlogUser> userManager
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="left_content">
+    <div class="single_page">
+        <ol class="breadcrumb">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">Technology</a></li>
+            <li class="active">Mobile</li>
+        </ol>
+
+<!-- post content -->
+        <h1>@Model.Title</h1>
+        <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
+        <div class="single_page_content">
+            @*<img class="img-center" src="~/assets/images/single_post_img.jpg" alt="">*@
+            <img src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
+
+            <div>
+                @Html.Raw(Model.Content)
+            </div>
+
+            <hr />
+<!-- tags section -->
+            <article>
+                <div class="row">
+                    <div class="col text-center h3 font-weight-bold">
+                        Custom Post Tags
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <a class="btn btn-warning btn-outline-dark btn-sm btn-block" asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()">@tag.Text</a>
+                        }
+                    </div>
+                </div>
+            </article>
+
+            <hr />
+            <!-- comment form --><!-- COMMENT SECTION -->
+            <span id="commentSection" class="btn btn-sm btn-dark">@Model.Comments.Count COMMENT(S)</span>
+
+
+            @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
+            {
+                <div class="media media-border p-0 mb-2 bg-light" style="border:2px solid black;">
+                    <img class="mr-3 mt-3 rounded-circle" style="width:60px;" src="@_imageService.DecodeImage(comment.BlogUsers.ImageData, comment.BlogUsers.ContentType)" />
+                    <div class="media-body">
+                        <h4>@comment.BlogUsers.FullName</h4>
+                        <small>
+                            <i>
+                                @if (comment.Moderated is not null)
+                                {
+                                    <span class="small">
+                                        <span class="font-weight-bolder">
+                                            Moderated <span class="text-danger font-italic">(@comment.ModerationType.ToString().ToLower())</span>
+                                        </span>
+                                        : @comment.Moderated?.ToString("MMM dd, yyyy")
+                                    </span>
+                                }
+                                else if (comment.Updated is not null)
+                                {
+                                    <span class="small">
+                                        <span class="font-weight-bolder">Updated </span> : @comment.Updated?.ToString("MMM dd, yyyy")
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="small">
+                                        <span class="small font-italic"> Posted on </span> : @comment.Created.ToString("MMM dd, yyyy")
+                                    </span>
+                                }
+                            </i>
+                        </small>
+
+                        <hr />
+
+                        @if (string.IsNullOrEmpty(comment.Body))
+                        {
+                            <span class="small font-italic">Comment not available.</span>
+                        }
+                        else if (comment.Moderated is not null)
+                        {
+                            <p>@comment.ModeratedBody</p>
+                        }
+                        else if (comment.Deleted is null)
+                        {
+                            <p>@comment.Body</p>
+                        }
+
+                        <!-- Render the Edit Button -->
+                        @if (comment.Moderated is null && comment.Deleted is null && comment.BlogUserId == userManager.GetUserId(User))
+                        {
+                            <hr />
+                            <button data-toggle="modal" data-target="#editModal_@comment.Id" class="btn-sm btn-dark float-right font-weight-bold">Edit</button>
+                        }
+
+                        <!-- Render the Moderate & Delete Buttons -->
+                        @if (comment.Deleted is null && (User.IsInRole(BlogRole.Moderator.ToString()) || User.IsInRole(BlogRole.Administrator.ToString())))
+                        {
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    <button class="btn-sm btn-dark font-weight-bold" data-toggle="modal" data-target="#moderate-@comment.Id" )">Moderate</button>
+                                </div>
+                                <div class="col-2">
+                                    <form asp-action="Delete" asp-controller="Comments">
+                                        @Html.Hidden("Id", comment.Id)
+                                        @Html.Hidden("Slug", comment.Posts.Slug)
+                                        <button type="submit" class="btn-sm btn-dark font-weight-bold">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Edit Modal -->
+                <div class="modal" id="editModal_@comment.Id">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Editing Comment...</h4>
+                            </div>
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <form asp-action="Edit" asp-controller="Comments">
+                                    @Html.Hidden("Id", comment.Id)
+                                    <div class="form-group">
+                                        <textarea name="Body" class="form-control" required>@comment.Body</textarea>
+                                    </div>
+                                    <button class="btn-sm btn-dark border-scuccess font-weight-bold" type="submit">Submit</button>
+                                </form>
+                            </div>
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn-sm btn-dark font-weight-bold" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Moderate Modal-->
+                <div class="modal fade" id="moderate-@comment.Id" tabindex="-1" aria-labelledby="moderateModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Header -->
+                            <div class="modal-header">
+                                <h5 class="modal-title">Moderate Comment</h5>
+                            </div>
+                            <!-- Body -->
+                            <div class="modal-body">
+                                <form asp-action="Moderate" asp-controller="Comments">
+                                    @Html.Hidden("Id", comment.Id)
+                                    @Html.Hidden("Body", comment.Body)
+                                    <div class="form-group">
+                                        <label class="control-label">Original Comment</label>
+                                        <textarea disabled class="form-control" style="resize:none">@comment.Body</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Moderated Comment</label>
+                                        <textarea required name="ModeratedBody" class="form-control">@comment.ModeratedBody</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Reason for Moderation</label>
+                                        <select class="form-control" asp-for="@comment.ModerationType" name="ModerationType" asp-items="Html.GetEnumSelectList<ModerationType>()"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <button class="btn-sm btn-dark border-success font-weight-bold" type="submit">Submit</button>
+                                            </div>
+                                            <div class="col">
+                                                <button class="btn-sm btn-dark font-weight-bold" type="button" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+<!-- bottom section -->
+        </div>
+        <div class="social_link">
+            <ul class="sociallink_nav">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            </ul>
+        </div>
+        <div class="related_post">
+            <h2>Related Post <i class="fa fa-thumbs-o-up"></i></h2>
+            <ul class="spost_nav wow fadeInDown animated">
+                <li>
+                    <div class="media">
+                        <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
+                        <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="media">
+                        <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img2.jpg" alt=""> </a>
+                        <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="media">
+                        <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
+                        <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<nav class="nav-slit">
+    <a class="prev" href="#">
+        <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
+        <div>
+            <h3>City Lights</h3>
+            <img src="~/assets/images/post_img1.jpg" alt="" />
+        </div>
+    </a> <a class="next" href="#">
+        <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+        <div>
+            <h3>Street Hills</h3>
+            <img src="~/assets/images/post_img1.jpg" alt="" />
+        </div>
+    </a>
+</nav>
