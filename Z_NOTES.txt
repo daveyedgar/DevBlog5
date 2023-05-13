@@ -1,5 +1,7 @@
 ﻿
 
+ - create demo login
+ - data helper for railway connection string, i think bug tracker has it
  - update to 6
  - remove all commented code
  - detail view back to list link
