@@ -1,15 +1,15 @@
 ﻿
 
- - create demo login
- - update to 6
- - remove all commented code
- - detail view back to list link
- - the back to list link doesn't go to the page you were on 
- - the blog name isn't showing up in the create view
- - can i do this ViewData["BlogId"] with the post create?
- - hide all secrets
- - on create page, indicate blog name try js
+
+ - BlogPostIndex method showing int? page as null
+		clicking on blog in home index not passing page number
+ - the blog name isn't showing up in the create post view
+ - the back to list link doesn't go to the page you were on
+ - put blog name in post details and delete views
  - if can't find page throw error like if i type in page greater than total.
+ - fix all view links
+ - links and logos & legal
+ - remove all commented code
 
 ===================================================================================
 

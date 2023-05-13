@@ -44,6 +44,7 @@ function passId() {
 
 // this sets the route id of the create link in the PostsEmpty view
 // so the getId() function picks it up from the url
+// this will return you to the correct blog in the blogpostindex view
 
 function setRouteId() {
     const createLink = document.getElementById("createRoute");

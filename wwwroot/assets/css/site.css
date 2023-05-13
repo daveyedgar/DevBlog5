@@ -64,7 +64,7 @@ a{
 
 .sticky-footer {
     padding: 0.8rem 0;
-    position: sticky;
+    position: static;
     background-color: #303030;
     color: #ccc;
     bottom: 0;

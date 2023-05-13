@@ -72,7 +72,7 @@ namespace DevBlog5.Controllers
             }
 
             var pageNumber = page ?? 1;
-            var pageSize = 2;
+            var pageSize = 2;  // amount per page
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
 
@@ -106,11 +106,11 @@ namespace DevBlog5.Controllers
             {
                 return RedirectToAction("PostsEmpty", new { id });
             }
+
             ViewData["BlogName"] = blogPosts[0].Blog.Name;
             ViewData["BlogId"] = blogPosts[0].BlogId;
             ViewData["PageCount"] = pageNumber;
-            //_context.Movie.Any(m => m.MovieId == id)
-
+       
 
             // second solution
 

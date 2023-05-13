@@ -28,8 +28,8 @@ namespace DevBlog5.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
-            //var applicationDbContext = _context.Blogs.Include(b => b.BlogUser);
-            return View(await _context.Blogs.ToListAsync());
+            var applicationDbContext = _context.Blogs.Include(b => b.BlogUsers);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Blogs/Details/5
