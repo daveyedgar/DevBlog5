@@ -1,12 +1,8 @@
 using DevBlog5.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevBlog5
@@ -18,7 +14,12 @@ namespace DevBlog5
             //CreateHostBuilder(args).Build().Run();
             var host = CreateHostBuilder(args).Build();
             var dataService = host.Services.CreateScope().ServiceProvider.GetRequiredService<DataService>();
+
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+            // DataService service runs migrations and seeds database
             await dataService.ManageDataAsync();
+
 
 
             host.Run();

@@ -24,9 +24,13 @@ namespace DevBlog5.Services
 
         public async Task ManageDataAsync()
         {
+            //runs the migrations
             await _dbContext.Database.MigrateAsync();
+
+            // seeds roles in task below
             await SeedRolesAsync();
 
+            // seeds users in task below
             await SeedUsersAsync();
         }
 
