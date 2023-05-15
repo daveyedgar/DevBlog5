@@ -50,9 +50,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
-                        <li class="nav-item">
+@*                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>*@
                         @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
@@ -65,9 +65,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
                         </li>
-                        <li class="nav-item">
+@*                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
                 <div class="col header_top_right">
@@ -78,14 +78,20 @@
     </section>
     @*-----------------------------------------------------------------------------------------
 
-    LATEST TWEETS HEADER
+    MAIN CONTENT
 
     -----------------------------------------------------------------------------------------*@
 
     <div class="container">
+        @*-----------------------------------------------------------------------------------------
+
+        LATEST TWEETS HEADER
+
+        -----------------------------------------------------------------------------------------*@
         <section id="newsSection" style="margin-top:80px;">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
+
                     <div class="latest_newsarea">
                         <span>Latest Tweets</span>
                         <ul id="ticker01" class="news_sticker">
@@ -115,17 +121,17 @@
                 </div>
             </div>
         </section>
-@*-----------------------------------------------------------------------------------------
+        @*-----------------------------------------------------------------------------------------
 
-=================      SEARCH FORM
+        =================      SEARCH FORM
 
------------------------------------------------------------------------------------------*@
+        -----------------------------------------------------------------------------------------*@
 
         <form asp-action="SearchIndex" asp-controller="Posts">
             <div class="input-group mt-5">
                 <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
                 <div class="input-group-append">
-                    <button class="btn btn-warning btn-block btn-sm" type="submit">Search</button>
+                    <button class="btn btn-warning btn-block" type="submit">Search</button>
                 </div>
             </div>
         </form>
@@ -141,6 +147,7 @@
             <div class="row">
 
                 <div class="col-lg-8 col-md-8 col-sm-8">
+                    <!-- first column-->
                     @*-----------------------------------------------------------------------------------------
 
                     popup
@@ -150,8 +157,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                     <h2>Information</h2>
-                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h2>Information</h2>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div id="MyModalSuccessAlertBody" class="modal-body alert alert-success">
                                     message
@@ -164,15 +171,17 @@
                             <div class="modal-content"></div>
                         </div>
                     </div>
-                    @RenderBody()
+                            @RenderBody()
                 </div>
 
-                @*-----------------------------------------------------------------------------------------
 
-                LATEST POST
-
-                -----------------------------------------------------------------------------------------*@
                 <div class="col-lg-4 col-md-4 col-sm-4">
+                    <!-- second column nest the remaining in this column-->
+                    @*-----------------------------------------------------------------------------------------
+
+                    LATEST POST
+
+                    -----------------------------------------------------------------------------------------*@
                     <div class="latest_post">
                         <h2><span>Latest posts</span></h2>
                         <div class="latest_post_container">
@@ -212,15 +221,11 @@
                             <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
                         </div>
                     </div>
-                </div>
+                    @*-----------------------------------------------------------------------------------------
 
+                    ===============    RIGHT CONTENT
 
-                @*-----------------------------------------------------------------------------------------
-
-                ===============    RIGHT CONTENT
-
-                -----------------------------------------------------------------------------------------*@
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                    -----------------------------------------------------------------------------------------*@
                     <aside class="right_content">
                         @*-----------------------------------------------------------------------------------------
 

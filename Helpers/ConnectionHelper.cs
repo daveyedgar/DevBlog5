@@ -20,22 +20,39 @@ namespace ContactPro.Helpers
         }
 
         // build connection string from environment for Raleway
-        private static string BuildConnectionString(string databaseUrl)
+        //private static string BuildConnectionString(string databaseUrl)
+        //{
+        //    var databaseUri = new Uri(databaseUrl);
+        //    var userInfo = databaseUri.UserInfo.Split(':');
+        //    var builder = new NpgsqlConnectionStringBuilder
+        //    {
+        //        Host = databaseUri.Host,
+        //        Port = databaseUri.Port,
+        //        Username = userInfo[0],
+        //        Password = userInfo[1],
+        //        Database = databaseUri.LocalPath.TrimStart('/'),
+        //        SslMode = SslMode.Require,
+        //        TrustServerCertificate = true
+        //    };
+
+        //    return builder.ToString();
+        //}
+
+        private static string BuildConnectionString(string databaseurl)
         {
-            var databaseUri = new Uri(databaseUrl);
-            var userInfo = databaseUri.UserInfo.Split(':');
-            var builder = new NpgsqlConnectionStringBuilder
+            var databaseuri = new Uri(databaseurl);
+            var userInfo = databaseuri.UserInfo.Split(':');
+
+            return new NpgsqlConnectionStringBuilder()
             {
-                Host = databaseUri.Host,
-                Port = databaseUri.Port,
+                Host = databaseuri.Host,
+                Port = databaseuri.Port,
                 Username = userInfo[0],
                 Password = userInfo[1],
-                Database = databaseUri.LocalPath.TrimStart('/'),
-                SslMode = SslMode.Require,
+                Database = databaseuri.LocalPath.TrimStart('/'),
+                SslMode = SslMode.Prefer,
                 TrustServerCertificate = true
-            };
-
-            return builder.ToString();
+            }.ToString();
         }
     }
 }

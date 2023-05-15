@@ -1,4 +1,7 @@
-﻿@model DevBlog5.Models.Post
+﻿@using DevBlog5.Models
+@model DevBlog5.Models.Post
+@using DevBlog5.Services
+@inject IImageService _imageService
 
 @{
     ViewData["Title"] = "Delete";
@@ -11,84 +14,43 @@
     }
 }
 
-<h1>Delete</h1>
+<h1>Delete Post</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Abstract)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Abstract)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Updated)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Updated)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReadyStatus)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReadyStatus)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Slug)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Slug)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageData)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageData)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContentType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContentType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Blog)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Blog.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BlogUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BlogUser.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<h3>Are you sure you want to delete this Post?</h3>
+
+
+
+<div class="card-container">
+    <div class="cards">
+        <div class="card-item row row-cols-2">
+            <div class="card-image col-md-6 col-12">
+                <img class="img-fluid" width="100" src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
+            </div>
+            <div class="card-info col-md-6 col-12">
+                <h2 class="card-title">@Html.DisplayFor(model => model.Title)</h2>
+                <p class="card-intro">@Html.DisplayFor(model => model.Abstract)</p>
+                <p class="card-intro">Blog Name: @Html.DisplayFor(model => model.Blog.Name); Blog Id: @Html.DisplayFor(model => model.Blog.Id)</p>
+                <p class="card-intro">Date Created: @Html.DisplayFor(model => model.Created)</p>
+                <p class="card-intro">Date Updated: @Html.DisplayFor(model => model.Updated)</p>
+                <p class="card-intro">Status: @Html.DisplayFor(model => model.ReadyStatus)</p>
+                <p class="card-intro">Posted by <a href="">@Model.BlogUser.FullName</a> on @Model.Created</p>
+            </div>
+
+        </div>
+        <div class="row card-text">
+            <div class="col">
+                ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and
+            </div>
+        </div>
+        <div class="row card-link">
+            <div class="col">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                    <a asp-action="Index">Back to List</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+

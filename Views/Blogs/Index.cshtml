@@ -11,54 +11,52 @@
 @if (User.IsInRole("Administrator"))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-actions">Create New</a>
     </p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageData)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Updated)
-            </td>
-            <td>
-                <img class="img-fluid" width="100px" src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+
+
+@foreach (var item in Model)
+{
+    <div class="card-container">
+        <div class="cards">
+            <div class="card-item row row-cols-2">
+                <div class="card-image col-md-6 col-12">
+                    <img class="img-fluid" width="100" src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                </div>
+                <div class="card-info col-md-6 col-12">
+                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h2>
+                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p class="card-intro">Id: @Html.DisplayFor(modelItem => item.Id)</p>
+                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
+                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
+                    <p class="card-intro">Posted by <a href="">@item.BlogUsers.FullName</a> on @item.Created</p>
+                </div>
+
+            </div>
+            <div class="row card-text">
+                <div class="col">
+                    <h4>Recent Posts</h4>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                </div>
+            </div>
+            <div class="row card-link">
+                <div class="col">
+                    <a class="btn btn-actions">Read More...</a>
+                </div>
+            </div>
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="row card-actions">
+                    <div class="col">
+                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/assets/images/pencil-fill.svg" /></a> &nbsp;&nbsp;
+                        <a asp-action="Details" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" /></a> &nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" /></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 }
-    </tbody>
-</table>

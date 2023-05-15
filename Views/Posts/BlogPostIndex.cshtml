@@ -18,78 +18,55 @@
 @if (User.IsInRole("Administrator"))
 {
     <p>
-        <a asp-action="Create" asp-route-id="@ViewData["BlogId"]">Create New</a>
+        <a asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]">Create New</a>
         @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
     </p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Image
-            </th>
-            <th>
-                Blog Name
-            </th>
-            <th>
-                Blog Id
-            </th>
-            <th>
-                Title
-            </th>
-            <th>
-                Abstract
-            </th>
-            <th>
-                Created
-            </th>
-            <th>
-                Updated
-            </th>
-            <th>
-                ReadyStatus
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <img class="img-fluid" width="100px" src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Blog.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BlogId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Abstract)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Created)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Updated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReadyStatus)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-slug="@item.Slug">Edit</a> |
-                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                    <a asp-action="Details" asp-route-slug="@item.Slug">Details</a> |
-                    <a asp-action="Delete" asp-route-slug="@item.Slug">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+
+@foreach (var item in Model)
+{
+    <div class="card-container">
+        <div class="cards">
+            <div class="card-item row row-cols-2">
+                <div class="card-image col-md-6 col-12">
+                    <img class="img-fluid" width="100" src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                </div>
+                <div class="card-info col-md-6 col-12">
+                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h2>
+                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Abstract)</p>
+                    <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)</p>
+                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
+                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
+                    <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-actions">Read More...</a>
+                </div>
+            </div>
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="row">
+                    <div class="col">
+                        <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" /></a> &nbsp;&nbsp;
+                        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                        <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" /></a> &nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" /></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
 <hr />
 @*pagination controls*@
 

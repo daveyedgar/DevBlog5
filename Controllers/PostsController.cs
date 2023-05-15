@@ -72,7 +72,7 @@ namespace DevBlog5.Controllers
             }
 
             var pageNumber = page ?? 1;
-            var pageSize = 2;  // amount per page
+            var pageSize = 1;  // amount per page
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
 

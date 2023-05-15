@@ -8,48 +8,48 @@
 html {
     font-size: 16px;
     color: black;
-}
-
-
-html {
     position: relative;
     min-height: 100%;
 }
 
+
 body {
     margin: 0;
+    background-color: gray;
 }
 
-a{
+a {
     color: black;
 }
 
 
 .showEmail {
     cursor: pointer;
+    color: #fff;
 }
 
-.showEmail:hover {
-    background-color: #0094ff;
-}
+    .showEmail:hover {
+        background-color: #0094ff;
+    }
 
 .showPhone {
     cursor: pointer;
+    color: #fff;
 }
 
-.showPhone:hover {
-    background-color: #0094ff;
-}
+    .showPhone:hover {
+        background-color: #0094ff;
+    }
 
 .catg_title {
     color: black;
 }
 
-.navbar{
-    margin:0;
+.navbar {
+    margin: 0;
 }
 
-.header_top_right{
+.header_top_right {
     display: flex;
     justify-content: end;
 }
@@ -90,32 +90,267 @@ a{
     color: black !important;
 }
 
-/*tag select box*/
-#TagList{
+/* for the crud buttons*/
+.btn-actions {
+    border: 2px solid #d083cf;
+    background-color: #d083cf;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+    border-radius: 5px;
+}
+
+    .btn-actions:hover {
+        border: 2px solid #d083cf;
+        color: #d083cf;
+        text-shadow: none;
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        /*        -webkit-text-stroke: 1px black;*/
+    }
+
+
+
+/*****************************************************************************************
+    
+    MANAGE TAGS                                                       MANAGE TAGS
+
+*****************************************************************************************/
+#TagList {
     font-weight: 600;
 }
 
-button.btn-sm, a.btn-sm{
-    line-height: 0.5;
-    border-radius: 10px;
+.tag-values {
+    margin: 0 1rem;
 }
 
+.tag-title {
+    margin-left: 1rem;
+}
+
+.tag-input {
+    margin: 0 2rem;
+    margin-bottom: 1rem;
+}
+
+.tag-btn {
+    margin: 0 1rem;
+}
+
+/*.tag-values {
+    margin: 0 1rem;
+}*/
+
+button.btn-sm, a.btn-sm {
+    line-height: 0.8;
+    /*    border-radius: 10px;*/
+}
+
+/*****************************************************************************************
+    
+    TAG SELECT BOX                                                       TAG SELECT BOX
+
+*****************************************************************************************/
+
+
 /*sweetalert2*/
-div.swal2-container.swal2-center.swal2-backdrop-show > div{
+div.swal2-container.swal2-center.swal2-backdrop-show > div {
     outline: 4px solid black;
     border: 2px solid blue;
     border-radius: 10px;
 }
 
 
-/*media queries*/
+
+
+
+
+/*****************************************************************************************
+    
+    RESPONSIVE CARDS                                           RESPONSIVE CARDS
+
+*****************************************************************************************/
+
+.card-container {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.cards {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 20px 40px -14px rgba(0,0,0,0.75);
+    overflow: hidden;
+    transition: transform 0.3s;
+    -webkit-transition: transform 0.3s;
+}
+
+    .cards:hover {
+        /*    cursor: pointer;*/
+        transform: scale(1.01);
+        -webkit-transform: scale(1.01);
+    }
+
+.card-image {
+    height: 200px;
+    width: 50%;
+}
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /*     border-radius: 6px; */
+        opacity: 0.91;
+    }
+
+.comment-image {
+    width: 60px;
+    height: 60px;
+}
+
+.comment-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-title {
+    font-size: 25px;
+    line-height: 1.1em;
+    color: #32325d;
+    margin-bottom: 0.2em;
+}
+
+.card-info {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1rem;
+    line-height: 1.5em;
+}
+
+.card-text {
+    padding: 0.5rem;
+}
+
+    .card-text p {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+        .card-text p span {
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+    .card-text .hr-b {
+        margin-top: 1rem;
+    }
+
+.card-link {
+    padding: 0.5rem;
+}
+
+.card-actions {
+    padding: 0.5rem;
+}
+
+
+@media screen and (max-width:990px) {
+    .card-image {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .comment-item {
+        flex-direction: column;
+    }
+}
+
+
+/*****************************************************************************************
+    
+    POST DETAIL VIEW                                                        POST DETAIL VIEW
+
+*****************************************************************************************/
+
+.post-detail hr {
+    border-top: 1px solid lightgray;
+    margin-top: 0;
+}
+
+.post-detail img {
+    width: 100%;
+}
+
+.post-img {
+    padding: 1rem;
+}
+
+.user-thumbnail img {
+    width: 60px;
+    height: 60px;
+}
+
+.post-tag-list {
+    margin: 1rem;
+    display: flex;
+    justify-content: start;
+}
+
+    .post-tag-list a {
+        border: 2px solid #d083cf;
+        border-radius: 3px;
+        padding: 2px 4px;
+        font-weight: 700;
+    }
+/*****************************************************************************************
+    
+    MEDIA QUERIES                                                        MEDIA QUERIES
+
+*****************************************************************************************/
 @media(max-width:767px ) {
     html {
         font-size: 16px;
     }
- 
+
     .header_top_right {
         display: flex;
         justify-content: start;
     }
+}
+
+/*****************************************************************************************
+    
+    CONTACT FORM                                                      CONTACT FORM
+
+*****************************************************************************************/
+
+.footer_top img {
+    width: 40px;
+    margin: 0 1rem;
+    padding-top: 10px;
+}
+
+.footer_top .address,
+.footer_top .email,
+.footer_top .phone {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start
+}
+
+.footer_top iframe{
+    margin: 2rem 0;
 }

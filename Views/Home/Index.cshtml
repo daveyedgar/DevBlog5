@@ -2,27 +2,62 @@
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
+@using DevBlog5.Services
 
 @model IPagedList<Blog>
+@inject IImageService _imageService
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<a asp-controller="Blogs" asp-action="Create" class="btn btn-primary">Create New Blog</a>
-@foreach (var blog in Model)
+<a asp-controller="Blogs" asp-action="Create" class="btn btn-actions">Create New Blog</a>
+
+@foreach (var item in Model)
 {
-    <div class="row">
-        <div class="col">
-            <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@blog.Id">
-                <h1>@blog.Id</h1>
-                <h2>@blog.Name</h2>
-                <h3>@blog.Description</h3>
-            </a>
-            <p>Posted by <a href="">@blog.BlogUsers.FullName</a> on @blog.Created</p>
+    <div class="card-container">
+        <div class="cards">
+            <div class="card-item row row-cols-2">
+                <div class="card-image col-md-6 col-12">
+                    <img class="img-fluid" width="100" src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                </div>
+                <div class="card-info col-md-6 col-12">
+                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h2>
+                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p class="card-intro">Id: @Html.DisplayFor(modelItem => item.Id)</p>
+                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
+                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
+                    <p class="card-intro">Posted by <a href="">@item.BlogUsers.FullName</a> on @item.Created</p>
+                </div>
+
+            </div>
+            <div class="row card-text">
+                <div class="col">
+                    <h4>Recent Posts</h4>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                </div>
+            </div>
+            <div class="row card-link">
+                <div class="col">
+                    <a class="btn btn-actions">Read More...</a>
+                </div>
+            </div>
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="row card-actions">
+                    <div class="col">
+                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/assets/images/pencil-fill.svg" /></a> &nbsp;&nbsp;
+                        <a asp-action="Details" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" /></a> &nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" /></a>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 }
+
 <div class="left_content">
 
     @*pagination controls*@
@@ -60,7 +95,7 @@
             </div>
         </div>
         <div class="single_iteam">
-            <a href="pages/single_page.html"> <img src="assets/images/slider_img2.jpg" alt=""></a>
+            <a href="pages/single_page.html"> <img src="~/assets/images/slider_img2.jpg" alt=""></a>
             <div class="slider_article">
                 <h2><a class="slider_tittle" href="pages/single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
                 <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
