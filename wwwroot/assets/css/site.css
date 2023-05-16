@@ -72,6 +72,11 @@ a {
     width: 100%;
 }
 
+/* for the legal page links in the footer*/
+.sticky-footer .text-white a{
+    color: #fff;
+}
+
 .footer-social > a {
     padding: 0 1rem;
     color: #d083cf;

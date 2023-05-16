@@ -334,10 +334,11 @@
 
 
         <div>
-            <a asp-action="Edit" asp-route-slug="@Model.Post.Slug">Edit</a> |
+            <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> |
             @*<a id="createRoute" asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="">Back to List</a>*@
             @*// pass id into the back to list route*@
-            <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]">Back to List</a>
+            <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a>
+
         </div>
 
         <!-- bottom section -->

@@ -1,40 +1,45 @@
 ﻿
 Bootstrap v3.3.1
 
+
+FIX
  - BlogPostIndex method showing int? page as null
 		clicking on blog in home index not passing page number
+
  - the blog name isn't showing up in the create post view
  - the back to list link doesn't go to the page you were on - where?
  - put blog name in post details and delete views
  - search not working
 		none found page with back links
  - if can't find page throw error like if i type in page greater than total.
- - fix all view links
- - links and logos & legal
- - remove all commented code
+ - post details view back to list link goes to blog, not posts
  - posts/index view @item.BlogUser.FullName not working, fullname showing null
  - what is purpose of clicking on link of posted by 
  - breadcrumbs for header nav menu
- - do latest tweets
-
- - responsive cards
-		blog index, blogpostindex, crud views
- - default image for posts and blogs
  - delete comment throwing error
  - comments index some info not showing
- - use search icon for search bar instead of button
- - nicer create button
- - crud links use icons
- - page background colors
- - style post details tags and main page tags
  - contact form error on send
+ - home index crud links/buttons need to point to correct controller and actions
  - preview image on create and edit
 		check contactpro contact profile image create and edit
- - home index crud links/buttons need to point to correct controller and actions
+		image uploads don't like svg
+ - make sure only admin moderator can post
+	regular users can comment only
+	not logged in can view only
+
+ STYLE
+
+ - default image for posts and blogs
+ - loading page progress icon feature
+ - add cookie policy modal & button
+ - use search icon for search bar instead of button
+ - page background colors
+ - style tags in post details and main page
  - login partial style the logout button
  - posts index card show limited post content with elipsees for read more...\
- - post index order descending my update then created
- - images don't like svg
+ - post index order descending by update then created
+ - remove all commented code
+ - do latest tweets
  - responsive
 
 ===================================================================================
@@ -47,7 +52,7 @@ add qr code alternative login
 
 have a welcome post that is pinned
 admin page to manage users
-comments tags and postsapproval process for posts
+comments tags and posts approval process for comments
 
 global popup for erros and success
 https://www.aspsnippets.com/questions/124358/Display-Exception-Message-from-Controller-to-View-using-Modal-Popup-in-ASPNet-Core-MVC/

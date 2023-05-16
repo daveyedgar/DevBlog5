@@ -43,15 +43,19 @@
             <div id="navbar" class="navbar-collapse collapse row row-cols-1 row-cols-md-2">
                 <div class="col header_top_left">
                     <ul class="nav navbar-nav main_nav">
-                        <li class="active"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home"></span><span class="mobile-show"></span></a></li>
+                        <li class="nav=item">
+                            <a class="nav-link" style="margin-left: 1rem;" href="#"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
+                        </li>
+                        <li class="active"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home"></span><span class="mobile-show"></span></a>
+                            </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
-@*                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        @*                        <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>*@
                         @if (User.IsInRole("Administrator"))
                         {
@@ -65,8 +69,8 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
                         </li>
-@*                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
+                        @*                        <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
                         </li>*@
                     </ul>
                 </div>
@@ -171,7 +175,7 @@
                             <div class="modal-content"></div>
                         </div>
                     </div>
-                            @RenderBody()
+                    @RenderBody()
                 </div>
 
 
@@ -357,12 +361,15 @@
         <div class="container-fluid">
             <div class="row gy-2">
                 <div class="col-md-4">
-                    <div>
-                        <span>&copy;2022</span> David Bellerose
+                    <div class="text-white">
+                        <span>&copy;2022</span> David Bellerose |
+                        <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> |
+                        <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> |
+                        <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a>
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
-                    <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/favicon_a.svg" alt="David Bellerose Logo"></a>
+                    <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
                 </div>
                 <div class="col-md-4 text-right footer-social">
                     <a href="https://www.linkedin.com/in/david-bellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a>
