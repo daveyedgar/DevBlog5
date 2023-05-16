@@ -70,7 +70,7 @@
         <h2>Comments</h2>
         <a id="commentSection" class="btn btn-sm btn-dark btn-block mb-2">@Model.Post.Comments.Count COMMENT(S)</a>
         @****************************************************************
-                CARDS
+        CARDS
         *****************************************************************@
         @foreach (var comment in Model.Post.Comments.OrderByDescending(c => c.Created))
         {
@@ -124,7 +124,7 @@
                             @*****************************************************************
                         SECTION 2: POST HAS BEEN MODERATED/DELETED
                         *****************************************************************@
-                            
+
                             @if (comment.Deleted is not null)
                             {
                                 <span class="small font-italic">The comment posted on @comment.Created.ToString("MMM dd, yyyy") by @comment.BlogUsers.FullName was deleted by the Moderator...</span>
@@ -163,20 +163,17 @@
                             @****************************************************************
                         SECTION 4: CAN WE RENDER THE MODERATE AND DELETE BUTTONS
                         *****************************************************************@
-                            @if (User.IsInRole(BlogRole.Moderator.ToString()) && comment.Deleted is null)
+                            @if ((User.IsInRole(BlogRole.Moderator.ToString()) || User.IsInRole(BlogRole.Administrator.ToString())) && comment.Deleted is null)
                             {
-                                <div class="row">
-                                    <div class="col-2">
-                                        <button class="btn-sm btn-actions font-weight-bold btn-block" data-toggle="modal" data-target="#moderate">MODERATE</button>
-                                    </div>
-                                    <div class="col-2">
-                                        <form asp-action="Delete" asp-controller="Comments">
-                                            @Html.Hidden("CommentId", comment.Id)
-                                            @Html.Hidden("Slug", comment.Posts.Slug)
-                                            <button class="btn-sm btn-actions font-weight-bold btn-block">DELETE</button>
-                                        </form>
-                                    </div>
-                                </div>
+
+                                <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#moderate">MODERATE</button>
+
+                                <form id="deleteComment" asp-action="Delete" asp-controller="Comments">
+                                    @Html.Hidden("CommentId", comment.Id)
+                                    @Html.Hidden("Slug", comment.Posts.Slug)
+                                    <button class="btn-sm btn-actions font-weight-bold">DELETE</button>
+                                </form>
+
 
                                 @*Modals*@
                                 <div class="modal" id="editModal">
@@ -197,14 +194,10 @@
                                                     </div>
 
                                                     <button class="btn-sm btn-actions border-success font-weight-bold" type="submit">SUBMIT</button>
+                                                <button type="button" class="btn-sm btn-actions font-weight-bold" data-dismiss="modal">CLOSE</button>
                                                 </form>
                                             </div>
-
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn-sm btn-actions font-weight-bold" data-dismiss="modal">CLOSE</button>
-                                            </div>
-
+                                            <!-- Modal footer none -->
                                         </div>
                                     </div>
                                 </div>
@@ -243,10 +236,8 @@
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <button class="btn-sm btn-actions btn-dark border-success font-weight-bold" type="submit">SUBMIT</button>
-                                                            </div>
-                                                            <div class="col">
-                                                                <button class="btn-sm btn-actions btn-dark font-weight-bold" type="button" data-dismiss="modal">CLOSE</button>
+                                                                <button class="btn-sm btn-actions border-success font-weight-bold" type="submit">SUBMIT</button>
+                                                                <button class="btn-sm btn-actions font-weight-bold" type="button" data-dismiss="modal">CLOSE</button>
                                                             </div>
                                                         </div>
                                                     </div>

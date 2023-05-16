@@ -20,6 +20,8 @@ Bootstrap v3.3.1
  - responsive cards
 		blog index, blogpostindex, crud views
  - default image for posts and blogs
+ - delete comment throwing error
+ - comments index some info not showing
  - use search icon for search bar instead of button
  - nicer create button
  - crud links use icons

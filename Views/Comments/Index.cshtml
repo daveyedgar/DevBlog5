@@ -1,89 +1,64 @@
 ﻿@model IEnumerable<DevBlog5.Models.Comment>
+@using DevBlog5.Services
+@inject IImageService _imageService
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Comments</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-actions">Create New Comment</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Moderated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Deleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModeratedBody)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModerationType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Posts)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BlogUsers)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Moderator)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Updated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Moderated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModeratedBody)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModerationType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Posts.Abstract)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BlogUsers.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Moderator.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+
+
+@foreach (var item in Model)
+{
+    <div class="card-container">
+        <div class="cards">
+            <div class="card-item row row-cols-2">
+
+                <div class="comment-image col-2 user-thumbnail">
+                    @*<img src="@imageService.DecodeImage(comment.BlogUsers.ImageData, comment.BlogUsers.ContentType)" alt="@comment.BlogUsers.FullName" class="">*@
+                </div>
+                <div class="card-info col-md-6 col-12">
+                    <h2 class="card-title">Posted By: @Html.DisplayFor(modelItem => item.BlogUsers.FullName)</h2>
+                    <p class="card-intro">Post: @Html.DisplayNameFor(model => model.Posts)</p>
+                    <p class="card-intro">Post Description: @Html.DisplayFor(modelItem => item.Posts.Abstract)</p>
+                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
+                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
+                    <p class="card-intro">Date Deleted:  @Html.DisplayFor(modelItem => item.Deleted)</p>
+                    @*<p class="card-intro">Posted by <a href="">@item.BlogUser.FullName</a> on @item.Created</p>*@
+                </div>
+
+            </div>
+            <div class="row card-text">
+                <div class="col">
+                    <div>
+                        @Html.DisplayFor(modelItem => item.Body)
+                    </div>
+                    <div>
+                        <h6>Moderated: @Html.DisplayFor(modelItem => item.Moderated) by @Html.DisplayFor(modelItem => item.Moderator.Id):  @Html.DisplayFor(modelItem => item.ModerationType)</h6>
+                        <p>@Html.DisplayFor(modelItem => item.ModeratedBody)</p>
+                    </div>
+               </div>
+            </div>
+            <div class="row card-link">
+@*                <div class="col">
+                    <a class="btn btn-actions" asp-action="Details" asp-route-slug="@item.Slug">Read More...</a>
+                </div>*@
+            </div>
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="row card-actions">
+                    <div class="col">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 }
-    </tbody>
-</table>

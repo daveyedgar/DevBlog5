@@ -315,6 +315,11 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
         padding: 2px 4px;
         font-weight: 700;
     }
+
+/*  the delete button on the comment moderator modal*/
+#deleteComment {
+    display: inline-block;
+}
 /*****************************************************************************************
     
     MEDIA QUERIES                                                        MEDIA QUERIES
