@@ -71,7 +71,7 @@ namespace DevBlog5.Controllers
                 return NotFound();
             }
 
-            var pageNumber = page ?? 1;
+            var pageNumber = page ?? 1;  // null coelescing operator
             var pageSize = 1;  // amount per page
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
@@ -95,11 +95,11 @@ namespace DevBlog5.Controllers
                 .ToPagedListAsync(pageNumber, pageSize);
 
 
-            if(blogPosts.PageNumber > blogPosts.PageCount)
-            {
-                TempData["SuccessMessage"] = "Page not found.";
+            //if(blogPosts.PageNumber > blogPosts.PageCount)
+            //{
+            //    TempData["SuccessMessage"] = "Page not found.";
 
-            }
+            //}
 
 
             if (blogPosts.Count < 1)
@@ -107,8 +107,8 @@ namespace DevBlog5.Controllers
                 return RedirectToAction("PostsEmpty", new { id });
             }
 
-            ViewData["BlogName"] = blogPosts[0].Blog.Name;
-            ViewData["BlogId"] = blogPosts[0].BlogId;
+            ViewData["BlogName"] = blogPosts[0].Blog.Name;  // will get null error if no posts
+            ViewData["BlogId"] = blogPosts[0].BlogId; // will get null error if no posts
             ViewData["PageCount"] = pageNumber;
        
 

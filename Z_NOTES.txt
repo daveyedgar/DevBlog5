@@ -29,13 +29,10 @@ FIX
 
  STYLE
 
- - default image for posts and blogs
- - loading page progress icon feature
- - add cookie policy modal & button
- - use search icon for search bar instead of button
+ x = already comes with a preloader
  - page background colors
- - style tags in post details and main page
- - login partial style the logout button
+ - style tags in post details
+ - cards for detail tags and post content?
  - posts index card show limited post content with elipsees for read more...\
  - post index order descending by update then created
  - remove all commented code
@@ -47,6 +44,8 @@ FIX
 		FEATURES
 
 =====================================================================================
+
+suggest tags when adding
 
 add qr code alternative login
 

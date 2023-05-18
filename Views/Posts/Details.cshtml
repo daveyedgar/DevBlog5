@@ -33,10 +33,10 @@
     <article>
         <hr />
         <h3 class="font-weight-bold">Tags</h3>
-        <div class="col post-tag-list">
+        <div class="cat-item-details">
             @foreach (var tag in Model.Post.Tags.ToList())
             {
-                <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()" class="mb-1">#@tag.Text</a>
+                <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()" class="">#@tag.Text</a>
             }
         </div>
         <hr />
@@ -44,6 +44,15 @@
 
 
     <div>
+
+@****************************************************************
+CARDS    COMMENTS
+*****************************************************************@
+        <br />
+        <hr class="card-hr" />
+        <br />
+        <h2>Comments</h2>
+                <article>
         @if (User.Identity.IsAuthenticated)
         {
             <form asp-action="Create" asp-controller="Comments" method="post">
@@ -59,19 +68,15 @@
         }
         else
         {
-            <a class="btn btn-actions" asp-area="Identity" asp-page="/Account/Login">
+            <a class="btn btn-actions btn-sm" asp-area="Identity" asp-page="/Account/Login">
                 Login to add comments
             </a>
         }
+        </article>
+        <div class="comment-count">
+        <p>@Model.Post.Comments.Count COMMENT(S)</p>
+        </div>
 
-        <br />
-        <hr class="card-hr" />
-        <br />
-        <h2>Comments</h2>
-        <a id="commentSection" class="btn btn-sm btn-dark btn-block mb-2">@Model.Post.Comments.Count COMMENT(S)</a>
-        @****************************************************************
-        CARDS
-        *****************************************************************@
         @foreach (var comment in Model.Post.Comments.OrderByDescending(c => c.Created))
         {
             <div class="card-container">
@@ -334,10 +339,10 @@
 
 
         <div>
-            <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> |
+            <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
             @*<a id="createRoute" asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="">Back to List</a>*@
             @*// pass id into the back to list route*@
-            <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a>
+            <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
 
         </div>
 
@@ -376,7 +381,12 @@
         </div>
     </div>
 </div>
-<nav class="nav-slit">
+<!--************************************************************************************
+
+    NAVIGATION ARROWS ON SIDE OF PAGE
+
+************************************************************************************-->
+@*<nav class="nav-slit">
     <a class="prev" href="#">
         <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
         <div>
@@ -390,9 +400,4 @@
             <img src="~/assets/images/post_img1.jpg" alt="" />
         </div>
     </a>
-</nav>
-
-@section Scripts{
-    <script>
-    </script>
-}
+</nav>*@

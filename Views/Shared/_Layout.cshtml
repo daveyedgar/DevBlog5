@@ -8,7 +8,7 @@
     <link href="~/assets/images/favicon_a.svg" rel="icon">
     <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" asp-append-version="true">
     <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true">
+    @*<link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true">*@
     <link rel="stylesheet" type="text/css" href="~/assets/css/font.css" asp-append-version="true">
     <link rel="stylesheet" type="text/css" href="~/assets/css/li-scroller.css" asp-append-version="true">
     <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css" asp-append-version="true">
@@ -75,7 +75,11 @@
                     </ul>
                 </div>
                 <div class="col header_top_right">
-                    <partial name="_LoginPartial" />
+                    <ul class="nav navbar-nav main_nav">
+                        <li>
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -130,16 +134,15 @@
         =================      SEARCH FORM
 
         -----------------------------------------------------------------------------------------*@
+        <section>
 
-        <form asp-action="SearchIndex" asp-controller="Posts">
-            <div class="input-group mt-5">
+            <form asp-action="SearchIndex" asp-controller="Posts">
+                <div class="search-input">
                 <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
-                <div class="input-group-append">
-                    <button class="btn btn-warning btn-block" type="submit">Search</button>
+                    <button class="btn-actions" type="submit"><i class="fa fa-search"></i></button>
                 </div>
-            </div>
-        </form>
-
+            </form>
+        </section>
 
         @*-----------------------------------------------------------------------------------------
 
@@ -338,24 +341,74 @@
             </div>
         </section>
     </div>
+@*-----------------------------------------------------------------------------------------
+
+        COOKIE MODAL                                                                  COOKIE MODAL
+
+-----------------------------------------------------------------------------------------*@
+    <div class="js-cookiebar cookiebar">
+        <div class="ccard">
+            <div class="ccard-inner">
+                <div class="ccard-content">
+                    <h4 class="ccard-title">Cookie Conset</h4>
+                    <p>
+                        https://davidbellerose.com uses cookies (and other techniques) to collect information about the use of the
+                        platform in order to analyze and improve your experience, for the use of social media, and to ensure that
+                        advertisements are relevant to you. See our <a href="https://www.davidbellerose.com/cookie.html" target="_blank" class="link">
+                            Cookie Policy
+                        </a>, <a href="https://davidbellerose.com/terms.html" target="_blank" class="link">Terms &#38; Conditions</a>,
+                        and <a href="https://davidbellerose.com/privacy.html" target="_blank" class="link">Privacy Statement</a> for more information.
+                        By continuing on this site and accepting our cookies you agree to the
+                        collection of information on this basis by us and by third parties
+                        on the platform.
+                        <h6>Please customize your cookie settings below.</h6>
+                        <hr>
+                        <div class="justify-content-center">
+                            <div class="">
+                                <label class="custom-control material-switch">
+                                    <input id="basic_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" disabled checked />
+                                    <span class="material-switch-control-indicator switch-basic"></span>
+                                    Basic
+                                    <!-- <label class="d-flex align-items-center justify-content-center me-2" for="basic_chkbx">Basic</label> -->
+                                </label>
+                            </div>
+                            <div class="">
+                                <!-- <label class="d-flex align-items-center justify-content-center me-2" for="preferences_chkbx">Preferences</label> -->
+                                <label class="custom-control material-switch">
+                                    <input id="preferences_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
+                                    <span class="material-switch-control-indicator"></span>
+                                    Preferences
+                                </label>
+                            </div>
+                            <div class="">
+                                <!-- <label class="d-flex align-items-center justify-content-center me-2" for="statistics_chkbx">Statistics</label> -->
+                                <label class="custom-control material-switch">
+                                    <input id="statistics_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
+                                    <span class="material-switch-control-indicator"></span>
+                                    Statistics
+                                </label>
+                            </div>
+                            <div class="">
+                                <!-- <label class="d-flex align-items-center justify-content-center me-2" for="marketing_chkbx">Marketing</label> -->
+                                <label class="custom-control material-switch">
+                                    <input id="marketing_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
+                                    <span class="material-switch-control-indicator"></span>
+                                    Marketing
+                                </label>
+                            </div>
+                        </div>
+                        <div class="justify-content-center-btn">
+                            <button type="button" class="btn btn-actions" id="cookiebutton" onclick="onCookieButtonClick()">Accept</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
     @*-----------------------------------------------------------------------------------------
 
     FOOTER
 
     -----------------------------------------------------------------------------------------*@
-    @*    <footer id="footer mt-4 sticky-footer">
-    <div class="footer_bottom">
-    &copy; 2023 - David Bellerose - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    - <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-    </div>
-    </footer>*@
-
-    @*    <footer id="footer mt-4 sticky-footer">
-    <div class="footer_bottom">
-    &copy; 2023 - David Bellerose - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    - <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-    </div>
-    </footer>*@
 
     <footer class="footer sticky-footer">
         <div class="container-fluid">
@@ -363,9 +416,10 @@
                 <div class="col-md-4">
                     <div class="text-white">
                         <span>&copy;2022</span> David Bellerose |
-                        <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> |
-                        <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> |
-                        <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a>
+                        <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;
+                        <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;
+                        <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;
+                        <button id="open-cookie" class="btn btn-actions js-change-cookie">Change Cookie Preferences</button>
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
@@ -382,34 +436,6 @@
             </div>
         </div>
     </footer>
-
-    @*    <footer class="footer mt-auto sticky-footer text-light">
-    <div class="container-fluid">
-    <div class="row row-cols-1 row-cols-sm-3 gy-2">
-    <div class="col text-light order-last order-lg-first">
-    <div>
-    <span>&copy;2022</span> David Bellerose
-    </div>
-    </div>
-    <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
-    <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="assets/img/logo.svg" alt="David Bellerose Logo" height="24"></a>
-    </div>
-    <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
-    <div class="row">
-    <div class="col social">
-    <a href="https://www.linkedin.com/in/david-bellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a>
-    </div>
-    <div class="col social">
-    <a href="https://twitter.com/DavidEBellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
-    </div>
-    <div class="col social">
-    <a href="https://github.com/daveyedgar" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </footer>*@
 
     <script src="~/assets/js/jquery.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/wow.min.js" asp-append-version="true"></script>
