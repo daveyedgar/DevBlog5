@@ -11,29 +11,48 @@
 <div class="post-detail col-8">
 
     @****************************************************************
-    SYSTEM TAGS
+    POST CONTENT
     *****************************************************************@
     <article>
         <div class="row">
             <div class="post-img">
                 <img src="@imageService.DecodeImage(Model.Post.ImageData, Model.Post.ContentType)" />
             </div>
-            <div class="col-4 border-right">
-                <h1>@Html.Raw(Model.Post.Title)</h1>
-            </div>
-            <div class="col-4 border-right">
-                <h4>@Html.Raw(Model.Post.Abstract)</h4>
-            </div>
-            <div class="col-4 border-right">
-                <p>@Html.Raw(Model.Post.Content)</p>
-            </div>
         </div>
     </article>
+
+    <div class="card-container">
+        <div class="cards">
+            <div class="card-item">
+                <div class="card-info">
+                    <div class="post-title">
+                        <p>@Html.Raw(Model.Post.Title)</p>
+                    </div>
+                    <div class="post-abstract">
+                        <img src="~/assets/images/tutorial-icon.png"/>
+                        <h3 class="post-abstract">@Html.Raw(Model.Post.Abstract)</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row card-text">
+                <div class="col">
+                    <div class="post-content">
+                        <p>@Html.Raw(Model.Post.Content)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @****************************************************************
+    SYSTEM TAGS
+    *****************************************************************@
 
     <article>
         <hr />
         <h3 class="font-weight-bold">Tags</h3>
-        <div class="cat-item-details">
+        <div class="">
             @foreach (var tag in Model.Post.Tags.ToList())
             {
                 <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()" class="">#@tag.Text</a>
@@ -42,12 +61,26 @@
         <hr />
     </article>
 
+    <div class="card-container">
+        <div class="cards">
+            <div class="row card-text">
+                <div class="col">
+                    <div class="cat-item">
+                        @foreach (var tag in Model.Post.Tags.ToList())
+                        {
+                            <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()" class="">#@tag.Text</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    @****************************************************************
+    CARDS    COMMENTS
+    *****************************************************************@
     <div>
 
-@****************************************************************
-CARDS    COMMENTS
-*****************************************************************@
         <br />
         <hr class="card-hr" />
         <br />

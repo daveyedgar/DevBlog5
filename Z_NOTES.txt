@@ -30,11 +30,9 @@ FIX
  STYLE
 
  x = already comes with a preloader
- - page background colors
- - style tags in post details
- - cards for detail tags and post content?
  - posts index card show limited post content with elipsees for read more...\
  - post index order descending by update then created
+ - back to top button adjust for footer script
  - remove all commented code
  - do latest tweets
  - responsive
@@ -129,3 +127,39 @@ If thats the case why do we need the PostDetailViewModel? The info in there seem
 What I am leading to is I would like to have a list of recent posts, recent blogs and system tags on my landing page,
 that being the _layout page. I've tried using and inject statements in the _layout page but no success yet.
 
+==================================================================
+	<div class="card-container">
+		<div class="cards">
+			<div class="card-item row row-cols-2">
+				<div class="card-image col-md-6 col-12">
+					image
+				</div>
+				<div class="card-info col-md-6 col-12">
+					<h2 class="card-title">title</h2>
+					<p class="card-intro">info</p>
+				</div>
+
+			</div>
+			<div class="row card-text">
+				<div class="col">
+					<h4>Recent Posts</h4>
+					<p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+				</div>
+			</div>
+			<div class="row card-link">
+				<div class="col">
+					<a class="btn btn-actions">Read More...</a>
+				</div>
+			</div>
+			@if (User.IsInRole("Administrator"))
+			{
+				<div class="row card-actions">
+					<div class="col">
+						<a asp-action="Edit" asp-route-id="@item.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+						<a asp-action="Details" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
+						<a asp-action="Delete" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
