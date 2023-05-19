@@ -3,8 +3,7 @@ Bootstrap v3.3.1
 
 
 FIX
- - BlogPostIndex method showing int? page as null
-		clicking on blog in home index not passing page number
+ 
 
  - the blog name isn't showing up in the create post view
  - the back to list link doesn't go to the page you were on - where?
@@ -12,30 +11,36 @@ FIX
  - search not working
 		none found page with back links
  - if can't find page throw error like if i type in page greater than total.
- - post details view back to list link goes to blog, not posts
  - posts/index view @item.BlogUser.FullName not working, fullname showing null
  - what is purpose of clicking on link of posted by 
  - breadcrumbs for header nav menu
- - delete comment throwing error
+ - delete comment is throwing error
  - comments index some info not showing
  - contact form error on send
- - home index crud links/buttons need to point to correct controller and actions
  - preview image on create and edit
 		check contactpro contact profile image create and edit
 		image uploads don't like svg
  - make sure only admin moderator can post
 	regular users can comment only
 	not logged in can view only
+- add recent posts to blog cards
+	code read more button
 
  STYLE
 
  x = already comes with a preloader
- - posts index card show limited post content with elipsees for read more...\
- - post index order descending by update then created
- - back to top button adjust for footer script
  - remove all commented code
  - do latest tweets
  - responsive
+	footer
+
+
+ BLOGPOSTINDEX
+  - BlogPostIndex method showing int? page as null
+		clicking on blog in home index not passing page number
+ - set the post detail back button to go to blogpostindex
+ - home index crud links/buttons need to point to correct controller and actions
+
 
 ===================================================================================
 

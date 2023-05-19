@@ -5,7 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DevPostsMVC</title>
-    <link href="~/assets/images/favicon_a.svg" rel="icon">
+    <!-- Favicons -->
+    <link href="./assets/img/dblogo.svg" rel="icon" />
+    <link href="./assets/img/dblogo.svg" rel="apple-touch-icon" />
     <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" asp-append-version="true">
     <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" asp-append-version="true">
     @*<link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true">*@
@@ -28,7 +30,7 @@
     <div id="preloader">
         <div id="status">&nbsp;</div>
     </div>
-    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    <a id="back-top" class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     @*-----------------------------------------------------------------------------------------
 
     HEADER
@@ -46,8 +48,9 @@
                         <li class="nav=item">
                             <a class="nav-link" style="margin-left: 1rem;" href="#"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
                         </li>
-                        <li class="active"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home"></span><span class="mobile-show"></span></a>
-                            </li>
+                        <li class="active">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home"></span><span class="mobile-show"></span></a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">About</a>
                         </li>
@@ -74,12 +77,8 @@
                         </li>*@
                     </ul>
                 </div>
-                <div class="col header_top_right">
-                    <ul class="nav navbar-nav main_nav">
-                        <li>
-                            <partial name="_LoginPartial" />
-                        </li>
-                    </ul>
+                <div class="header_top_right">
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -115,14 +114,17 @@
                         </ul>
                         <div class="social_area">
                             <ul class="social_nav">
-                                <li class="twitter"><a href="#"></a></li>
-                                <li class="facebook"><a href="#"></a></li>
+                                <li class="twitter"><a href="https://twitter.com/DavidEBellerose" target="_blank"></a></li>
+                                <li class="linkedin"><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"></a></li>
+                                <li class="website"><a href="https://www.davidbellerose.com" target="_blank"></a></li>
+                                <li class="github"><a href="https://github.com/daveyedgar" target="_blank"></a></li>
+                                <li class="mail"><a href="https://www.davidbellerose.com/#contact" target="_blank"></a></li>
+                                @*<li class="facebook"><a href="#"></a></li>*@
                                 @*<li class="flickr"><a href="#"></a></li>*@
-                                <li class="pinterest"><a href="#"></a></li>
-                                <li class="googleplus"><a href="#"></a></li>
-                                <li class="vimeo"><a href="#"></a></li>
-                                <li class="youtube"><a href="#"></a></li>
-                                <li class="mail"><a href="#"></a></li>
+                                @*<li class="pinterest"><a href="#"></a></li>*@
+                                @*<li class="googleplus"><a href="#"></a></li>*@
+                                @*<li class="vimeo"><a href="#"></a></li>*@
+                                @*<li class="youtube"><a href="#"></a></li>*@
                             </ul>
                         </div>
                     </div>
@@ -138,7 +140,7 @@
 
             <form asp-action="SearchIndex" asp-controller="Posts">
                 <div class="search-input">
-                <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
+                    <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
                     <button class="btn-actions" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </form>
@@ -341,11 +343,11 @@
             </div>
         </section>
     </div>
-@*-----------------------------------------------------------------------------------------
+    @*-----------------------------------------------------------------------------------------
 
-        COOKIE MODAL                                                                  COOKIE MODAL
+    COOKIE MODAL                                                                  COOKIE MODAL
 
------------------------------------------------------------------------------------------*@
+    -----------------------------------------------------------------------------------------*@
     <div class="js-cookiebar cookiebar">
         <div class="ccard">
             <div class="ccard-inner">

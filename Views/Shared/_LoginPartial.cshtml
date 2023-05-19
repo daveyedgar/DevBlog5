@@ -1,16 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using DevBlog5.Models
 @inject SignInManager<BlogUser> SignInManager
 @inject UserManager<BlogUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="nav navbar-nav main_nav">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
         </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        <li class="nav-item logout-form">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn">Logout</button>
             </form>
         </li>
     }

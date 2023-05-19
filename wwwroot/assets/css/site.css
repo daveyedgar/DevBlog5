@@ -34,6 +34,53 @@ body {
     margin: 20px 0;
 }
 
+/* social icon links at end of tweets/news bar */
+.social_nav li.linkedin a {
+    background-image: url("../images/linkedin.svg");
+    background-position: 0px -62px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    .social_nav li.linkedin a:hover {
+        background-position: -0px -11px;
+        background-size: 20px 20px;
+        background-size: cover;
+    }
+
+.social_nav li.website a {
+    background-image: url("../images/briefcase.svg");
+    background-position: 0px -44px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    .social_nav li.website a:hover {
+        background-position: -0px -4px;
+        background-size: 20px 20px;
+        background-size: cover;
+    }
+
+
+.social_nav li.github a {
+    background-image: url("../images/github.svg");
+    background-position: -0px -62px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat; 
+    background-size: cover;  
+}
+
+    .social_nav li.github a:hover {
+        background-position: -0px -7px;
+        background-size: 20px 20px;
+        background-size: cover;
+    }
+
+
+
+
 #sliderSection {
     background-color: #fff;
     display: inline;
@@ -141,6 +188,50 @@ img:hover {
 .navbar {
     margin: 0;
 }
+/*  logout button on header*/
+
+.logout-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+    .logout-form button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: inherit;
+        background-color: none;
+        height: 50px;
+        font-size: 1rem;
+        border-left: 1px solid #383838;
+        color: #ddd;
+        font-family: 'Oswald',sans-serif;
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 14px;
+        text-shadow: 0 1px 1px #000;
+        text-transform: uppercase;
+        -webkit-transition: all 0.5s;
+        -mz-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s
+    }
+
+.logout-form button:hover {
+    background-color: #d083cf;
+}
+
 
 .header_top_right {
     display: flex;
@@ -154,6 +245,65 @@ img:hover {
     left: 0;
     z-index: 100;
 }
+
+/*****************************************************************************************
+    
+    BACK TO TOP                                                      BACK TO TOP
+
+*****************************************************************************************/
+.scrollToTop {
+    bottom: 10px;
+    display: none;
+    font-size: 32px;
+    font-weight: bold;
+    height: 50px;
+    position: fixed;
+    right: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    z-index: 9;
+    border: 1px solid;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s
+}
+
+    .scrollToTop:hover, .scrollToTop:focus {
+        text-decoration: none;
+        outline: none
+    }
+
+
+
+
+/*  to shift the location of the back to top button to clear the footer*/
+#back-top.shift {
+    bottom: 100px;
+    transition: bottom 1s;
+}
+
+@media (max-width: 980px) {
+    #back-top.shift {
+        bottom: 110px;
+        transition: bottom 1s;
+    }
+}
+
+@media (max-width: 660px) {
+    #back-top.shift {
+        bottom: 130px;
+        transition: bottom 1s;
+    }
+}
+
+/*****************************************************************************************
+    
+    FOOTER                                                                  FOOTER
+
+*****************************************************************************************/
 
 .sticky-footer {
     padding: 0.8rem 0;
@@ -456,21 +606,22 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
     line-height: 7rem;
 }
 
-.post-title p::first-letter {
-    color: #aaa;
-    background-color: hsla(0,0%,0%,.75);
-    float: left;
-    font: bold 200%/300% sans-serif;
-    margin: 0 5px 0px 0;
-    padding: 12px 17px;
-    -webkit-transition: all 0.5s;
-    -mz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    text-shadow: 0 2px 2px hsla(0,0%,100%,1), 0 -1px 1px hsla(0,0%,0%,1);
-    border-radius: 3px;
-}
+    .post-title p::first-letter {
+        color: #aaa;
+/*        color: #d083cf;*/
+        background-color: hsla(0,0%,0%,.75);
+        float: left;
+        font: bold 200%/300% sans-serif;
+        margin: 0 5px 0px 0;
+        padding: 12px 17px;
+        -webkit-transition: all 0.5s;
+        -mz-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        text-shadow: 0 2px 2px hsla(0,0%,100%,1), 0 -1px 1px hsla(0,0%,0%,1);
+        border-radius: 3px;
+    }
 
 .post-title p::first-letter {
 /*    color: #d083cf;
@@ -495,6 +646,12 @@ align-items: center;
 
 .post-content p{
     font-weight: 500;
+}
+
+.post-limited p{
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: 'Montserrat',sans-serif;
 }
 
 .user-thumbnail img {

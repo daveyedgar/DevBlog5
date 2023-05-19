@@ -53,6 +53,30 @@ function setRouteId() {
     createLink.setAttribute("asp-route-id", blogId);
 }
 
+// **************************************************
+//
+//              BACK TO TOP BUTTON
+//
+//      move above footer when scrolled to bottom
+//
+//
+// **************************************************
+
+
+ 
+$(document).ready(function () {
+
+    $(document).on('scroll', function () {
+        var distanceFromBottom = $(document).height() - ($(document).scrollTop() + $(window).height());
+
+        if (distanceFromBottom < 180) {
+            $('#back-top').addClass("shift");
+        } else {
+            $('#back-top').removeClass("shift");
+        }
+    });
+});
+
 
 // **************************************************
 //

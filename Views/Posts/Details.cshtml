@@ -373,9 +373,10 @@
 
         <div>
             <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-            @*<a id="createRoute" asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="">Back to List</a>*@
+            <a id="createRoute" asp-controller="Posts" asp-action="Index" asp-route-id=""><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
             @*// pass id into the back to list route*@
-            <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+            @*eventually the back button will go back to the blogpostindex@
+            @*<a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
 
         </div>
 
