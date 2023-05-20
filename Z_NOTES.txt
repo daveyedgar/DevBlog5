@@ -11,7 +11,6 @@ FIX
  - posts/index and blogpostindex view @item.BlogUser.FullName not working, fullname showing null; line36
 
 
- - contact form sweet alert for email
  - preview image on create and edit
 		check contactpro contact profile image create and edit
 		image uploads don't like svg
@@ -57,9 +56,12 @@ FIX
  ==========================================================================
  STYLE  
 
+ ~/assets/images/defaultUserImage.png
+
  x = already comes with a preloader
  - remove all commented code
  - responsive
+	- blog details view
 	posts searchindex view - search only includes production ready
 		make result clickable / go to 
 	header may need bottom margin until left menu is reduced

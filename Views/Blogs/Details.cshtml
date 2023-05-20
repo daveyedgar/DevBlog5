@@ -40,7 +40,9 @@
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd class = "col-sm-10">
-            <img src="@Model.Image" />
+            <div class="preview-img">
+            <img src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
+            </div>
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ContentType)

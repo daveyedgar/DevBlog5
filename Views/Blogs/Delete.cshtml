@@ -14,7 +14,7 @@
         <div class="cards">
             <div class="card-Model row row-cols-2">
                 <div class="card-image col-md-6 col-12">
-                    <img class="img-fluid" width="100" src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
+                    <img src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
                 </div>
                 <div class="card-info col-md-6 col-12">
                     <h2 class="card-title">@Html.DisplayFor(modelModel => Model.Name)</h2>

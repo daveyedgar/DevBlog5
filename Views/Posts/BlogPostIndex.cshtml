@@ -29,8 +29,8 @@
     <div class="card-container">
         <div class="cards">
             <div class="card-item row row-cols-2">
-                <div class="card-image col-md-6 col-12">
-                    <img class="img-fluid" width="100" src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                <div class="col-md-6 col-12 card-image">
+                    <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
                 </div>
                 <div class="card-info col-md-6 col-12">
                     <h2 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h2>

@@ -1,5 +1,7 @@
 ﻿@model DevBlog5.Models.Post
 @using DevBlog5.Enums
+@using DevBlog5.Services
+@inject IImageService _imageService
 
 @{
     ViewData["Title"] = "Edit";
@@ -71,9 +73,26 @@
             </div>
 
 
-            <div class="form-group">
+@*            <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
                 <input type="file" name="newImage" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.svg,.webp" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>*@
+            <div class="card-image">
+                @if (Model.ImageData != null)
+                {
+                    <img id="imageFileData" src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)">
+
+                }
+                else
+                {
+                    <img id="imageFileData" src="~/assets/images/defaultUserImage.png">
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="file" name="newImage" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.svg,.webp"
+                       onchange="document.getElementById('imageFileData').src=window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
