@@ -37,9 +37,15 @@
             <div class="row card-text">
                 <div class="col">
                     <h4>Recent Posts</h4>
+                    @foreach (var post in Model)
+                    {
+                        <p>@Html.DisplayFor(modelItem => item.Posts)</p>
+
+                        <span></span>
+                    }
+@*                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
                     <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
-                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
-                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>*@
                 </div>
             </div>
             <div class="row card-link">

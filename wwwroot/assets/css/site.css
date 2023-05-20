@@ -391,7 +391,7 @@ img {
         font-size: 15px;
         padding: 5px 10px;
         flex: 0 0 auto;
-        z-index: 555;
+        z-index: 1;
         line-height: 1.8em;
         padding: 2px 18px 1px 19px;
     }

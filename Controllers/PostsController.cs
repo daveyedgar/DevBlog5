@@ -60,6 +60,7 @@ namespace DevBlog5.Controllers
                 .ThenByDescending(p=>p.Created);
 
             return View(await applicationDbContext.ToListAsync());
+
         }
 
         public IActionResult PostsEmpty()
@@ -214,11 +215,13 @@ namespace DevBlog5.Controllers
                         .Distinct().ToList()
             };
 
+            
+
             ViewData["HeaderImage"] = _imageService.DecodeImage(post.ImageData, post.ContentType);
             ViewData["MainText"] = post.Title;
             ViewData["SubText"] = post.Abstract;
 
-            ViewData["BlogId"] = post.BlogId;
+            ViewData["BlogId"] = post.Blog.Name;
 
             return View(dataVM);
         }
@@ -227,10 +230,10 @@ namespace DevBlog5.Controllers
         // GET: Posts/Create
         public IActionResult Create()
         {
+
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["SetBlogId"] = (_context.Blogs, "Id");
-
             return View();
         }
 
@@ -320,13 +323,17 @@ namespace DevBlog5.Controllers
 
             var post = await _context.Posts
                 .Include(p => p.Tags)
+                .Include(p => p.Blog)
                 .FirstOrDefaultAsync(p => p.Slug == slug);
             if (post == null)
             {
                 return NotFound();
             }
+
+           
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             ViewData["TagValues"] = string.Join(",", post.Tags.Select(t => t.Text));
+            ViewData["BlogName"] = post.Blog.Name;
             return View(post);
         }
 

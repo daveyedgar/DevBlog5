@@ -1,61 +1,88 @@
 ﻿
 Bootstrap v3.3.1
 
-
-FIX
+ ================================================================
+FIX 
  
-
- - the blog name isn't showing up in the create post view
- - the back to list link doesn't go to the page you were on - where?
- - put blog name in post details and delete views
- - search not working
-		none found page with back links
+ - blog user not showing in post delete view line 36; @Html.DisplayFor(model => model.BlogUser.FullName)
+ 
+ 
+ + search not working
+		- search only includes production ready
  - if can't find page throw error like if i type in page greater than total.
- - posts/index view @item.BlogUser.FullName not working, fullname showing null
- - what is purpose of clicking on link of posted by 
- - breadcrumbs for header nav menu
+ - posts/index and blogpostindex view @item.BlogUser.FullName not working, fullname showing null; line36
+
  - delete comment is throwing error
  - comments index some info not showing
  - contact form error on send
  - preview image on create and edit
 		check contactpro contact profile image create and edit
 		image uploads don't like svg
+
+
  - make sure only admin moderator can post
 	regular users can comment only
 	not logged in can view only
-- add recent posts to blog cards
-	code read more button
 
- STYLE
+- add recent posts to blog cards
+	
+
+ - what is purpose of clicking on link of posted by 
+
+ 
+
+ =========================================================================
+ HOME INDEX
+  - list of blogs with pagination
+  - when click on read more of blog it records blogid and passes in url
+		  so blogpostindex can show posts only for that blog
+  - blog create view back button will go back to home index to correct page
+ - read more button goes to blogpostindex for that blog
+
+ + show recent posts
+ + show latest comments
+ + show latest categories
+ + show all tags/distinct
+
+
+   BLOGPOSTINDEX
+  - BlogPostIndex method showing int? page as null
+		clicking on blog in home index not passing page number
+ - set the post detail back button to go to blogpostindex later
+ - the blog name isn't showing up in the create post view
+ - the back to list link doesn't go to the page you were on - where?
+
+
+ ==========================================================================
+ STYLE  
 
  x = already comes with a preloader
  - remove all commented code
  - responsive
+	posts searchindex view - search only includes production ready
+		make result clickable / go to 
+	post edit/create view needs styling on adding tags
+	check other crud views for responsive even though i'm the only one to see it
 	header may need bottom margin until left menu is reduced
 	fluid images try not to stretch, maintain proportion
 	text for post details content abstract and title
-
+- consider making blog cards smaller
 - consider scaffolding views for tags in case you want to edit them globally
+- put tags on posts index card?
 
-
- BLOGPOSTINDEX
-  - BlogPostIndex method showing int? page as null
-		clicking on blog in home index not passing page number
- - set the post detail back button to go to blogpostindex
- - home index crud links/buttons need to point to correct controller and actions
-
- HOME INDEX
-  - list of blogs with pagination
-  - blog create view back button will go back to home index to correct page
-  - blog view more will go to BlogPostIndex with posts filtered for blog clicked
-
-
+> maybe don't need pagination
+	.hafe the featured blog/category under the carousel
+	.and use the layout for the remaining catogiries left and right views
 
 ===================================================================================
 
 		FEATURES
 
 =====================================================================================
+
+ - breadcrumbs for header nav menu
+ - tags on home index page click to show all posts for that tag
+ - someday may use archive
 
 suggest tags when adding
 

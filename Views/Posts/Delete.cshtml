@@ -33,7 +33,7 @@
                 <p class="card-intro">Date Created: @Html.DisplayFor(model => model.Created)</p>
                 <p class="card-intro">Date Updated: @Html.DisplayFor(model => model.Updated)</p>
                 <p class="card-intro">Status: @Html.DisplayFor(model => model.ReadyStatus)</p>
-                <p class="card-intro">Posted by <a href="">@Model.BlogUser.FullName</a> on @Model.Created</p>
+                <p>Posted By: @Html.DisplayFor(model => model.BlogUser.FullName)</p>
             </div>
 
         </div>
