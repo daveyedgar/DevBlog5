@@ -65,10 +65,23 @@ namespace DevBlog5.Controllers
 
                 comment.BlogUserId = _userManager.GetUserId(User);
                 comment.Created = DateTime.UtcNow;
+
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-                //return RedirectToAction("Details", "Posts", new { slug = commentList.post.Slug }, "commentSection");
+
+                comment = await _context.Comments
+                    .Include(c => c.Posts)
+                    .Where(c => c.Id == comment.Id)
+                    .FirstOrDefaultAsync();
+
+                if (comment is null)
+                {
+                    return NotFound();
+                }
+
+
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Posts", new { slug = comment.Posts.Slug }, "commentSection");
             }
             return View(comment);
         }

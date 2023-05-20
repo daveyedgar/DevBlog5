@@ -6,14 +6,11 @@ FIX
  
  - blog user not showing in post delete view line 36; @Html.DisplayFor(model => model.BlogUser.FullName)
  
- 
- + search not working
-		- search only includes production ready
+
  - if can't find page throw error like if i type in page greater than total.
  - posts/index and blogpostindex view @item.BlogUser.FullName not working, fullname showing null; line36
 
- - delete comment is throwing error
- - comments index some info not showing
+
  - contact form error on send
  - preview image on create and edit
 		check contactpro contact profile image create and edit
@@ -28,6 +25,7 @@ FIX
 	
 
  - what is purpose of clicking on link of posted by 
+ - comments index some info not showing [dont really need this]
 
  
 
@@ -48,6 +46,9 @@ FIX
    BLOGPOSTINDEX
   - BlogPostIndex method showing int? page as null
 		clicking on blog in home index not passing page number
+		would this work?
+		@Html.Hidden("id", comment.Id)
+		@Html.Hidden("Slug", comment.Posts.Slug)
  - set the post detail back button to go to blogpostindex later
  - the blog name isn't showing up in the create post view
  - the back to list link doesn't go to the page you were on - where?
@@ -122,6 +123,7 @@ This trick worked on the post controller details method
 				<a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]">Back to List</a>
 
 
+@foreach (var comment in Model.Post.Comments.OrderByDescending(c => c.Created))
 ===============================================================================
 
 		 ERRORS
@@ -168,7 +170,7 @@ If thats the case why do we need the PostDetailViewModel? The info in there seem
 What I am leading to is I would like to have a list of recent posts, recent blogs and system tags on my landing page,
 that being the _layout page. I've tried using and inject statements in the _layout page but no success yet.
 
-==================================================================
+====================== card container blank============================================
 	<div class="card-container">
 		<div class="cards">
 			<div class="card-item row row-cols-2">
@@ -204,3 +206,4 @@ that being the _layout page. I've tried using and inject statements in the _layo
 			}
 		</div>
 	</div>
+	=======================================================

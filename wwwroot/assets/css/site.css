@@ -860,13 +860,50 @@ img {
     #deleteComment {
         display: inline-block;
     }
-    /*****************************************************************************************
+
+
+.modal-dialog {
+/*    position: absolute;*/
+    top: 20%;
+    right: 100px;
+    bottom: 0;
+    left: 0;
+/*    z-index: 10040;*/
+/*    overflow: auto;*/
+/*    overflow-y: auto;*/
+}
+
+/* comment delete modal*/
+.comment-warning{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+    .comment-warning img {
+        height: 2rem;
+        display: inline-block;
+        width: min-content;
+        margin-right: 1rem;
+    }
+
+    .comment-warning span {
+        font-size: 1.3rem;
+        font-weight: bold;
+        font-family: 'Montserrat',sans-serif;
+    }
+
+
+
+/*****************************************************************************************
     
     MEDIA QUERIES                                                        MEDIA QUERIES
 
 *****************************************************************************************/
-    @media(max-width:767px ) {
-        html {
+@media(max-width:767px ) {
+    html {
             font-size: 16px;
         }
 
