@@ -49,17 +49,10 @@
     SYSTEM TAGS
     *****************************************************************@
 
-    <article>
-        <hr />
+    <div class="tag-header">
         <h3 class="font-weight-bold">Tags</h3>
-        <div class="">
-            @foreach (var tag in Model.Post.Tags.ToList())
-            {
-                <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()" class="">#@tag.Text</a>
-            }
-        </div>
         <hr />
-    </article>
+    </div>
 
     <div class="card-container">
         <div class="cards">
@@ -82,7 +75,6 @@
     <div>
 
         <br />
-        <hr class="card-hr" />
         <br />
         <h2>Comments</h2>
                 <article>
@@ -94,6 +86,8 @@
 
                 <div class="form-group">
                     <label class="h2 control-label font-weight-bold">Add Comment</label>
+
+                        <hr />
                     <textarea name="body" class="form-control" rows="4"></textarea>
                 </div>
                 <button type="submit" class="btn btn-actions btn-block btn-sm">Submit</button>

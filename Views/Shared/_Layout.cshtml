@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DevPostsMVC</title>
     <!-- Favicons -->
-    <link href="./assets/img/dblogo.svg" rel="icon" />
-    <link href="./assets/img/dblogo.svg" rel="apple-touch-icon" />
+    <link href="./assets/images/dblogo.svg" rel="icon" />
+    <link href="./assets/images/dblogo.svg" rel="apple-touch-icon" />
     <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" asp-append-version="true">
     <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" asp-append-version="true">
     @*<link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true">*@
@@ -46,7 +46,9 @@
                 <div class="col header_top_left">
                     <ul class="nav navbar-nav main_nav">
                         <li class="nav=item">
-                            <a class="nav-link" style="margin-left: 1rem;" href="#"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
+                            <a class="nav-link" style="margin-left: 1rem;" href="https://www.davidbellerose.com" target="_blank">
+                                <img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo">
+                            </a>
                         </li>
                         <li class="active">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home"></span><span class="mobile-show"></span></a>
@@ -57,15 +59,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
-                        @*                        <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                         </li>
@@ -98,19 +94,65 @@
         <section id="newsSection" style="margin-top:80px;">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-
-                    <div class="latest_newsarea">
+                    <!-- original -->
+@*                    <div class="latest_newsarea">
                         <span>Latest Tweets</span>
                         <ul id="ticker01" class="news_sticker">
-                            <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My First News Item</a></li>
-                            <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My Second News Item</a></li>
+                            <li>
+                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    David Bellerose: ASP.NET Full Stack Web Developer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    How I built this blog from scratch
+                                </a>
+                            </li>
                             <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My Third News Item</a></li>
                             <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My Four News Item</a></li>
                             <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My Five News Item</a></li>
-                            <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My Six News Item</a></li>
-                            <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My Seven News Item</a></li>
-                            <li><a href="#"><img src="~/assets/images/news_thumbnail3.jpg" alt="">My Eight News Item</a></li>
-                            <li><a href="#"><img src="~/assets/images/news_thumbnail2.jpg" alt="">My Nine News Item</a></li>
+                        </ul>
+                        <div class="social_area">
+                            <ul class="social_nav">
+                                <li class="twitter"><a href="https://twitter.com/DavidEBellerose" target="_blank"></a></li>
+                                <li class="linkedin"><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"></a></li>
+                                <li class="website"><a href="https://www.davidbellerose.com" target="_blank"></a></li>
+                                <li class="github"><a href="https://github.com/daveyedgar" target="_blank"></a></li>
+                                <li class="mail"><a href="https://www.davidbellerose.com/#contact" target="_blank"></a></li>
+                            </ul>
+                        </div>
+                    </div>*@
+                    <!-- test -->
+                    <div class="ticker-wrapper-h">
+                        <div class="heading">Latest Tweets</div>
+
+                        <ul class="news-ticker-h">
+                            <li>
+                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    David Bellerose: ASP.NET Full Stack Web Developer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    How I built this blog from scratch
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    SymeTrak is now live
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    New project coming soon
+                                </a>
+                            </li>
                         </ul>
                         <div class="social_area">
                             <ul class="social_nav">
@@ -128,6 +170,8 @@
                             </ul>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </section>
@@ -412,37 +456,29 @@
 
     -----------------------------------------------------------------------------------------*@
 
-    <footer class="footer sticky-footer">
-        <div class="container-fluid">
-            <div class="row gy-2">
-                <div class="col-md-4">
-                    <div class="text-white">
-                        <span>&copy;2022</span> David Bellerose |
-                        <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;
-                        <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;
-                        <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;
-                        <button id="open-cookie" class="btn btn-actions js-change-cookie">Change Cookie Preferences</button>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
-                </div>
-                <div class="col-md-4 text-right footer-social">
-                    <a href="https://www.linkedin.com/in/david-bellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a>
-
-                    <a href="https://twitter.com/DavidEBellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
-
-                    <a href="https://github.com/daveyedgar" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
-
-                </div>
-            </div>
+    <div class="footer-container">
+        <div class="footer-item">
+            <span>&copy;2022</span> David Bellerose |&nbsp;
+            <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;|&nbsp;
+            <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;|&nbsp;
+            <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;|&nbsp;
+            <button id="open-cookie" class="btn btn-actions js-change-cookie">Change Cookie Preferences</button>
         </div>
-    </footer>
+        <div class="footer-item">
+            <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
+        </div>
+        <div class="footer-item">
+            <a href="https://www.linkedin.com/in/david-bellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="https://twitter.com/DavidEBellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
+            <a href="https://github.com/daveyedgar" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
+
+        </div>
+    </div>
 
     <script src="~/assets/js/jquery.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/wow.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/jquery.li-scroller.1.0.js" asp-append-version="true"></script>
+    @*<script src="~/assets/js/jquery.li-scroller.1.0.js" asp-append-version="true"></script>*@
     <script src="~/assets/js/jquery.newsTicker.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/jquery.fancybox.pack.js" asp-append-version="true"></script>
     <script src="~/assets/js/slick.min.js" asp-append-version="true"></script>

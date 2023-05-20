@@ -10,8 +10,15 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<h1>Home Index</h1>
 
 <a asp-controller="Blogs" asp-action="Create" class="btn btn-actions">Create New Blog</a>
+
+@*-----------------------------------------------------------------------------------------
+
+        BLOG CARD                                                           BLOG CARD
+
+-----------------------------------------------------------------------------------------*@
 
 @foreach (var item in Model)
 {
@@ -41,7 +48,7 @@
             </div>
             <div class="row card-link">
                 <div class="col">
-                    <a class="btn btn-actions">Read More...</a>
+                    <a class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="">Read More...</a>
                 </div>
             </div>
             @if (User.IsInRole("Administrator"))

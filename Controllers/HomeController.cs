@@ -39,6 +39,7 @@ namespace DevBlog5.Controllers
             return View(await blogs);
         }
 
+        // Get Contact view
         public IActionResult Contact()
         {
             return View();

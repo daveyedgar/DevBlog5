@@ -47,8 +47,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 .top_nav li{display:inline-block}
 .top_nav li a{display:inline-block; border-right:1px solid #333; color:#fff; font-size:11px; font-weight:bold; padding:20px 15px; text-transform:uppercase; -webkit-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}
 .top_nav li a:hover{background-color:#d083cf}
-.header_top_right{float:right; display:inline; width:50%; text-align:right}
-.header_top_right > li{color:#fff; display:inline; float:right; font:bold 12px sans-serif; margin-bottom:0; padding-bottom:20px; padding-right:8px; padding-top:20px}
 .header_bottom{background-color:#fff; display:inline; float:left; padding:15px 30px 15px; width:100%}
 .logo_area{display:inline; float:left; width:31%}
 .logo{font-size:45px; font-weight:bold; color:#000; font-family:'Varela',sans-serif}
@@ -70,8 +68,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 .dropdown-menu{background-color:#222}
 .dropdown-menu > li > a{clear:both; color:#ddd; background-color:#222; padding:10px 20px; font-family:'Oswald',sans-serif; -webkit-transition:all 0.5s; -mz-transition:all 0.5s; -ms-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{color:#fff}
-.latest_newsarea{float:left; display:inline; width:100%; background-color:#000; position:relative}
-.latest_newsarea span{ color:#fff; font-family:Oswald,sans-serif; font-size:15px; left:0; line-height:1.8em; margin-right:20px; overflow:hidden; padding:2px 18px 1px 19px; position:absolute; z-index:15}
 .social_area{ position:absolute; right:0; top:0; background:#fff; border-top:1px solid #ccc; border-bottom:1px solid #ccc; border-right:1px solid #ccc; height:31px}
 .social_nav{ text-align:right}
 .social_nav li{ display:block; float:left}
@@ -177,15 +173,10 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 .sideAdd > img{width:100%; height:100%}
 .single_sidebar ul li a{border-bottom:1px solid #333; display:block}
 .single_sidebar .spost_nav li a{border-bottom:none; float:left}
-#footer{display:inline; float:left; width:100%; margin-bottom:20px}
-.footer_top{background-color:#252525; color:#ddd; display:inline; float:left; padding:10px 30px 48px; width:100%; margin-top:2rem;}
-.footer_widget{display:inline; float:left; width:100%; min-height:310px}
-.footer_widget > h2{border-bottom:3px solid #666; font-family:Oswald,arial,Georgia,serif; font-size:16px; padding:10px 0; text-transform:uppercase}
 .tag_nav{}
 .tag_nav li{}
 .tag_nav li a{border-bottom:1px solid #ddd; color:#ccc; display:block; padding:6px 6px 6px 0; -webkit-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}
 .tag_nav li a:hover{padding-left:10px}
-.footer_bottom{float:left; display:sticky; width:100%; background-color:#303030; color:#ccc}
 .copyright{float:left; width:50%; padding-top:5px; text-align:left}
 .copyright a{color:#ccc}
 .developer{float:right; width:50%; text-align:right; padding-top:5px; color:#222}
@@ -419,11 +410,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
     }
 
     @media(max-width:360px ) {
-        .latest_newsarea span {
-            font-size: 12px;
-            line-height: 2.2em;
-            padding: 2px 10px 1px 10px
-        }
+
 
         .single_iteam {
             height: 210px

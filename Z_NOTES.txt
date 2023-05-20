@@ -30,9 +30,12 @@ FIX
 
  x = already comes with a preloader
  - remove all commented code
- - do latest tweets
  - responsive
-	footer
+	header may need bottom margin until left menu is reduced
+	fluid images try not to stretch, maintain proportion
+	text for post details content abstract and title
+
+- consider scaffolding views for tags in case you want to edit them globally
 
 
  BLOGPOSTINDEX
@@ -40,6 +43,12 @@ FIX
 		clicking on blog in home index not passing page number
  - set the post detail back button to go to blogpostindex
  - home index crud links/buttons need to point to correct controller and actions
+
+ HOME INDEX
+  - list of blogs with pagination
+  - blog create view back button will go back to home index to correct page
+  - blog view more will go to BlogPostIndex with posts filtered for blog clicked
+
 
 
 ===================================================================================
