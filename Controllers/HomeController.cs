@@ -40,8 +40,9 @@ namespace DevBlog5.Controllers
         }
 
         // Get Contact view
-        public IActionResult Contact()
+        public IActionResult Contact(string swalMessage = null)
         {
+            ViewData["SwalMessage"] = swalMessage;
             return View();
         }
 
@@ -50,9 +51,18 @@ namespace DevBlog5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Contact(ContactMe model)
         {
-            model.Message = $"{model.Message} <hr /> Phone: {model.Phone}";
-            await _emailSender.SendContactEmailAsync(model.Name, model.Email, model.Phone , model.Subject, model.Message);
-            return RedirectToAction("Index");
+            try
+            {
+                model.Message = $"{model.Message} <hr /> Phone: {model.Phone}";
+                await _emailSender.SendContactEmailAsync(model.Name, model.Email, model.Phone, model.Subject, model.Message);
+                //return RedirectToAction("Index");
+                return RedirectToAction("Contact", "Home", new { swalMessage = "Success: Email Sent." });
+            }
+            catch (System.Exception)
+            {
+                return RedirectToAction("Contact", "Home", new { swalMessage = "Error: Email Send Failed." });
+                throw;
+            }
         }
 
 

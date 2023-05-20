@@ -112,4 +112,24 @@
             ]
         });
     </script>
+
+    <script>
+        let message = '@(ViewBag.SwalMessage)';
+        alert(message);
+        if (!message.includes("Error") && message != '') {
+            Swal.fire({
+                backdrop: false,
+                icon: 'success',
+                title: message,
+                showConfirmButton: true
+            })
+        } else if (message.includes("Error")) {
+            Swal.fire({
+                backdrop: false,
+                icon: 'error',
+                title: 'Oops...',
+                text: message
+            })
+        }
+    </script>
 }
