@@ -51,7 +51,7 @@ namespace DevBlog5.Controllers
         public async Task<IActionResult> Contact(ContactMe model)
         {
             model.Message = $"{model.Message} <hr /> Phone: {model.Phone}";
-            await _emailSender.SendContactEmailAsync(model.Email, model.Name, model.Subject, model.Message);
+            await _emailSender.SendContactEmailAsync(model.Name, model.Email, model.Phone , model.Subject, model.Message);
             return RedirectToAction("Index");
         }
 

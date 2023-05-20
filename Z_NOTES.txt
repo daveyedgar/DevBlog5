@@ -11,7 +11,7 @@ FIX
  - posts/index and blogpostindex view @item.BlogUser.FullName not working, fullname showing null; line36
 
 
- - contact form error on send
+ - contact form sweet alert for email
  - preview image on create and edit
 		check contactpro contact profile image create and edit
 		image uploads don't like svg
@@ -62,11 +62,10 @@ FIX
  - responsive
 	posts searchindex view - search only includes production ready
 		make result clickable / go to 
-	post edit/create view needs styling on adding tags
-	check other crud views for responsive even though i'm the only one to see it
 	header may need bottom margin until left menu is reduced
 	fluid images try not to stretch, maintain proportion
 	text for post details content abstract and title
+
 - consider making blog cards smaller
 - consider scaffolding views for tags in case you want to edit them globally
 - put tags on posts index card?

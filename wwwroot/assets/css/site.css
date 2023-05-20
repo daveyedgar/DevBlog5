@@ -25,6 +25,9 @@ body {
     /*    padding: 100px;*/
 }
 
+input {
+    box-sizing: border-box
+} 
 
 #newsSection {
     float: left;
@@ -150,6 +153,11 @@ img {
     img:hover {
         opacity: 0.75
     }
+
+button.btn-sm, a.btn-sm {
+    line-height: 0.8;
+    /*    border-radius: 10px;*/
+}
 
 
 /*search form to of layout page*/
@@ -557,36 +565,37 @@ img {
 
 
 
-    /*****************************************************************************************
+/*****************************************************************************************
     
     MANAGE TAGS                                                       MANAGE TAGS
 
 *****************************************************************************************/
-    #TagList {
-        font-weight: 600;
-    }
+#TagList {
+    font-weight: 600;
+}
 
 
-    .cat-item a,
-    .cat-item a:visited {
-        /*    background: none repeat scroll 0 0 #e4e4e4;*/
-        background-color: hsla(0,0%,0%,.75);
-        /*    border: 3px solid #d083cf;*/
-        color: #aaa;
-        display: block;
-        float: left;
-        font: bold 15px/30px sans-serif;
-        /*    font-size: 13px;*/
-        line-height: 12px;
-        margin: 0 2px 2px 0;
-        padding: 12px 17px;
-        -webkit-transition: all 0.5s;
-        -mz-transition: all 0.5s;
-        -ms-transition: all 0.5s;
-        -o-transition: all 0.5s;
-        transition: all 0.5s;
-        text-shadow: 0 1px 1px hsla(0,0%,100%,.25), 0 -1px 1px hsla(0,0%,0%,.75);
-    }
+
+.cat-item a,
+.cat-item a:visited {
+    /*    background: none repeat scroll 0 0 #e4e4e4;*/
+    background-color: hsla(0,0%,0%,.75);
+    /*    border: 3px solid #d083cf;*/
+    color: #aaa;
+    display: block;
+    float: left;
+    font: bold 15px/30px sans-serif;
+    /*    font-size: 13px;*/
+    line-height: 12px;
+    margin: 0 2px 2px 0;
+    padding: 12px 17px;
+    -webkit-transition: all 0.5s;
+    -mz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    text-shadow: 0 1px 1px hsla(0,0%,100%,.25), 0 -1px 1px hsla(0,0%,0%,.75);
+}
 
         .cat-item a:hover,
         .cat-item a:focus {
@@ -598,8 +607,9 @@ img {
         margin-top: 10px
     }
 
-    /*.tag-values {
-    margin: 0 1rem;
+
+tag-form {
+    padding: 1rem;
 }
 
 .tag-title {
@@ -609,20 +619,17 @@ img {
 .tag-input {
     margin: 0 2rem;
     margin-bottom: 1rem;
-}*/
+}
 
     .tag-btn {
         margin: 0 1rem;
     }
 
-    /*.tag-values {
-    margin: 0 1rem;
-}*/
+.tag-values {
+margin: 0 1rem;
+}
 
-    button.btn-sm, a.btn-sm {
-        line-height: 0.8;
-        /*    border-radius: 10px;*/
-    }
+
 
     /*****************************************************************************************
     
@@ -919,6 +926,10 @@ img {
 
 *****************************************************************************************/
 
+.footer_top {
+    padding: 2rem;
+}
+    
     .footer_top img {
         width: 40px;
         margin: 0 1rem;
@@ -936,6 +947,14 @@ img {
     .footer_top iframe {
         margin: 2rem 0;
     }
+
+    .showEmail, .showPhone{
+        color: black;
+    }
+
+        .showEmail:hover, .showPhone:hover {
+            background-color: #d083cf;
+        }
 
     /*****************************************************************************************
     
