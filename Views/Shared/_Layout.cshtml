@@ -180,8 +180,7 @@
         =================      SEARCH FORM
 
         -----------------------------------------------------------------------------------------*@
-        <section>
-
+        <section class="search-section">
             <form asp-action="SearchIndex" asp-controller="Posts">
                 <div class="search-input">
                     <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
@@ -199,7 +198,7 @@
         <section id="contentSection">
             <div class="row">
 
-                <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="col-lg-8 col-md-8 col-sm-12">
                     <!-- first column-->
                     @*-----------------------------------------------------------------------------------------
 
@@ -228,7 +227,7 @@
                 </div>
 
 
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-4 col-md-4 col-sm-12">
                     <!-- second column nest the remaining in this column-->
                     @*-----------------------------------------------------------------------------------------
 
@@ -476,6 +475,7 @@
     </div>
 
     <script src="~/assets/js/jquery.min.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/wow.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

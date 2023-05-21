@@ -13,7 +13,7 @@
 <h1>
     Posts for @ViewData["BlogName"]<br />
     BlogId: @ViewData["BlogId"]<br />
-    PageCount: @Model.PageCount
+    Page: @Model.PageNumber
 </h1>
 @if (User.IsInRole("Administrator"))
 {
@@ -65,7 +65,9 @@
             }
         </div>
     </div>
-}
+}<div>
+    <a asp-action="Index" asp-controller="Home" asp-route-id=""><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+</div>
 
 <hr />
 @*pagination controls*@

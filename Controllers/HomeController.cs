@@ -37,6 +37,7 @@ namespace DevBlog5.Controllers
                 .ToPagedListAsync(pageNumber, pageSize);
 
             return View(await blogs);
+
         }
 
         // Get Contact view

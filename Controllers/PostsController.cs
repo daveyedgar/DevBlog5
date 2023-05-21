@@ -79,7 +79,7 @@ namespace DevBlog5.Controllers
             }
 
             var pageNumber = page ?? 1;  // null coelescing operator
-            var pageSize = 1;  // amount per page
+            var pageSize = 2;  // amount per page
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
 
@@ -215,7 +215,8 @@ namespace DevBlog5.Controllers
                         .Distinct().ToList()
             };
 
-            
+            ViewData["FirstLetter"] = post.Title.Substring(0, 1);
+            ViewData["AfterLetter"] = post.Title.Substring(1);
 
             ViewData["HeaderImage"] = _imageService.DecodeImage(post.ImageData, post.ContentType);
             ViewData["MainText"] = post.Title;
@@ -334,7 +335,7 @@ namespace DevBlog5.Controllers
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             ViewData["TagValues"] = string.Join(",", post.Tags.Select(t => t.Text));
             ViewData["BlogName"] = post.Blog.Name;
-            return View(post);
+            return View(post); 
         }
 
         // POST: Posts/Edit/5

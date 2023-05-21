@@ -8,57 +8,39 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Updated)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Updated)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            <div class="preview-img">
-            <img src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
+
+
+<div class="card-container">
+    <div class="cards">
+        <div class="card-Model row row-cols-2">
+            <div class="card-image col-md-6 col-12">
+                <img src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
             </div>
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContentType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContentType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BlogUserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BlogUserId)
-        </dd>
-    </dl>
+            <div class="card-info col-md-6 col-12">
+                <h2 class="card-title">@Html.DisplayFor(modelModel => Model.Name)</h2>
+                <p class="card-intro">@Html.DisplayFor(modelModel => Model.Description)</p>
+                <p class="card-intro">Id: @Html.DisplayFor(modelModel => Model.Id)</p>
+                <p class="card-intro">Date Created: @Html.DisplayFor(modelModel => Model.Created)</p>
+                <p class="card-intro">Date Updated: @Html.DisplayFor(modelModel => Model.Updated)</p>
+                @*<p class="card-intro">Posted by <a href="">@Model.BlogUsers.FullName</a> on @Model.Created</p>*@
+            </div>
+
+        </div>
+        <div class="row card-text">
+            <div class="col">
+                <h4>Recent Posts</h4>
+                <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+            </div>
+        </div>
+        <div class="row card-link">
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+                <a asp-action="Index"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+            </div>
+
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;"/></a> &nbsp;&nbsp;
-    <a asp-action="Index"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
-</div>
+

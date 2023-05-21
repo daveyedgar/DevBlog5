@@ -4,39 +4,69 @@
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
+@using DevBlog5.Services
+@inject IImageService _imageService
 
 
 @inject IImageService imageService
 
 @model IPagedList<Post>
 
-<div class="row">
-    @foreach (var post in Model)
-    {
-        <div class="col-sm-2 col-lg-4 mt-3">
-            <div class="card border-dark">
-                <div class="card-body text-center">
-                    <div class="bg-warning">
-                        <hr class="card-hr" />
-                        <h5 class="card-title">@post.Title</h5>
-                        <hr class="card-hr" />
-                    </div>
-                    <div>
-                        <p class="card-text">@post.Abstract</p>
-                    </div>
 
-                    <br />
-                    <div class="text-center">
-                        <a class="btn btn-dark btn-sm btn-block mb-2" asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug">Read More</a>
-                    </div>
 
+@foreach (var item in Model)
+{
+    <div class="card-container">
+        <div class="cards">
+            <div class="card-item row row-cols-2">
+                <div class="card-image col-md-6 col-12">
+                    <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
                 </div>
-                <img class="card-img-bottom" src="@imageService.DecodeImage(post.ImageData,  post.ContentType)" />
-            </div>
+                <div class="card-info col-md-6 col-12">
+                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h2>
+                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Abstract)</p>
+                    <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)</p>
+                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
+                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
+                    <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
+                    @*<p class="card-intro">Posted by <a href="">@item.BlogUser.FullName</a> on @item.Created</p>*@
+                    <p class="card-intro">Posted by @item.BlogUserId</p>
+                </div>
 
+            </div>
+            <div class="row card-text">
+                <div class="post-limited">
+                    @if (@item.Content.Length > 300)
+                    {
+                        <p>
+                            @Html.Raw(@item.Content.Substring(0, 300))...
+                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            @Html.Raw(@item.Content)...
+                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                        </p>
+                    }
+                </div>
+            </div>
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="row card-actions">
+                    <div class="col">
+                        <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+                        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                        <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+                    </div>
+                </div>
+            }
         </div>
-    }
-</div>
+    </div>
+}
+
 
 <hr />
 

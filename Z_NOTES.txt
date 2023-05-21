@@ -5,15 +5,13 @@ Bootstrap v3.3.1
 FIX 
  
  - blog user not showing in post delete view line 36; @Html.DisplayFor(model => model.BlogUser.FullName)
+ - posts/index and blogpostindex view @item.BlogUser.FullName not working, fullname showing null; line36
  
 
- - if can't find page throw error like if i type in page greater than total.
- - posts/index and blogpostindex view @item.BlogUser.FullName not working, fullname showing null; line36
+ - error page not found if i type in page greater than total.
 
 
- - preview image on create and edit
-		check contactpro contact profile image create and edit
-		image uploads don't like svg
+ - image uploads don't like svg
 
 
  - make sure only admin moderator can post
@@ -23,18 +21,14 @@ FIX
 - add recent posts to blog cards
 	
 
- - what is purpose of clicking on link of posted by 
+ - user name click to show comments by and posted by - but i'm the only one who posts
  - comments index some info not showing [dont really need this]
 
  
 
  =========================================================================
  HOME INDEX
-  - list of blogs with pagination
-  - when click on read more of blog it records blogid and passes in url
-		  so blogpostindex can show posts only for that blog
-  - blog create view back button will go back to home index to correct page
- - read more button goes to blogpostindex for that blog
+  - blog all crud back buttons will go back to home index to correct page
 
  + show recent posts
  + show latest comments
@@ -43,37 +37,32 @@ FIX
 
 
    BLOGPOSTINDEX
+   - needs back to home index page current page
   - BlogPostIndex method showing int? page as null
 		clicking on blog in home index not passing page number
 		would this work?
 		@Html.Hidden("id", comment.Id)
 		@Html.Hidden("Slug", comment.Posts.Slug)
  - set the post detail back button to go to blogpostindex later
- - the blog name isn't showing up in the create post view
- - the back to list link doesn't go to the page you were on - where?
 
-
+ PostsEmpty page
+  - go back to current page not working
  ==========================================================================
  STYLE  
 
- ~/assets/images/defaultUserImage.png
+ - create-post-header
+ - adjust ticker speed
 
- x = already comes with a preloader
  - remove all commented code
  - responsive
-	- blog details view
-	posts searchindex view - search only includes production ready
-		make result clickable / go to 
 	header may need bottom margin until left menu is reduced
-	fluid images try not to stretch, maintain proportion
-	text for post details content abstract and title
 
 - consider making blog cards smaller
 - consider scaffolding views for tags in case you want to edit them globally
 - put tags on posts index card?
 
 > maybe don't need pagination
-	.hafe the featured blog/category under the carousel
+	.have the featured blog/category in the carousel
 	.and use the layout for the remaining catogiries left and right views
 
 ===================================================================================
@@ -82,6 +71,7 @@ FIX
 
 =====================================================================================
 
+ - refactor latest__posts scroll to css only
  - breadcrumbs for header nav menu
  - tags on home index page click to show all posts for that tag
  - someday may use archive

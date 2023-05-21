@@ -28,8 +28,16 @@
         <div class="cards">
             <div class="card-item">
                 <div class="card-info">
+@*                    <div>
+                        @ViewData["AfterLetter"]
+                    </div>
+                    <div>
+                    <p>@ViewData["FirstLetter"]</p>
+                    </div>*@
                     <div class="post-title">
-                        <p>@Html.Raw(Model.Post.Title)</p>
+                        @*<p>@Html.Raw(Model.Post.Title)</p>*@
+                        <span class="first-letter">@ViewData["FirstLetter"]</span>
+                        <p>@ViewData["AfterLetter"]</p>
                     </div>
                     <div class="post-abstract">
                         <img src="~/assets/images/tutorial-icon.png" />
@@ -79,7 +87,7 @@
 
         <br />
         <br />
-        <h2>Comments</h2>
+        <h3>Comments</h3>
         <article id="commentSection">
             @if (User.Identity.IsAuthenticated)
             {
@@ -88,10 +96,8 @@
                     @Html.Hidden("Slug", Model.Post.Slug)
 
                     <div class="form-group">
-                        <label class="h2 control-label font-weight-bold">Add Comment</label>
-
                         <hr />
-                        <textarea name="body" class="form-control" rows="4"></textarea>
+                        <textarea name="body" class="form-control" rows="4" placeholder="Add comment..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-actions btn-block btn-sm">Submit</button>
                 </form>

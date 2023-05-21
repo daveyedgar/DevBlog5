@@ -3,6 +3,7 @@
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
 @using DevBlog5.Services
+@using DevBlog5.Models
 
 @model IPagedList<Blog>
 @inject IImageService _imageService
@@ -10,7 +11,9 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<h1>Home Index</h1>
+<h1>Home Index<br />
+    Page: @Model.PageNumber
+</h1>
 
 <a asp-controller="Blogs" asp-action="Create" class="btn btn-actions">Create New Blog</a>
 
@@ -48,7 +51,7 @@
             </div>
             <div class="row card-link">
                 <div class="col">
-                    <a class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="">Read More...</a>
+                    <a class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Read More...</a>
                 </div>
             </div>
             @if (User.IsInRole("Administrator"))

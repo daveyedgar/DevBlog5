@@ -9,6 +9,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 
 namespace DevBlog5.Controllers
 {
@@ -49,8 +50,15 @@ namespace DevBlog5.Controllers
             {
                 return NotFound();
             }
-
             return View(blog);
+
+            //int currentPage = 1;
+            //if (TempData["CurrentPage"] != null)
+            //{
+            //    currentPage = (int)TempData["CurrentPage"];
+            //}
+
+            //return RedirectToAction("BlogPostIndex", new { id = blog.Id, page = currentPage });
         }
 
         // GET: Blogs/Create
