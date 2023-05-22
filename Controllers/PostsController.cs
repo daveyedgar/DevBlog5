@@ -5,12 +5,9 @@ using DevBlog5.Services;
 using DevBlog5.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.JsonPatch.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,15 +54,16 @@ namespace DevBlog5.Controllers
                 .Include(p => p.BlogUser)
                 .OrderByDescending(p => p.Updated != null)
                 .ThenByDescending(p => p.Updated)
-                .ThenByDescending(p=>p.Created);
+                .ThenByDescending(p => p.Created);
 
-            return View(await applicationDbContext.ToListAsync());
+          return View(await applicationDbContext.ToListAsync());
 
         }
 
-        public IActionResult PostsEmpty()
+        public IActionResult PostsEmpty(int? id)
         {
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
+            //ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
+            ViewData["BlogId"] = id;
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -91,13 +89,14 @@ namespace DevBlog5.Controllers
             //    .OrderByDescending(b => b.Created)
             //    .ToPagedListAsync(pageNumber, pageSize);
 
-
+            var blogId = id;
 
             // first solution
 
             var blogPosts = await _context.Posts
                 .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
                 .Include(p => p.Blog)
+                .Include(u => u.BlogUser)
                 .OrderByDescending(p => p.Created)
                 .ToPagedListAsync(pageNumber, pageSize);
 
@@ -111,13 +110,16 @@ namespace DevBlog5.Controllers
 
             if (blogPosts.Count < 1)
             {
-                return RedirectToAction("PostsEmpty", new { id });
+                //return RedirectToAction("PostsEmpty");
+                return RedirectToAction("PostsEmpty", new { id = blogId });
+                //return RedirectToAction("PostsEmpty", blogId);
             }
 
             ViewData["BlogName"] = blogPosts[0].Blog.Name;  // will get null error if no posts
             ViewData["BlogId"] = blogPosts[0].BlogId; // will get null error if no posts
             ViewData["PageCount"] = pageNumber;
-       
+            ViewData["UserName"] = blogPosts[0].BlogUser.FullName;
+
 
             // second solution
 
@@ -136,7 +138,7 @@ namespace DevBlog5.Controllers
             //}
             //ViewData["BlogName"] = blog.Name;
 
-            TempData["CurrentPage"] = page; 
+            TempData["CurrentPage"] = page;
 
 
 
@@ -172,7 +174,7 @@ namespace DevBlog5.Controllers
 
             if (blogPosts.Count < 1)
             {
-                return RedirectToAction("PostsEmpty", new { id });
+                return RedirectToAction("PostsEmpty");
             }
             ViewData["BlogId"] = id;
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
@@ -229,11 +231,12 @@ namespace DevBlog5.Controllers
 
 
         // GET: Posts/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
-            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
+            var blogId = id;
+            ViewData["BlogId"] = blogId;
+            ViewData["BlogIdList"] = new SelectList(_context.Blogs, "Id", "Name", blogId);
+            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "FullName");
             ViewData["SetBlogId"] = (_context.Blogs, "Id");
             return View();
         }
@@ -315,7 +318,7 @@ namespace DevBlog5.Controllers
         }
 
         // GET: Posts/Edit/5
-        public async Task<IActionResult> Edit(string slug)
+        public async Task<IActionResult> Edit(string slug, int? blogId)
         {
             if (slug == null)
             {
@@ -331,11 +334,14 @@ namespace DevBlog5.Controllers
                 return NotFound();
             }
 
-           
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
+            var bId = blogId;
+
+            ViewData["BlogId"] = bId;
+
+            ViewData["BlogList"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             ViewData["TagValues"] = string.Join(",", post.Tags.Select(t => t.Text));
             ViewData["BlogName"] = post.Blog.Name;
-            return View(post); 
+            return View(post);
         }
 
         // POST: Posts/Edit/5
@@ -422,9 +428,11 @@ namespace DevBlog5.Controllers
                     currentPage = (int)TempData["CurrentPage"];
                 }
 
+                var blogId = id;
                 //return RedirectToAction(nameof(Index));
                 //return RedirectToAction("Index", "Home", null);
-                return RedirectToAction("BlogPostIndex", new { id = post.BlogId, page = currentPage });
+                //return RedirectToAction("BlogPostIndex", new { id = blogId, page = currentPage });
+                return RedirectToAction("BlogPostIndex", new { id = blogId });
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Description", post.BlogId);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", post.BlogUserId);

@@ -58,9 +58,9 @@ namespace DevBlog5.Services
             {
                 Email = "sunday@sleepycafe.com",
                 UserName = "sunday@sleepycafe.com",
-                FirstName = "jo",
-                LastName = "smith",
-                DisplayName = "jo smith",
+                FirstName = "David",
+                LastName = "Bellerose",
+                DisplayName = "David Bellerose",
                 PhoneNumber = "1234567890",
                 EmailConfirmed = true,
             };

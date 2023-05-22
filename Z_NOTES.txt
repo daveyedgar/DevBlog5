@@ -3,32 +3,48 @@ Bootstrap v3.3.1
 
  ================================================================
 FIX 
+
+
+ - post edit when you click on save, it goes to postsempty
+	only first page first post works
+	post edit return line not working; not getting blogid or page
+	return RedirectToAction("BlogPostIndex", new { id = blogId, page = currentPage });
+
+	delete post should go back to postblogindex for that blog
+	
+	edit and create should go to that post
+
+
+	blogpostindex post edit pencil button
+		check url, blogid appended ot url wrong
+
+	posts index edit pencil button
+
+	same for create
+
+
+
+
+
+ - postsempty button create post for this blog
  
- - blog user not showing in post delete view line 36; @Html.DisplayFor(model => model.BlogUser.FullName)
- - posts/index and blogpostindex view @item.BlogUser.FullName not working, fullname showing null; line36
- 
+ - limit file upload types - see .net snippits
 
- - error page not found if i type in page greater than total.
-
-
- - image uploads don't like svg
+ - add recent posts to blog cards ?view model?
 
 
  - make sure only admin moderator can post
 	regular users can comment only
 	not logged in can view only
 
-- add recent posts to blog cards
 	
-
  - user name click to show comments by and posted by - but i'm the only one who posts
  - comments index some info not showing [dont really need this]
 
- 
+ - do i need the js getId passId setRouteId?
 
  =========================================================================
  HOME INDEX
-  - blog all crud back buttons will go back to home index to correct page
 
  + show recent posts
  + show latest comments
@@ -37,21 +53,15 @@ FIX
 
 
    BLOGPOSTINDEX
-   - needs back to home index page current page
-  - BlogPostIndex method showing int? page as null
-		clicking on blog in home index not passing page number
-		would this work?
-		@Html.Hidden("id", comment.Id)
-		@Html.Hidden("Slug", comment.Posts.Slug)
- - set the post detail back button to go to blogpostindex later
 
- PostsEmpty page
-  - go back to current page not working
+
+
  ==========================================================================
  STYLE  
 
- - create-post-header
+ - create-post-header in posts/create view
  - adjust ticker speed
+ - header bottom margin for links hover effect
 
  - remove all commented code
  - responsive
@@ -70,7 +80,7 @@ FIX
 		FEATURES
 
 =====================================================================================
-
+ - After create/edit/delete blog, return to home/index current page
  - refactor latest__posts scroll to css only
  - breadcrumbs for header nav menu
  - tags on home index page click to show all posts for that tag

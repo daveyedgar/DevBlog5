@@ -3,7 +3,8 @@
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
 @using DevBlog5.Services
-@using DevBlog5.Models
+@using DevBlog5.ViewModels
+
 
 @model IPagedList<Blog>
 @inject IImageService _imageService
@@ -11,9 +12,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<h1>Home Index<br />
+<h1>Blogs Home Index<br />
     Page: @Model.PageNumber
 </h1>
+
 
 <a asp-controller="Blogs" asp-action="Create" class="btn btn-actions">Create New Blog</a>
 
@@ -37,7 +39,7 @@
                     <p class="card-intro">Id: @Html.DisplayFor(modelItem => item.Id)</p>
                     <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
                     <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
-                    <p class="card-intro">Posted by <a href="">@item.BlogUsers.FullName</a> on @item.Created</p>
+                    <p class="card-intro">Posted by <b>@item.BlogUsers.FullName</b></p>
                 </div>
 
             </div>
@@ -51,7 +53,7 @@
             </div>
             <div class="row card-link">
                 <div class="col">
-                    <a class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Read More...</a>
+                    <a id="routeId" onclick="showIt(this)" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Read More...</a>
                 </div>
             </div>
             @if (User.IsInRole("Administrator"))
@@ -62,7 +64,7 @@
                         <a asp-action="Details" asp-controller="Blogs" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
                         <a asp-action="Delete" asp-controller="Blogs" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
                     </div>
-                </div>
+                </div>                
             }
         </div>
     </div>
@@ -306,3 +308,5 @@
         </ul>
     </div>
 </div>
+
+

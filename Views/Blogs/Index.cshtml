@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<DevBlog5.Models.Blog>
+@using DevBlog5.Models;
 @using DevBlog5.Services
+
 @inject IImageService _imageService
 
 @{
@@ -30,22 +32,18 @@
                     <p class="card-intro">Id: @Html.DisplayFor(modelItem => item.Id)</p>
                     <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
                     <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
-                    <p class="card-intro">Posted by <a href="">@item.BlogUsers.FullName</a> on @item.Created</p>
+                    <p class="card-intro">Posted by <b>@item.BlogUsers.FullName</b></p>
                 </div>
 
             </div>
             <div class="row card-text">
                 <div class="col">
-                    <h4>Recent Posts</h4>
-                    @foreach (var post in Model)
-                    {
-                        <p>@Html.DisplayFor(modelItem => item.Posts)</p>
 
-                        <span></span>
-                    }
-@*                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+
+                    <h4>Recent Posts</h4>
                     <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
-                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>*@
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
+                    <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
                 </div>
             </div>
             <div class="row card-link">

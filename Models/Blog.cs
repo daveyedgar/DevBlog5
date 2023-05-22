@@ -37,6 +37,7 @@ namespace DevBlog5.Models
         [NotMapped]
         [Display(Name = "Image")]
         [DataType(DataType.Upload)]
+        
         public IFormFile? Image { get; set; }
 
         //Navigation

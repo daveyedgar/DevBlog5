@@ -37,7 +37,8 @@
         <div class="row card-link">
             <div>
                 <a asp-action="Edit" asp-route-id="@Model?.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-                <a asp-action="Index"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+
+                <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
             </div>
 
         </div>

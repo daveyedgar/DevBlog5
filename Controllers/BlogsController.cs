@@ -1,15 +1,14 @@
 ﻿using DevBlog5.Data;
 using DevBlog5.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using System;
 using DevBlog5.Services;
-using System.Linq;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DevBlog5.Controllers
 {
@@ -31,7 +30,7 @@ namespace DevBlog5.Controllers
         {
             var applicationDbContext = _context.Blogs
                 .Include(b => b.BlogUsers)
-                .Include(p=>p.Posts);
+                .Include(p => p.Posts);
 
             return View(await applicationDbContext.ToListAsync());
         }
@@ -86,7 +85,11 @@ namespace DevBlog5.Controllers
 
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("Index", "Home");
+
+                //return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
             }
             return View(blog);
         }
@@ -126,7 +129,7 @@ namespace DevBlog5.Controllers
                     var newBlog = await _context.Blogs.FindAsync(blog.Id);
                     newBlog.Updated = DateTime.Now;
 
-                    if (newBlog.Name != blog.Name) 
+                    if (newBlog.Name != blog.Name)
                     {
                         newBlog.Name = blog.Name;
                     }
@@ -136,7 +139,7 @@ namespace DevBlog5.Controllers
                         newBlog.Description = blog.Description;
                     }
 
-                    if(newImage != null)
+                    if (newImage != null)
                     {
                         newBlog.ImageData = await _imageService.EncodeImageAsync(newImage);
                         newBlog.ContentType = _imageService.ContentType(newImage);
@@ -157,7 +160,8 @@ namespace DevBlog5.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("BlogPostIndex", "Blog", new { id = blog.Id });
             }
             return View(blog);
         }
@@ -196,7 +200,8 @@ namespace DevBlog5.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         private bool BlogExists(int id)

@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input type="file" name="newImage" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.svg,.webp"
+                <input type="file" name="newImage" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp"
                        onchange="document.getElementById('imageFileData').src=window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
@@ -49,7 +49,7 @@
 </div>
 
 <div>
-    <a asp-action="Index"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
 </div>
 
 @section Scripts {

@@ -225,8 +225,14 @@ button.btn-sm, a.btn-sm {
 *****************************************************************************************/
 .navbar {
     margin: 0;
+    padding: 0;
 }
 /*  logout button on header*/
+
+.nav-item .nav-link{
+/*    line-height: 82px;*/
+}
+
 
 .logout-form {
     display: flex;

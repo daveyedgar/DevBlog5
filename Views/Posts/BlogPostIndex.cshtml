@@ -8,24 +8,27 @@
 
 @{
     ViewData["Title"] = "Posts";
+    var blogId = ViewData["BlogId"];
 }
 
 <h1>
-    Posts for @ViewData["BlogName"]<br />
+    Posts for @ViewData["BlogName"] Blog<br />
     BlogId: @ViewData["BlogId"]<br />
     Page: @Model.PageNumber
 </h1>
 @if (User.IsInRole("Administrator"))
 {
     <p>
-        <a asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]">Create New</a>
+        <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]">Create New Post for this Blog</a>
         @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
     </p>
 }
 
 
 @foreach (var item in Model)
-{
+{   
+    <!--hidden input to pass blog id to posts controller get edit method-->
+    <input hidden asp-for="@blogId />
     <div class="card-container">
         <div class="cards">
             <div class="card-item row row-cols-2">
@@ -39,6 +42,8 @@
                     <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
                     <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
                     <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
+                    @*<p class="card-intro">Posted by <b>@item.BlogUser.FullName</b></p>*@
+                    <p class="card-intro">Posted by <b>@ViewData["UserName"]</b></p>
                 </div>
 
             </div>
@@ -49,7 +54,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <a class="btn btn-actions">Read More...</a>
+                    <a class="btn btn-actions" asp-action="Details" asp-route-slug="@item.Slug">Read More...</a>
                 </div>
             </div>
             @if (User.IsInRole("Administrator"))
@@ -64,9 +69,10 @@
                 </div>
             }
         </div>
-    </div>
 }<div>
-    <a asp-action="Index" asp-controller="Home" asp-route-id=""><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+    @*<a asp-action="Index" asp-controller="Home" asp-route-id="2"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
+    @*<br /> <a id="backToPage" href="page=3" onclick="setPageNumber()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
+    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
 </div>
 
 <hr />
@@ -89,9 +95,6 @@
 </div>
 
 @section Scripts{
-    <script>
-        getId();
-    </script>
 
     <script>
         function openSuccessModal(strMessage){

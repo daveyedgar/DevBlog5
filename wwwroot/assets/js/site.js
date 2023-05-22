@@ -24,34 +24,8 @@ function phoneNumber() {
     alert(phone);
 }
 
-// this takes the url route id from the BlogPostIndex url, which is created by the home/index link to the blog
-// and puts it in the windows storage
 
-function getId() {
-    var myString = window.location;
-    let blogId = /(?<=\/)[^\/?]*(?=[^\/]*$)/.exec(myString)[0];
-    //alert(blogId);
-    localStorage.setItem("blogId", blogId);
-}
 
-// this sets the BlogId input to the windows storage, which is the BlogId that was clicked on
-// this needs to be passed into the create view to auto set the blogId it belongs to
-function passId() {
-    let blogId = localStorage.getItem("blogId");
-    let blogIdInput = document.getElementById("BlogId");
-    blogIdInput.value = blogId;
-}
-
-// this sets the route id of the create link in the PostsEmpty view
-// so the getId() function picks it up from the url
-// this will return you to the correct blog in the blogpostindex view
-
-function setRouteId() {
-    const createLink = document.getElementById("createRoute");
-    let blogId = localStorage.getItem("blogId");
-    //alert(blogId);
-    createLink.setAttribute("asp-route-id", blogId);
-}
 
 // **************************************************
 //
