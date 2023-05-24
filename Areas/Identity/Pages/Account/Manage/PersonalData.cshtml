@@ -1,5 +1,12 @@
 ﻿@page
 @model PersonalDataModel
+
+@using DevBlog5.Areas.Identity.Pages
+@using DevBlog5.Areas.Identity.Pages.Account
+@using DevBlog5.Areas.Identity.Pages.Account.Manage
+@using DevBlog5.Services
+
+
 @{
     ViewData["Title"] = "Personal Data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
@@ -14,10 +21,10 @@
             <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
         </p>
         <form asp-page="DownloadPersonalData" method="post" class="form-group">
-            <button class="btn btn-default" type="submit">Download</button>
-        </form>
+            <button class="btn btn-actions" type="submit">Download</button>
+        </form><br />
         <p>
-            <a asp-page="DeletePersonalData" class="btn btn-default">Delete</a>
+            <a asp-page="DeletePersonalData" class="btn btn-actions">Delete</a>
         </p>
     </div>
 </div>

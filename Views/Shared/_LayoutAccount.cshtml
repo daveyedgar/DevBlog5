@@ -1,0 +1,140 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DevPostsMVC</title>
+    <!-- Favicons -->
+    <link href="~/assets/images/dblogo.svg" rel="icon" />
+    <link href="~/assets/images/dblogo.svg" rel="apple-touch-icon" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" asp-append-version="true">
+    @*<link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true">*@
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/li-scroller.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.fancybox.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/theme.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/vendor/boxicons/css/boxicons.min.css" asp-append-version="true">
+    <link href="~/assets/css/summernote-lite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/45e2949365.js" crossorigin="anonymous" asp-append-version="true"></script>
+</head>
+<body>
+
+
+
+    <!-- preloader-->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <a id="back-top" class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    @*-----------------------------------------------------------------------------------------
+
+    HEADER
+
+    -----------------------------------------------------------------------------------------*@
+
+    <section id="navArea" class="fixed">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse row row-cols-1 row-cols-md-2">
+                <div class="col header_top_left">
+                    <ul class="navbar-nav main_nav">
+                        <li class="nav=item">
+                            <a class="nav-link" style="margin-left: 1rem;" href="https://www.davidbellerose.com" target="_blank">
+                                <img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home" style="font-size: 1.5rem;"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://davidbellerose.com" target="_blank">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
+                            </li>
+                            @*<li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
+                        </li>*@
+                        }
+                    </ul>
+                </div>
+                <div class="header_top_right">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </section>
+    @*-----------------------------------------------------------------------------------------
+
+    MAIN CONTENT
+
+    -----------------------------------------------------------------------------------------*@
+
+    <div class="container" style="margin-top:6rem;">
+
+        <section id="contentSection">
+            <div class="row">
+
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    @RenderBody()
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+
+    <div class="footer-container">
+        <div class="footer-item">
+            <span>&copy;2022</span> David Bellerose |&nbsp;
+            <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;|&nbsp;
+            <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;|&nbsp;
+            <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;|&nbsp;
+            <button id="open-cookie" class="btn btn-actions js-change-cookie">Change Cookie Preferences</button>
+        </div>
+        <div class="footer-item">
+            <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
+        </div>
+        <div class="footer-item">
+            <a href="https://www.linkedin.com/in/david-bellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="https://twitter.com/DavidEBellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
+            <a href="https://github.com/daveyedgar" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
+
+        </div>
+    </div>
+
+    <script src="~/assets/js/jquery.min.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/wow.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @*<script src="~/assets/js/jquery.li-scroller.1.0.js" asp-append-version="true"></script>*@
+    <script src="~/assets/js/jquery.newsTicker.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/jquery.fancybox.pack.js" asp-append-version="true"></script>
+    <script src="~/assets/js/slick.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/summernote-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/assets/js/custom.js" asp-append-version="true"></script>
+    <script src="~/assets/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

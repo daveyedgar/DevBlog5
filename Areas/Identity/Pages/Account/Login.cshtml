@@ -8,18 +8,21 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-<div class="row d-flex gy-2 mt-5 mb-5 justify-content-center">
-    <div class="col-md-4">
-        <form id="account" method="post">
-            <input hidden asp-for="Input.Email" value="sunday@sleepycafe.com" />
-            <input hidden asp-for="Input.Password" value="Abc&123!" />
-            <button id="login-submit" type="submit" class="w-100 btn btn-actions btnlinks me-2">Demo User Login</button>
-        </form>
-    </div>
-</div>
+<br />
+
 <div class="row">
     <div class="col-md-4">
         <section>
+            <div class="row d-flex gy-2 mt-5 mb-5 justify-content-start">
+                <div class="col-md-4">
+                    <form id="account" method="post">
+                        <input hidden asp-for="Input.Email" value="sunday@sleepycafe.com" />
+                        <input hidden asp-for="Input.Password" value="Abc&123!" />
+                        <button id="login-submit" type="submit" class="w-100 btn btn-actions btnlinks me-2">Demo User Login</button>
+                    </form>
+                </div>
+                <br />
+            </div>
             <form id="account" method="post">
                 <h4>Use a local account to log in.</h4>
                 <hr />
@@ -66,9 +69,9 @@
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
-                    <div>
+                    <div class="account">
                         <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715" style="color:blue;">this article</a>
                             for details on setting up this ASP.NET application to support logging in via external services.
                         </p>
                     </div>
@@ -80,7 +83,7 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn btn-actions" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                                 }
                             </p>
                         </div>

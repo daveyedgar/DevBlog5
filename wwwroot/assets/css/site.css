@@ -331,6 +331,47 @@ button.btn-sm, a.btn-sm {
     }
 }
 
+
+
+/*****************************************************************************************
+    
+    HEADER NAV                                                                      HEADER NAV
+
+*****************************************************************************************/
+
+.account li a{
+    color: black;
+}
+
+.account li a:hover {
+    color: blue;
+}
+
+.account li{
+    display: block;
+}
+.userimage img {
+    font-family: 'Helvetica';
+    font-weight: 300;
+    line-height: 1;
+    text-align: center;
+    display: block;
+    position: relative;
+}
+
+.userimage img:before {
+    content: "";
+    display: block;
+    left: 0;
+    width: 100px;
+    height: 80px;
+    padding-top: 20px;
+    background-color: rgb(230, 230, 230);
+    border: 2px dotted rgb(200, 200, 200);
+    border-radius: 5px;
+}
+
+
 /*****************************************************************************************
     
     BACK TO TOP                                                      BACK TO TOP

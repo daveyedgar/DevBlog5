@@ -4,8 +4,9 @@ Bootstrap v3.3.1
  ================================================================
 FIX 
 
- - redo symetrak overlay png
-
+ - two factor auth?
+	  if so uncomment that section in the areas/accounts/register.cshtml
+	  same for link in areas/accounts/manage/_ManageNav.cshtml
 
  - blogpostindex card-container div messed up
 
