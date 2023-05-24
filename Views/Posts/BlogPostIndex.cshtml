@@ -11,25 +11,17 @@
     var blogId = ViewData["BlogId"];
 }
 
-<h1>
-    Posts for @ViewData["BlogName"] Blog<br />
-    BlogId: @ViewData["BlogId"]<br />
-    Page: @Model.PageNumber
-</h1>
-@if (User.IsInRole("Administrator"))
-{
-    <p>
-        <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]">Create New Post for this Blog</a>
-        @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
-    </p>
-}
+<h3>
+    @ViewData["BlogName"]<br />
+</h3>
+
 
 
 @foreach (var item in Model)
-{   
+{
     <!--hidden input to pass blog id to posts controller get edit method-->
-    <input hidden asp-for="@blogId />
-    <div class="card-container">
+    <input hidden asp-for="@blogId    />
+<div class="card-container">
         <div class="cards">
             <div class="card-item row row-cols-2">
                 <div class="col-md-6 col-12 card-image">
@@ -42,72 +34,91 @@
                     <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
                     <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
                     <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
-                    @*<p class="card-intro">Posted by <b>@item.BlogUser.FullName</b></p>*@
+                @*<p class="card-intro">Posted by <b>@item.BlogUser.FullName</b></p>*@
                     <p class="card-intro">Posted by <b>@ViewData["UserName"]</b></p>
                 </div>
 
             </div>
             <div class="row">
                 <div class="col">
-                    ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and ar far away, behind the word mountains, far from the countries Vokalia and
+                @if (item.Content.Length > 300)
+                {
+                    @Html.Raw(item.Content.Substring(0, 300))
+                        <a class="btn-readmore" asp-action="Details" asp-route-slug="@item.Slug">Read More...</a>
+                }
+                else
+                {
+                    @Html.Raw(item.Content)
+                        <a class="btn-readmore" asp-action="Details" asp-route-slug="@item.Slug">Read More...</a>
+                }
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <a class="btn btn-actions" asp-action="Details" asp-route-slug="@item.Slug">Read More...</a>
-                </div>
-            </div>
-            @if (User.IsInRole("Administrator"))
-            {
+        @if (User.IsInRole("Administrator"))
+        {
                 <div class="row">
                     <div class="col">
                         <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-                        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                         <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
                         <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
                     </div>
                 </div>
-            }
+        }
         </div>
-}<div>
-    @*<a asp-action="Index" asp-controller="Home" asp-route-id="2"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
-    @*<br /> <a id="backToPage" href="page=3" onclick="setPageNumber()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
-    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
-</div>
 
-<hr />
+}
+
+
+
+    <hr />
 @*pagination controls*@
 
-<div class="row">
-    <div class="col">
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    <div class="row">
+        <div class="col">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col">
+    <div class="row">
+        <div class="col">
         @Html.PagedListPager(Model, page => Url.Action("BlogPostIndex", new {id = Model.FirstOrDefault().BlogId, page = page}),
-        new PagedListRenderOptionsBase
-        {
-        LiElementClasses = new string[] {"page-item"},
-        PageClasses = new string[] {"page-link"}
-        });
+            new PagedListRenderOptionsBase
+            {
+            LiElementClasses = new string[] {"page-item"},
+            PageClasses = new string[] {"page-link"}
+            })
+        </div>
     </div>
-</div>
 
+    <div style="margin-bottom:2rem;">
+    @*<a asp-action="Index" asp-controller="Home" asp-route-id="2"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
+    @*<br /> <a id="backToPage" href="page=3" onclick="setPageNumber()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
+        <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+    </div>
+
+@if (User.IsInRole("Administrator"))
+{
+        <p>
+            <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]">Create New Post for @ViewData["BlogName"] Blog</a>
+
+            <br>BlogId: @ViewData["BlogId"]<br />
+            <br>Page: @Model.PageNumber
+        @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
+        </p>
+}
 @section Scripts{
 
-    <script>
-        function openSuccessModal(strMessage){
-            var myDiv = document.getElementById("MyModalSuccessAlertBody");
-            myDiv.innerHTML = strMessage;
-            $("#myModalSuccess").modal("show");
-        }
+        <script>
+            function openSuccessModal(strMessage) {
+                var myDiv = document.getElementById("MyModalSuccessAlertBody");
+                myDiv.innerHTML = strMessage;
+                $("#myModalSuccess").modal("show");
+            }
 
-        $(document).ready(function(){
-            var msg="@TempData["SuccessMessage"]";
-            if(msg)
-                openSuccessModal(msg);
-            
-        });
-    </script>
-}
+            $(document).ready(function () {
+                var msg = "@TempData["SuccessMessage"]";
+                if (msg)
+                    openSuccessModal(msg);
+
+            });
+        </script>
+    }

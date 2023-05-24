@@ -44,33 +44,36 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse row row-cols-1 row-cols-md-2">
                 <div class="col header_top_left">
-                    <ul class="nav navbar-nav main_nav">
+                    <ul class="navbar-nav main_nav">
                         <li class="nav=item">
                             <a class="nav-link" style="margin-left: 1rem;" href="https://www.davidbellerose.com" target="_blank">
                                 <img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo">
                             </a>
                         </li>
-                        <li class="active">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home"></span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home" style="font-size: 1.5rem;"></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">About</a>
+                            <a class="nav-link" href="https://davidbellerose.com" target="_blank">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
-                        </li>
-                        @*                        <li class="nav-item">
+                        @if (User.IsInRole("Administrator"))
+            {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
+                            </li>
+                            @*<li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
                         </li>*@
+                        }
                     </ul>
                 </div>
                 <div class="header_top_right">
@@ -88,7 +91,7 @@
     <div class="container">
         @*-----------------------------------------------------------------------------------------
 
-        LATEST TWEETS HEADER
+        TICKER
 
         -----------------------------------------------------------------------------------------*@
         <section id="newsSection" style="margin-top:80px;">
@@ -147,12 +150,6 @@
                                     SymeTrak is now live
                                 </a>
                             </li>
-                            <li>
-                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
-                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
-                                    New project coming soon
-                                </a>
-                            </li>
                         </ul>
                         <div class="social_area">
                             <ul class="social_nav">
@@ -183,7 +180,7 @@
         <section class="search-section">
             <form asp-action="SearchIndex" asp-controller="Posts">
                 <div class="search-input">
-                    <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
+                    <input type="text" name="SearchTerm" class="form-control" placeholder="Search...">
                     <button class="btn-actions" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </form>

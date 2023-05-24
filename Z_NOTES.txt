@@ -4,44 +4,34 @@ Bootstrap v3.3.1
  ================================================================
 FIX 
 
-
- - post edit when you click on save, it goes to postsempty
-	only first page first post works
-	post edit return line not working; not getting blogid or page
-	return RedirectToAction("BlogPostIndex", new { id = blogId, page = currentPage });
-
-	delete post should go back to postblogindex for that blog
-	
-	edit and create should go to that post
+ - redo symetrak overlay png
 
 
-	blogpostindex post edit pencil button
-		check url, blogid appended ot url wrong
+ - blogpostindex card-container div messed up
 
-	posts index edit pencil button
+ - create a new post from the blogpost index page will not show
+	the new post in the blogpostindex page sorted by that blog
+	**** keep forgeting to set it to production ready. *****
 
-	same for create
+ $ I will need the blog and posts indexes to see non-production ready blogs and posts
+   ** set those links as admin only
 
+ - set blog/post id's in headers to bottom and admin only
 
+ - create-post-header in posts/create view include blog name
 
-
+ - make search bar part of ticker?
 
  - postsempty button create post for this blog
  
  - limit file upload types - see .net snippits
 
- - add recent posts to blog cards ?view model?
+
 
 
  - make sure only admin moderator can post
 	regular users can comment only
 	not logged in can view only
-
-	
- - user name click to show comments by and posted by - but i'm the only one who posts
- - comments index some info not showing [dont really need this]
-
- - do i need the js getId passId setRouteId?
 
  =========================================================================
  HOME INDEX
@@ -52,24 +42,23 @@ FIX
  + show all tags/distinct
 
 
-   BLOGPOSTINDEX
-
+BLOGPOSTINDEX
++ add recent posts to blog cards ?view model?
++ put tags on posts index card?
 
 
  ==========================================================================
  STYLE  
 
- - create-post-header in posts/create view
- - adjust ticker speed
- - header bottom margin for links hover effect
-
  - remove all commented code
- - responsive
-	header may need bottom margin until left menu is reduced
+ - change all "Blog" to "Category"
+
+ - socials at end of post view
+ - related posts section at end of posts view
 
 - consider making blog cards smaller
 - consider scaffolding views for tags in case you want to edit them globally
-- put tags on posts index card?
+-  they will need post and blog id's and names on their cards
 
 > maybe don't need pagination
 	.have the featured blog/category in the carousel
@@ -85,6 +74,8 @@ FIX
  - breadcrumbs for header nav menu
  - tags on home index page click to show all posts for that tag
  - someday may use archive
+ - user name click to show comments by and posted by - but i'm the only one who posts
+  - comments index some info not showing [dont really need this]
 
 suggest tags when adding
 

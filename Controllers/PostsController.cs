@@ -1,5 +1,6 @@
 ﻿using DevBlog5.Data;
 using DevBlog5.Enums;
+using DevBlog5.Helpers;
 using DevBlog5.Models;
 using DevBlog5.Services;
 using DevBlog5.ViewModels;
@@ -56,6 +57,7 @@ namespace DevBlog5.Controllers
                 .ThenByDescending(p => p.Updated)
                 .ThenByDescending(p => p.Created);
 
+
           return View(await applicationDbContext.ToListAsync());
 
         }
@@ -79,19 +81,7 @@ namespace DevBlog5.Controllers
             var pageNumber = page ?? 1;  // null coelescing operator
             var pageSize = 2;  // amount per page
 
-            //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
-
-            // original
-
-            //var posts = await _context.Posts
-            //    .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
-            //    .Include(p => p.Blog)
-            //    .OrderByDescending(b => b.Created)
-            //    .ToPagedListAsync(pageNumber, pageSize);
-
             var blogId = id;
-
-            // first solution
 
             var blogPosts = await _context.Posts
                 .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
@@ -101,13 +91,6 @@ namespace DevBlog5.Controllers
                 .ToPagedListAsync(pageNumber, pageSize);
 
 
-            //if(blogPosts.PageNumber > blogPosts.PageCount)
-            //{
-            //    TempData["SuccessMessage"] = "Page not found.";
-
-            //}
-
-
             if (blogPosts.Count < 1)
             {
                 //return RedirectToAction("PostsEmpty");
@@ -115,80 +98,61 @@ namespace DevBlog5.Controllers
                 //return RedirectToAction("PostsEmpty", blogId);
             }
 
+
             ViewData["BlogName"] = blogPosts[0].Blog.Name;  // will get null error if no posts
             ViewData["BlogId"] = blogPosts[0].BlogId; // will get null error if no posts
             ViewData["PageCount"] = pageNumber;
             ViewData["UserName"] = blogPosts[0].BlogUser.FullName;
 
-
-            // second solution
-
-            //Blog? blog = await _context.Blogs
-            //    .Where(blog => blog.Id == id)
-            //    .Include(blog => blog.Posts
-            //        .Where(post => post.ReadyStatus == ReadyStatus.ProductionReady)
-            //        .OrderByDescending(post => post.Created)
-            //        .Skip((pageNumber - 1) * pageSize)
-            //        .Take(pageSize)
-            //    )
-            //    .FirstOrDefaultAsync();
-            //if (blog == null)
-            //{
-            //    throw new ArgumentException("The blog was not found.", nameof(id));
-            //}
-            //ViewData["BlogName"] = blog.Name;
-
             TempData["CurrentPage"] = page;
-
-
 
             return View(blogPosts);
 
         }
 
 
-        // GET: BlogPostIndex
-        public async Task<IActionResult> CreateSpecificBlogPost(int? id, int? page)
-        {
-            if (id is null)
-            {
-                return NotFound();
-            }
+        //// GET: BlogPostIndex
+        //public async Task<IActionResult> CreateSpecificBlogPost(int? id, int? page)
+        //{
+        //    if (id is null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var pageNumber = page ?? 1;
-            var pageSize = 2;
+        //    var pageNumber = page ?? 1;
+        //    var pageSize = 2;
 
-            var blogPosts = await _context.Posts
-                .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
-                .Include(p => p.Blog)
-                .OrderByDescending(p => p.Created)
-                .ToPagedListAsync(pageNumber, pageSize);
-
-
-            if (blogPosts.PageNumber > blogPosts.PageCount)
-            {
-                TempData["SuccessMessage"] = "Page not found.";
-
-            }
+        //    var blogPosts = await _context.Posts
+        //        .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
+        //        .Include(p => p.Blog)
+        //        .OrderByDescending(p => p.Created)
+        //        .ToPagedListAsync(pageNumber, pageSize);
 
 
-            if (blogPosts.Count < 1)
-            {
-                return RedirectToAction("PostsEmpty");
-            }
-            ViewData["BlogId"] = id;
-            ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["PageCount"] = pageNumber;
+        //    if (blogPosts.PageNumber > blogPosts.PageCount)
+        //    {
+        //        TempData["SuccessMessage"] = "Page not found.";
 
-            TempData["CurrentPage"] = page;
-
-            ViewData["BlogName"] = blogPosts[0].Blog.Name;
+        //    }
 
 
+        //    if (blogPosts.Count < 1)
+        //    {
+        //        return RedirectToAction("PostsEmpty");
+        //    }
+        //    ViewData["BlogId"] = id;
+        //    ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
+        //    ViewData["PageCount"] = pageNumber;
 
-            return View(blogPosts);
+        //    TempData["CurrentPage"] = page;
 
-        }
+        //    ViewData["BlogName"] = blogPosts[0].Blog.Name;
+
+
+
+        //    return View(blogPosts);
+
+        //}
 
 
         // GET: Posts/Details/5
@@ -233,11 +197,13 @@ namespace DevBlog5.Controllers
         // GET: Posts/Create
         public IActionResult Create(int? id)
         {
+            TempData["ReturnUrl"] = Request.GetReferrer();
             var blogId = id;
+
             ViewData["BlogId"] = blogId;
+            //ViewData["BlogName"] = blogName;
             ViewData["BlogIdList"] = new SelectList(_context.Blogs, "Id", "Name", blogId);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "FullName");
-            ViewData["SetBlogId"] = (_context.Blogs, "Id");
             return View();
         }
 
@@ -304,7 +270,9 @@ namespace DevBlog5.Controllers
                 TempData["SuccessMessage"] = "Post created.";
 
 
-                return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
+                //return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
+                var returnUrl = TempData["ReturnUrl"].ToString();
+                return Redirect(returnUrl);
             }
             else
             {
@@ -320,6 +288,8 @@ namespace DevBlog5.Controllers
         // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(string slug, int? blogId)
         {
+            TempData["ReturnUrl"] = Request.GetReferrer();
+
             if (slug == null)
             {
                 return NotFound();
@@ -432,7 +402,9 @@ namespace DevBlog5.Controllers
                 //return RedirectToAction(nameof(Index));
                 //return RedirectToAction("Index", "Home", null);
                 //return RedirectToAction("BlogPostIndex", new { id = blogId, page = currentPage });
-                return RedirectToAction("BlogPostIndex", new { id = blogId });
+                //return RedirectToAction("BlogPostIndex", new { id = blogId });
+                var returnUrl = TempData["ReturnUrl"].ToString();
+                return Redirect(returnUrl);
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Description", post.BlogId);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", post.BlogUserId);
@@ -442,6 +414,8 @@ namespace DevBlog5.Controllers
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(string slug)
         {
+            TempData["ReturnUrl"] = Request.GetReferrer();
+
             if (slug == null)
             {
                 return NotFound();
@@ -487,7 +461,9 @@ namespace DevBlog5.Controllers
             }
 
 
-            return RedirectToAction("BlogPostIndex", new { id = post.BlogId, page = currentPage });
+            //return RedirectToAction("BlogPostIndex", new { id = post.BlogId, page = currentPage });
+            var returnUrl = TempData["ReturnUrl"].ToString();
+            return Redirect(returnUrl);
         }
 
         private bool PostExists(int id)

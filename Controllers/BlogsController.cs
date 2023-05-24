@@ -1,4 +1,5 @@
 ﻿using DevBlog5.Data;
+using DevBlog5.Helpers;
 using DevBlog5.Models;
 using DevBlog5.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -50,19 +51,12 @@ namespace DevBlog5.Controllers
                 return NotFound();
             }
             return View(blog);
-
-            //int currentPage = 1;
-            //if (TempData["CurrentPage"] != null)
-            //{
-            //    currentPage = (int)TempData["CurrentPage"];
-            //}
-
-            //return RedirectToAction("BlogPostIndex", new { id = blog.Id, page = currentPage });
         }
 
         // GET: Blogs/Create
         public IActionResult Create()
         {
+            TempData["ReturnUrl"] = Request.GetReferrer();
             return View();
         }
 
@@ -87,7 +81,9 @@ namespace DevBlog5.Controllers
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
 
-                return RedirectToAction("Index", "Home");
+
+                var returnUrl = TempData["ReturnUrl"].ToString();
+                return Redirect(returnUrl);
 
                 //return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
             }
@@ -97,6 +93,9 @@ namespace DevBlog5.Controllers
         // GET: Blogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            TempData["ReturnUrl"] = Request.GetReferrer();
+
+
             if (id == null || _context.Blogs == null)
             {
                 return NotFound();
@@ -160,8 +159,9 @@ namespace DevBlog5.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index", "Home");
-                //return RedirectToAction("BlogPostIndex", "Blog", new { id = blog.Id });
+
+                var returnUrl = TempData["ReturnUrl"].ToString();
+                return Redirect(returnUrl);
             }
             return View(blog);
         }
@@ -169,6 +169,8 @@ namespace DevBlog5.Controllers
         // GET: Blogs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            TempData["ReturnUrl"] = Request.GetReferrer();
+
             if (id == null || _context.Blogs == null)
             {
                 return NotFound();
@@ -201,7 +203,9 @@ namespace DevBlog5.Controllers
 
             await _context.SaveChangesAsync();
             //return RedirectToAction(nameof(Index));
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+            var returnUrl = TempData["ReturnUrl"].ToString();
+            return Redirect(returnUrl);
         }
 
         private bool BlogExists(int id)

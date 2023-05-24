@@ -25,8 +25,6 @@ function phoneNumber() {
 }
 
 
-
-
 // **************************************************
 //
 //              BACK TO TOP BUTTON
