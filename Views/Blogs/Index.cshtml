@@ -48,7 +48,8 @@
             </div>
             <div class="row card-link">
                 <div class="col">
-                    <a class="btn btn-actions">Read More...</a>
+
+                    <a id="routeId" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Read More...</a>
                 </div>
             </div>
             @if (User.IsInRole("Administrator"))

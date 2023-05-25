@@ -200,33 +200,31 @@ button.btn-sm, a.btn-sm {
 
 /* post create view header*/
 .create-post-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: baseline;
-    font-size: 1.5rem;
-    font-weight: bold;
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: start;*/
+    /*align-items: baseline;*/
+    font-size: 1.2rem;
+    /*font-weight: bold;*/
 }
 
-    .create-post-header select {
-        font-size: 1.5rem;
-        width: 100px;
-        border-color: #efefef;
-        outline: 0px solid #efefef;
-        appearance: none;
-        border-radius: 0px;
-        margin: 0 0.5rem;
-        background: #d083cf;
-    }
-
+.create-post-header span{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+    /* create post image*/
+    .preview-img img{
+    max-width: 90%;
+    height: auto;
+}
 /*****************************************************************************************
     
     HEADER NAV                                                                      HEADER NAV
 
 *****************************************************************************************/
 .navbar {
-/*    margin: 0;*/
-/*    padding: 0;*/
+    /*    margin: 0;*/
+    /*    padding: 0;*/
 }
 /*  logout button on header*/
 .navbar-nav {
@@ -335,11 +333,10 @@ button.btn-sm, a.btn-sm {
 
 /*****************************************************************************************
     
-    HEADER NAV                                                                      HEADER NAV
+    ACCOUNT IDENTITY PAGES                                                 ACCOUNT IDENTITY PAGES 
 
 *****************************************************************************************/
-
-.account li a{
+.account li a {
     color: black;
 }
 
@@ -864,7 +861,11 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
     padding: 0.5rem;
 }
 
-
+.post-limited{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 @media screen and (max-width:990px) {
     .card-image {
         width: 100%;

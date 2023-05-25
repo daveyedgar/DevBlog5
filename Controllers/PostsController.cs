@@ -58,7 +58,7 @@ namespace DevBlog5.Controllers
                 .ThenByDescending(p => p.Created);
 
 
-          return View(await applicationDbContext.ToListAsync());
+            return View(await applicationDbContext.ToListAsync());
 
         }
 
@@ -90,7 +90,6 @@ namespace DevBlog5.Controllers
                 .OrderByDescending(p => p.Created)
                 .ToPagedListAsync(pageNumber, pageSize);
 
-
             if (blogPosts.Count < 1)
             {
                 //return RedirectToAction("PostsEmpty");
@@ -109,50 +108,6 @@ namespace DevBlog5.Controllers
             return View(blogPosts);
 
         }
-
-
-        //// GET: BlogPostIndex
-        //public async Task<IActionResult> CreateSpecificBlogPost(int? id, int? page)
-        //{
-        //    if (id is null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var pageNumber = page ?? 1;
-        //    var pageSize = 2;
-
-        //    var blogPosts = await _context.Posts
-        //        .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
-        //        .Include(p => p.Blog)
-        //        .OrderByDescending(p => p.Created)
-        //        .ToPagedListAsync(pageNumber, pageSize);
-
-
-        //    if (blogPosts.PageNumber > blogPosts.PageCount)
-        //    {
-        //        TempData["SuccessMessage"] = "Page not found.";
-
-        //    }
-
-
-        //    if (blogPosts.Count < 1)
-        //    {
-        //        return RedirectToAction("PostsEmpty");
-        //    }
-        //    ViewData["BlogId"] = id;
-        //    ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
-        //    ViewData["PageCount"] = pageNumber;
-
-        //    TempData["CurrentPage"] = page;
-
-        //    ViewData["BlogName"] = blogPosts[0].Blog.Name;
-
-
-
-        //    return View(blogPosts);
-
-        //}
 
 
         // GET: Posts/Details/5
@@ -195,14 +150,16 @@ namespace DevBlog5.Controllers
 
 
         // GET: Posts/Create
-        public IActionResult Create(int? id)
+        public IActionResult Create(int? id, string blogName)
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
             var blogId = id;
 
-            ViewData["BlogId"] = blogId;
-            //ViewData["BlogName"] = blogName;
-            ViewData["BlogIdList"] = new SelectList(_context.Blogs, "Id", "Name", blogId);
+            //var blogName = Request.Form["BlogName"];
+
+            ViewData["BlogIdNum"] = blogId;
+            ViewData["BlogName"] = blogName;
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "FullName");
             return View();
         }

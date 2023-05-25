@@ -2,6 +2,7 @@
 @model IEnumerable<DevBlog5.Models.Post>
 @using DevBlog5.Services
 @inject IImageService _imageService
+@using DevBlog5.Helpers
 
 @{
     ViewData["Title"] = "Posts";
@@ -40,7 +41,8 @@
                 <div class="post-limited">
                     @if (@item.Content.Length > 300)
                     {
-                        <p>@Html.Raw(@item.Content.Substring(0, 300))...
+                        <p>
+                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Content, 300))
                             <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
                         </p>
                     }

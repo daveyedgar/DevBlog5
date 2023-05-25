@@ -8,18 +8,14 @@ FIX
 	  if so uncomment that section in the areas/accounts/register.cshtml
 	  same for link in areas/accounts/manage/_ManageNav.cshtml
 
- - blogpostindex card-container div messed up
-
- - create a new post from the blogpost index page will not show
-	the new post in the blogpostindex page sorted by that blog
+ - new post not showing in blogpostindex page
 	**** keep forgeting to set it to production ready. *****
 
- $ I will need the blog and posts indexes to see non-production ready blogs and posts
+ $ I will need to keep the blog and posts indexes to see non-production ready blogs and posts
    ** set those links as admin only
 
- - set blog/post id's in headers to bottom and admin only
+ - eventually take the id's and maybe blog names from cards
 
- - create-post-header in posts/create view include blog name
 
  - make search bar part of ticker?
 
@@ -27,7 +23,7 @@ FIX
  
  - limit file upload types - see .net snippits
 
-
+ 
 
 
  - make sure only admin moderator can post
@@ -55,6 +51,7 @@ BLOGPOSTINDEX
  - change all "Blog" to "Category"
 
  - socials at end of post view
+ - cards break to soon, pics to big, keep 2 columns on header max width for photo
  - related posts section at end of posts view
 
 - consider making blog cards smaller

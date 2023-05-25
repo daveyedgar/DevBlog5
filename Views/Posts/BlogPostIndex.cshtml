@@ -1,5 +1,6 @@
 ﻿@using DevBlog5.Services
 @using DevBlog5.Models
+@using DevBlog5.Helpers
 @model IPagedList<DevBlog5.Models.Post>
 @inject IImageService _imageService
 @using X.PagedList
@@ -9,6 +10,7 @@
 @{
     ViewData["Title"] = "Posts";
     var blogId = ViewData["BlogId"];
+
 }
 
 <h3>
@@ -20,108 +22,108 @@
 
 @foreach (var item in Model)
 {
-<div class="card-container">
-    <div class="cards">
-        <div class="card-item row row-cols-2">
-            <div class="card-image col-md-6 col-12">
-                <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
-            </div>
-            <div class="card-info col-md-6 col-12">
-                <h2 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h2>
-                <p class="card-intro">@Html.DisplayFor(modelItem => item.Abstract)</p>
-                <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)</p>
-                <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
-                <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
-                <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
-                @*<p class="card-intro">Posted by <a href="">@item.BlogUser.FullName</a> on @item.Created</p>*@
-                <p class="card-intro">Posted by @item.BlogUser.FullName</p>
-            </div>
+    <div class="card-container">
+        <div class="cards">
+            <div class="card-item row row-cols-2">
+                <div class="card-image col-md-6 col-12">
+                    <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                </div>
+                <div class="card-info col-md-6 col-12">
+                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h2>
+                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Abstract)</p>
+                    <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)</p>
+                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
+                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
+                    <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
+                    @*<p class="card-intro">Posted by <a href="">@item.BlogUser.FullName</a> on @item.Created</p>*@
+                    <p class="card-intro">Posted by @item.BlogUser.FullName</p>
+                </div>
 
-        </div>
-        <div class="row card-text">
-            <div class="post-limited">
-                @if (@item.Content.Length > 300)
-                {
-                <p>
-                    @Html.Raw(@item.Content.Substring(0, 300))...
-                    <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
-                </p>
-                }
-                else
-                {
-                <p>
-                    @Html.Raw(@item.Content)...
-                    <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
-                </p>
-                }
             </div>
-        </div>
-        @if (User.IsInRole("Administrator"))
-        {
-        <div class="row card-actions">
-            <div class="col">
-                <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
-                <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+            <div class="row card-text">
+                <div class="post-limited">
+                    @if (@item.Content.Length > 300)
+                    {
+                        <p>
+                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Content, 300))
+                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            @Html.Raw(@item.Content)...
+                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                        </p>
+                    }
+                </div>
             </div>
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="row card-actions">
+                    <div class="col">
+                        <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+                        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                        <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+                    </div>
+                </div>
+            }
         </div>
-        }
     </div>
-</div>
 }
 
 
 
-    <hr />
+<hr />
 @*pagination controls*@
 
-    <div class="row">
-        <div class="col">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        </div>
+<div class="row">
+    <div class="col">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>
-    <div class="row">
-        <div class="col">
+</div>
+<div class="row">
+    <div class="col">
         @Html.PagedListPager(Model, page => Url.Action("BlogPostIndex", new {id = Model.FirstOrDefault().BlogId, page = page}),
-            new PagedListRenderOptionsBase
-            {
-            LiElementClasses = new string[] {"page-item"},
-            PageClasses = new string[] {"page-link"}
-            })
-        </div>
+        new PagedListRenderOptionsBase
+        {
+        LiElementClasses = new string[] {"page-item"},
+        PageClasses = new string[] {"page-link"}
+        })
     </div>
+</div>
 
-    <div style="margin-bottom:2rem;">
+<div style="margin-bottom:2rem;">
     @*<a asp-action="Index" asp-controller="Home" asp-route-id="2"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
     @*<br /> <a id="backToPage" href="page=3" onclick="setPageNumber()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
-        <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
-    </div>
+    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
+</div>
 
 @if (User.IsInRole("Administrator"))
 {
-        <p>
-            <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]">Create New Post for @ViewData["BlogName"] Blog</a>
+    <p>
+        <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]" asp-route-blogName="@ViewData["BlogName"]">Create New Post for @ViewData["BlogName"] Blog</a>
 
-            <br>BlogId: @ViewData["BlogId"]<br />
-            <br>Page: @Model.PageNumber
+        <br>BlogId: @ViewData["BlogId"]<br />
+        <br>Page: @Model.PageNumber
         @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
-        </p>
+    </p>
 }
 @section Scripts{
 
-        <script>
-            function openSuccessModal(strMessage) {
-                var myDiv = document.getElementById("MyModalSuccessAlertBody");
-                myDiv.innerHTML = strMessage;
-                $("#myModalSuccess").modal("show");
-            }
+    <script>
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+            $("#myModalSuccess").modal("show");
+        }
 
-            $(document).ready(function () {
-                var msg = "@TempData["SuccessMessage"]";
-                if (msg)
-                    openSuccessModal(msg);
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
 
-            });
-        </script>
+        });
+    </script>
     }

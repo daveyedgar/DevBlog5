@@ -1,12 +1,13 @@
 ﻿@model DevBlog5.Models.Post
 @using DevBlog5.Enums
 
+
 @{
     ViewData["Title"] = "Create";
 }
 
 <div class="create-post-header">
-    Create Post
+    Create New Post in &nbsp;<span>@ViewData["BlogName"]</span>
 </div>
 
 <div class="row">
@@ -17,8 +18,8 @@
                 @*<br />Blog Name: <label asp-for="BlogId" class="control-label">@ViewData["BlogId"]</label>*@
                 @*<br />BlogId: @ViewData["BlogId"]*@
                 @*<input asp-for="BlogId" value="@ViewData["BlogId"]" />*@
-                <br />Blog Name
-                <br /><select asp-for="BlogId" class="form-control" asp-items="@ViewBag.BlogIdList"></select>
+                <br /><label asp-for="BlogId" class="control-label"></label>
+                <select asp-for="BlogId" class="form-control" asp-items="ViewBag.BlogId"></select>
 
                 @*<br />Blog Id PassId: <input id="BlogId" type="number" asp-for="BlogId" value="" style="width: 50px;"/>  the passId function sets this value*@
                 
@@ -74,7 +75,7 @@
 
             <!--for create method set image to default-->
             <div class="preview-img">
-                <img id="imageFileData" class="" src="~/assets/images/defaultUserImage.png">
+                <img id="imageFileData" class="img-fluid" src="~/assets/images/defaultUserImage.png">
             </div>
             <!--update image after change-->
             <div class="form-group">
