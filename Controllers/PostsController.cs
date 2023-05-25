@@ -64,9 +64,14 @@ namespace DevBlog5.Controllers
 
         public IActionResult PostsEmpty(int? id)
         {
+            var blog = _context.Blogs
+                .Where(p => p.Id == id)
+                .ToList();
+
             //ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
             ViewData["BlogId"] = id;
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["BlogName"] = blog[0].Name; 
             return View();
         }
 
@@ -150,7 +155,7 @@ namespace DevBlog5.Controllers
 
 
         // GET: Posts/Create
-        public IActionResult Create(int? id, string blogName)
+        public IActionResult Create(int? id, string? blogName)
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
             var blogId = id;
@@ -159,7 +164,7 @@ namespace DevBlog5.Controllers
 
             ViewData["BlogIdNum"] = blogId;
             ViewData["BlogName"] = blogName;
-            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
+            ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", id);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "FullName");
             return View();
         }
@@ -226,10 +231,11 @@ namespace DevBlog5.Controllers
 
                 TempData["SuccessMessage"] = "Post created.";
 
+                return RedirectToAction("Details", new { slug = post.Slug });
 
                 //return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
-                var returnUrl = TempData["ReturnUrl"].ToString();
-                return Redirect(returnUrl);
+                //var returnUrl = TempData["ReturnUrl"].ToString();
+                //return Redirect(returnUrl);
             }
             else
             {
