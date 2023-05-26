@@ -11,6 +11,16 @@
 @{
     ViewData["Title"] = "Register";
 }
+<style>
+    a{
+        color: blue;
+    }
+    a:hover{
+        color: darkblue;
+    }
+
+</style>
+
 
 <h2>@ViewData["Title"]</h2>
 
@@ -53,14 +63,6 @@
             <div class="form-group userimage">
                 <img alt="User Image"src="Input.ImageFile" id="imageFileData" class="img-fluid" style="max-width:200px;"/>
             </div>
-            @*            <div class="form-group">
-            <label>Select Image</label>
-            <div class="custom-file">
-            <input type="file" asp-for="Input.ImageFile" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp,.tif,.bmp" />
-            <label asp-for="Input.ImageFile" class="control-label custom-file-label">Choose</label>
-            <span asp-validation-for="Input.ImageFile" class="text-danger"></span>
-            </div>
-            </div>*@
             <div class="form-group">
                 <label>Select Image</label>
                 <div class="custom-file">
@@ -74,7 +76,7 @@
         </form>
     </div>
 
-@*    <div class="col-md-6">
+    <div class="col-md-6">
         <section>
             <h4>Use another service to register.</h4>
             <hr />
@@ -83,7 +85,7 @@
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See <a style="color:blue;"href="https://go.microsoft.com/fwlink/?LinkID=532715" target="_blank">this article</a>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715" target="_blank">this article</a>
                             for details on setting up this ASP.NET application to support logging in via external services.
                         </p>
                     </div>
@@ -103,7 +105,7 @@
                 }
             }
         </section>
-    </div>*@
+    </div>
 
 </div>
 

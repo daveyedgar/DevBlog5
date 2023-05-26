@@ -61,18 +61,26 @@
                         </li>
                         @if (User.IsInRole("Administrator"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
-                            </li>
-                            @*<li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
-                        </li>*@
+                            <div class="dropdown">
+                                <span>></span>
+                                <div class="dropdown-content">
+
+                                    <a class="" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                                    <a class="" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                                    <a class="" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
+                                    @*                                    <ul class="">
+                                <li class="">
+                                <a class="" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
+                                </li>
+                                <li class="">
+                                <a class="" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                                </li>
+                                <li class="">
+                                <a class="" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
+                                </li>
+                                </ul>*@
+                                </div>
+                            </div>
                         }
                     </ul>
                 </div>

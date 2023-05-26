@@ -37,6 +37,90 @@ input {
     margin: 20px 0;
 }
 
+/*****************************************************************************************
+    
+    SEARCH BAR                                                                      SEARCH BAR
+
+*****************************************************************************************/
+
+.search-bar {
+    position: fixed;
+/*    display: flex;
+    flex-direction: row;
+    justify-content: center;*/
+    width: 200px;
+    top: 10px;
+    left: 45%;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+}
+
+    .search-bar form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 200px;
+    }
+
+    .search-bar input {
+        margin: 0;
+        padding: 0;
+        height: 30px;
+        border-radius: 0px;
+        padding: 0 5px;
+    }
+
+    .search-bar button {
+        margin: 0;
+        padding: 0;
+        height: 30px;
+        border-radius: 0px;
+        width: 50px;
+    }
+
+@media (max-width: 765px){
+    .search-bar {
+        left: 10px;
+        width: 201px;
+    }
+}
+
+/*search form to of layout page*/
+.search-bar {
+    /*    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: end;
+    border: 1px solid blue;*/
+}
+
+.search-section {
+    /*    background-color: red;*/
+}
+/*
+.search-input {
+    display: flex;
+    float: right;
+    margin-bottom: 1rem;
+}
+
+    .search-input button {
+        width: 40px;
+    }*/
+
+
+/*****************************************************************************************
+    
+    LOGIN PARTIAL MENU                                                      LOGIN PARTIAL MENU
+
+*****************************************************************************************/
+
+
+
+
 /* social icon links at end of tweets/news bar */
 .social_nav li.linkedin a {
     background-image: url("../images/linkedin.svg");
@@ -103,7 +187,9 @@ input {
 /*    padding: 0 30px;*/
 }
 
-
+.latest_post{
+    margin-top: 2rem;
+}
 .latest_post_container {
     display: inline;
     float: left;
@@ -160,21 +246,6 @@ button.btn-sm, a.btn-sm {
 }
 
 
-/*search form to of layout page*/
-.search-section {
-    /*    background-color: red;*/
-}
-
-.search-input {
-    display: flex;
-    float: right;
-    margin-bottom: 1rem;
-}
-
-    .search-input button {
-        width: 40px;
-    }
-
 /* contact form*/
 .showEmail {
     cursor: pointer;
@@ -222,6 +293,86 @@ button.btn-sm, a.btn-sm {
     HEADER NAV                                                                      HEADER NAV
 
 *****************************************************************************************/
+.dropdown {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0;
+    padding-top: 7px;
+    padding-left: 7px;
+    width: 50px;
+    border-left: 1px solid #383838;
+    height: 50px;
+}
+
+    .dropdown:hover {
+        background-color: #d083cf;
+    }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+
+.dropdown:hover .dropdown-content {
+    font-size: 0.8rem;
+    display: block;
+    background-color: #222222;
+    color: #fff;
+    padding: 30px 10px;
+    /*margin: 0;*/
+    /*padding: 0;*/
+}
+
+    .dropdown:hover .dropdown-content ul li {
+        display: inline;
+        padding: 0px 10px;
+        color: #fff;
+    }
+
+        .dropdown:hover .dropdown-content ul li a {
+            display: inline;
+        }
+
+.dropdown ul li a:hover {
+    color: #d083cf;
+}
+
+@media (max-width: 765px) {
+    .dropdown{
+        margin-left: 10px;
+        border: none;
+    }
+
+        .dropdown:hover .dropdown-content {
+            font-size: 0.8rem;
+            display: block;
+            background-color: #222222;
+            margin: 0;
+            padding: 0px;
+            left: 40px;
+            top: 0px;
+            height: 50px;
+            min-width: 300px;
+            color: #fff;
+            background-color: #d083cf;
+        }
+
+        .dropdown:hover .dropdown-content ul li {
+            display: inline;
+            padding: 0px 10px;
+        }
+}
+
+
+
 .navbar {
     /*    margin: 0;*/
     /*    padding: 0;*/
@@ -337,11 +488,11 @@ button.btn-sm, a.btn-sm {
 
 *****************************************************************************************/
 .account li a {
-    color: black;
+    color: blue;
 }
 
 .account li a:hover {
-    color: blue;
+    color: darkblue;
 }
 
 .account li{
@@ -772,13 +923,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
     -webkit-transition: transform 0.3s;
 }
 
-    .cards:hover {
-        /*    cursor: pointer;*/
-        /*transform: scale(1.01);*/
-        /*-webkit-transform: scale(1.01);*/
-    }
-
-
 
 .card-image {
     /*        height: 200px;
@@ -788,6 +932,7 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
     .card-image img {
         max-width: 100%;
         height: auto;
+        pointer-events: none;
         /*            width: 100%;
         height: 100%;
         overflow: hidden;
@@ -866,6 +1011,7 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 @media screen and (max-width:990px) {
     .card-image {
         width: 100%;
@@ -953,6 +1099,14 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 
     .post-content p {
         font-weight: 500;
+    }
+
+    .post-content a{
+        color: blue;
+    }
+
+    .post-content a:hover{
+        color: cornflowerblue;
     }
 
 .post-limited p {

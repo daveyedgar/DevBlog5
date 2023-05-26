@@ -1,9 +1,20 @@
 ﻿@page
 @model EnableAuthenticatorModel
+@using DevBlog5.Areas.Identity.Pages.Account
+@using DevBlog5.Areas.Identity.Pages.Account.Manage
 @{
     ViewData["Title"] = "Configure authenticator app";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
+<style>
+    a{
+        color: blue;
+    }
+    a:hover{
+        color: darkblue;
+    }
+
+</style>
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h4>@ViewData["Title"]</h4>
@@ -50,4 +61,6 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/assets/js/qr.js"></script>
+    <script src="~/lib/qrcode.js"></script>
 }
