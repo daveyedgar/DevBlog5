@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using System;
 using DevBlog5.Enums;
+using DevBlog5.Helpers;
 
 namespace DevBlog5.Models
 {
@@ -48,6 +49,8 @@ namespace DevBlog5.Models
         [NotMapped]
         [Display(Name = "Image")]
         [DataType(DataType.Upload)]
+        [MaxFileSize(1024 * 1024)]
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".bmp", ".webp", ".gif", ".png", ".tif" })]
         public IFormFile? Image { get; set; }
 
         //Navigation
