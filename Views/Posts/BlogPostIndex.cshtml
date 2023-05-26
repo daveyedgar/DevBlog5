@@ -77,20 +77,21 @@
 
 <hr />
 @*pagination controls*@
-
-<div class="row">
-    <div class="col">
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<div class="pagination">
+    <div class="row">
+        <div class="col">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col">
-        @Html.PagedListPager(Model, page => Url.Action("BlogPostIndex", new {id = Model.FirstOrDefault().BlogId, page = page}),
-        new PagedListRenderOptionsBase
-        {
-        LiElementClasses = new string[] {"page-item"},
-        PageClasses = new string[] {"page-link"}
-        })
+    <div class="row">
+        <div class="col">
+            @Html.PagedListPager(Model, page => Url.Action("BlogPostIndex", new {id = Model.FirstOrDefault().BlogId, page = page}),
+            new PagedListRenderOptionsBase
+            {
+            LiElementClasses = new string[] {"page-item"},
+            PageClasses = new string[] {"page-link"}
+            })
+        </div>
     </div>
 </div>
 

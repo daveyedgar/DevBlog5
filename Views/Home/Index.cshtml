@@ -61,7 +61,7 @@
                         <a asp-action="Details" asp-controller="Blogs" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
                         <a asp-action="Delete" asp-controller="Blogs" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
                     </div>
-                </div>                
+                </div>
             }
         </div>
     </div>
@@ -69,29 +69,32 @@
 
 <div class="left_content">
 
-    @*pagination controls*@
 
-    <div class="row">
-        <div class="col">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @*pagination controls*@
+    <div class="pagination">
+
+        <div class="row">
+            <div class="col">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            @Html.PagedListPager(Model, page => Url.Action("Index", new {page = page}),
-            new PagedListRenderOptionsBase
-            {
+        <div class="row">
+            <div class="col">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {page = page}),
+                new PagedListRenderOptionsBase
+                {
                 LiElementClasses = new string[] {"page-item"},
                 PageClasses = new string[] {"page-link"}
-            });
+                })
+            </div>
         </div>
     </div>
 
 </div>
- @if (User.IsInRole("Administrator"))
+@if (User.IsInRole("Administrator"))
 {
-<div>
-    Page: @Model.PageNumber
-    <br /><a asp-controller="Blogs" asp-action="Create" class="btn btn-actions">Create New Blog</a>
-</div>
+    <div>
+        Page: @Model.PageNumber
+        <br /><a asp-controller="Blogs" asp-action="Create" class="btn btn-actions">Create New Blog</a>
+    </div>
 }

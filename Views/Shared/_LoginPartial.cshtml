@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using DevBlog5.Models
+@using DevBlog5.Services
+@inject IImageService _imageService
 @inject SignInManager<BlogUser> SignInManager
 @inject UserManager<BlogUser> UserManager
 
@@ -11,7 +13,21 @@
     @if (SignInManager.IsSignedIn(User))
     { 
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, &nbsp;@user.FirstName</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <div class="user-icon">
+                    @if (user.ImageData != null)
+                    {
+                        <img id="imageFileData" src="@_imageService.DecodeImage(user.ImageData, user.ContentType)">
+
+                    }
+                    else
+                    {
+                        <img id="imageFileData" src="~/assets/images/defaultUserImage.png">
+                    }
+
+                    Hello, &nbsp;@user.FirstName
+                </div>
+            </a>
         </li>
         <li class="nav-item logout-form">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
