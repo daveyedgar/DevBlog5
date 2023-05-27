@@ -1,4 +1,5 @@
 ﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,6 +66,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Master" asp-action="IndexMaster">V</a>
+                        </li>
                         @if (User.IsInRole("Administrator"))
                         {
                             <div class="dropdown">
@@ -107,7 +111,7 @@
     MAIN CONTENT
 
     -----------------------------------------------------------------------------------------*@
-
+   
     @*-----------------------------------------------------------------------------------------
 
     =================      SEARCH FORM
@@ -174,14 +178,20 @@
                             </li>
                             <li>
                                 <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
-                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    <i class="fa fa-file-invoice"></i>
                                     How I built this blog from scratch
                                 </a>
                             </li>
                             <li>
                                 <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
-                                    <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
+                                    <i class="fa-brands fa-github"></i>
                                     SymeTrak is now live
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                    <i class="fa fa-twitter" style="color:#00acee;"></i>
+                                    Start Coding Over 50
                                 </a>
                             </li>
                         </ul>

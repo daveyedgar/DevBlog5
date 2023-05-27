@@ -102,11 +102,11 @@ namespace DevBlog5.Controllers
                 //return RedirectToAction("PostsEmpty", blogId);
             }
 
-
             ViewData["BlogName"] = blogPosts[0].Blog.Name;  // will get null error if no posts
             ViewData["BlogId"] = blogPosts[0].BlogId; // will get null error if no posts
             ViewData["PageCount"] = pageNumber;
             ViewData["UserName"] = blogPosts[0].BlogUser.FullName;
+
 
             TempData["CurrentPage"] = page;
 

@@ -1,0 +1,80 @@
+﻿@using DevBlog5.ViewModels
+
+@model MasterViewModel
+
+@*@model IEnumerable<DevBlog5.ViewModels.MasterViewModel>*@
+
+<h2>Users</h2>
+<ul>
+    @foreach (var user in Model.BlogUsers)
+    {
+        <li>@user.FullName</li>
+    }
+</ul>
+
+
+<h2>Blogs</h2>
+<ul>
+    @foreach (var blog in Model.Blogs)
+    {
+        <li>@blog.Name</li>
+    }
+</ul>
+
+
+<h2>Posts</h2>
+<ul>
+    @foreach (var post in Model.Posts)
+    {
+        <li>@post.Title</li>
+    }
+</ul>
+
+
+<h2>Comments</h2>
+<ul>
+    @foreach (var comment in Model.Comments)
+    {
+        <li>@comment.Body</li>
+    }
+</ul>
+
+
+<h2>Tags</h2>
+<ul>
+    @foreach (var tag in Model.Tags)
+    {
+        <li>@tag.Text</li>
+    }
+</ul>
+
+
+<h2>Blog Posts</h2>
+<!-- i dont think you can do pagination with this
+    maybe a js version would work
+-->
+<ul>
+    @foreach (var blog in Model.Blogs)
+    {
+        // link to blog post index for this blog
+        <li>BLOG NAME: @blog.Name - @blog.Id</li>
+        <ul>
+            @for (int i = 0; i < Model.Posts.Count; i++)
+            {
+                if (blog.Id == Model.Posts[i].BlogId)
+                {
+                    // add the link to the post
+                    <li style="margin-left: 1rem;">POST TITLE: @Model.Posts[i].Title - @Model.Posts[i].BlogId</li>
+                    <li>
+                        <a style="margin-left: 3rem;" class="btn btn-actions btn-sm" asp-action="Details" asp-controller="Posts" asp-route-slug="@Model.Posts[i].Slug">Read More</a>
+                    </li>
+                }
+
+            }
+        </ul>
+        <li>
+            <a id="routeId" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@blog.Id">Read More...</a>
+        </li>
+    }
+</ul>
+
