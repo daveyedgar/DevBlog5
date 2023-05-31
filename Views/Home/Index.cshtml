@@ -22,6 +22,8 @@
 
 -----------------------------------------------------------------------------------------*@
 
+
+
 @foreach (var item in Model)
 {
     <div class="card-container">
@@ -37,12 +39,17 @@
                     <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
                     <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
                     <p class="card-intro">Posted by <b>@item.BlogUsers.FullName</b></p>
+
                 </div>
 
             </div>
             <div class="row card-text">
                 <div class="col">
                     <h4>Recent Posts</h4>
+                    @* @item.Posts.Id*@
+                    @*@Html.DisplayFor(modelItem => item.Posts.)*@
+                    @*@item.Posts.Any(p=>p.BlogId = item.Id);*@
+                    @*@item.Posts.Where(item.Posts = item.Id);*@
                     <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
                     <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
                     <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>

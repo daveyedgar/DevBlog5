@@ -5,6 +5,7 @@ using DevBlog5.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,12 +32,12 @@ namespace DevBlog5.Controllers
             var pageNumber = page ?? 1;
             var pageSize = 2;
 
-            var blogs = _context.Blogs
+            var blogs = await _context.Blogs
                 .Include(b => b.BlogUsers)
                 .OrderByDescending(b => b.Created)
                 .ToPagedListAsync(pageNumber, pageSize);
 
-            return View(await blogs);
+            return View(blogs);
 
 
         }

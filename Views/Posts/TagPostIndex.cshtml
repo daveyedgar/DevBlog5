@@ -1,24 +1,25 @@
 ﻿@using DevBlog5.Services
 @using DevBlog5.Models
 @using DevBlog5.Helpers
-@model IPagedList<DevBlog5.Models.Post>
+@model IPagedList<DevBlog5.Models.Tag>
 @inject IImageService _imageService
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
 
 @{
-    ViewData["Title"] = @ViewData["BlogName"];
-    var blogId = ViewData["BlogId"];
+    ViewData["Title"] = "Posts For #" + ViewData["TagText"];
+    //var blogId = ViewData["BlogId"];
 
-    var imageData = ViewData["BlogImageData"] as byte[];
-    var contentType = ViewData["BlogImageType"] as string;
+    var imageData = ViewData["PostImageData"] as byte[];
+    var contentType = ViewData["PostImageType"] as string;
 
 }
 
-<h3>
-    <img src="@_imageService.DecodeImage(imageData, contentType)" style="width:60px;height:60px;margin-right:1rem;"/> @ViewData["BlogName"] Category<br />
+<h3 class="tag-item">
+    Posts For <span>@ViewData["TagText"]</span> Tag
 </h3>
+
 <!--hidden input to pass blog id to posts controller get edit method-->
 @*<input hidden asp-for="@blogId     />*@
 
@@ -29,34 +30,34 @@
         <div class="cards">
             <div class="card-item row row-cols-2">
                 <div class="card-image col-md-6 col-12">
-                    <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+                    <img src="@_imageService.DecodeImage(item.Posts.ImageData, item.Posts.ContentType)" />
                 </div>
                 <div class="card-info col-md-6 col-12">
-                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h2>
-                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Abstract)</p>
-                    <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)</p>
-                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
-                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
-                    <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
+                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Posts.Title)</h2>
+                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Posts.Abstract)</p>
+                    <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Posts.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.Posts.BlogId)</p>
+                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Posts.Created)</p>
+                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Posts.Updated)</p>
+                    <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.Posts.ReadyStatus)</p>
                     @*<p class="card-intro">Posted by <a href="">@item.BlogUser.FullName</a> on @item.Created</p>*@
-                    <p class="card-intro">Posted by @item.BlogUser.FullName</p>
+                    @*<p class="card-intro">Posted by @item.Posts.BlogUser.FullName</p>*@
                 </div>
 
             </div>
             <div class="row card-text">
                 <div class="post-limited">
-                    @if (@item.Content.Length > 300)
+                    @if (@item.Posts.Content.Length > 300)
                     {
                         <p>
-                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Content, 300))
-                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Posts.Content, 300))
+                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Posts.Slug">Read More</a>
                         </p>
                     }
                     else
                     {
                         <p>
-                            @Html.Raw(@item.Content)...
-                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                            @Html.Raw(@item.Posts.Content)...
+                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Posts.Slug">Read More</a>
                         </p>
                     }
                 </div>
@@ -65,10 +66,10 @@
             {
                 <div class="row card-actions">
                     <div class="col">
-                        <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+                        <a asp-action="Edit" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
                         @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                        <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
-                        <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+                        <a asp-action="Details" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
                     </div>
                 </div>
             }
@@ -88,7 +89,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @Html.PagedListPager(Model, page => Url.Action("BlogPostIndex", new {id = Model.FirstOrDefault().BlogId, page = page}),
+            @Html.PagedListPager(Model, page => Url.Action("TagPostIndex", new {id = Model.FirstOrDefault().PostId, page = page}),
             new PagedListRenderOptionsBase
             {
             LiElementClasses = new string[] {"page-item"},

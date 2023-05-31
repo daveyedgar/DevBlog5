@@ -8,17 +8,23 @@
 @inject UserManager<BlogUser> userManager
 @model PostDetailViewModel
 
+@{
+    ViewData["Title"] = Model.Post.Title;
+    var imageData = ViewData["BlogImageData"] as byte[];
+    var contentType = ViewData["BlogImageType"] as string;
+
+}
 
 <div class="post-detail col-8">
 
-    <h2>@ViewData["BlogId"] Blog</h2>
+    <h2><img src="@imageService.DecodeImage(imageData, contentType)" style="width:100px;height:100px;margin-right:1rem;" />@ViewData["BlogId"] Category</h2>
 
     @****************************************************************
     POST CONTENT
     *****************************************************************@
     <article>
         <div class="row">
-            <div class="post-img">
+            <div class="">
                 <img src="@imageService.DecodeImage(Model.Post.ImageData, Model.Post.ContentType)" />
             </div>
         </div>
@@ -72,7 +78,7 @@
                     <div class="cat-item">
                         @foreach (var tag in Model.Post.Tags.ToList())
                         {
-                            <a asp-action="TagIndex" asp-route-tag="@tag.Text.ToLower()" class="">#@tag.Text</a>
+                            <a asp-action="TagPostIndex" asp-route-tag="@tag.Text" class="">#@tag.Text</a>
                         }
                     </div>
                 </div>
@@ -343,54 +349,52 @@
                 </div>
             </div>
         }
+    </div>
 
+    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width:80px;cursor:pointer;" /></a>
 
-        <div>
-            @if (User.IsInRole("Administrator"))
-            {
-                <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a>
-            }
-            @*<a id="createRoute" asp-controller="Posts" asp-action="Index" asp-route-id=""><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
+    @if (User.IsInRole("Administrator"))
+    {
+        <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width:60px;" /></a>
+    }
+    @*<a id="createRoute" asp-controller="Posts" asp-action="Index" asp-route-id=""><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
 
-            <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
-            @*<a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
+    @*<a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
 
-        </div>
-        @****************************************************************
-        BOTTOM SECTION
-        *****************************************************************@
-        <div class="social_link">
-            <ul class="sociallink_nav">
-                <li><a href="https://www.davidbellerose.com" target="_blank"><i class="fa-solid fa-suitcase"></i></a></li>
-                <li><a href="https://twitter.com/DavidEBellerose" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://github.com/daveyedgar" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="https://www.davidbellerose.com/#contact" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
-            </ul>
-        </div>
-        <div class="related_post">
-            <h2>Related Posts <i class="fa fa-thumbs-o-up"></i></h2>
-            <ul class="spost_nav wow fadeInDown animated">
-                <li>
-                    <div class="media">
-                        <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
-                        <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media">
-                        <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img2.jpg" alt=""> </a>
-                        <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media">
-                        <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
-                        <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+    @****************************************************************
+    BOTTOM SECTION
+    *****************************************************************@
+    <div class="social_link">
+        <ul class="sociallink_nav">
+            <li><a href="https://www.davidbellerose.com" target="_blank"><i class="fa-solid fa-suitcase"></i></a></li>
+            <li><a href="https://twitter.com/DavidEBellerose" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://github.com/daveyedgar" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://www.davidbellerose.com/#contact" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
+        </ul>
+    </div>
+    <div class="related_post">
+        <h2>Related Posts <i class="fa fa-thumbs-o-up"></i></h2>
+        <ul class="spost_nav wow fadeInDown animated">
+            <li>
+                <div class="media">
+                    <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
+                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+                </div>
+            </li>
+            <li>
+                <div class="media">
+                    <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img2.jpg" alt=""> </a>
+                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+                </div>
+            </li>
+            <li>
+                <div class="media">
+                    <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
+                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 <!--************************************************************************************

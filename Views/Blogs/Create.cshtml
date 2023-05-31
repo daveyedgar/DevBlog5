@@ -26,13 +26,13 @@
             </div>
             <!--for create method set image to default-->
             <div class="card-image">
-                <img id="imageFileData" src="~/assets/images/defaultUserImage.png">
+                <img id="createBlogImage" src="~/assets/images/defaultUserImage.png">
             </div>
             <!--update image after change-->
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
                 <input type="file" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp,.tif,.bmp"
-                       onchange="document.getElementById('imageFileData').src=window.URL.createObjectURL(this.files[0])" />
+                       onchange="document.getElementById('createBlogImage').src=window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">

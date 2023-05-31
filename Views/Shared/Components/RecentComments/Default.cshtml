@@ -1,0 +1,16 @@
+﻿@model IEnumerable<DevBlog5.Models.Comment>
+@using DevBlog5.Services
+
+@inject IImageService _imageService
+
+@foreach (var comment in Model)
+{
+    <li>
+        <div class="media wow fadeInDown">
+            <a asp-area="" asp-controller="Posts" asp-action="Details" asp-route-slug="@comment.Posts.Slug" class="media-left">
+                <img src="@_imageService.DecodeImage(comment.BlogUsers.ImageData, comment.BlogUsers.ContentType)" />
+            </a>
+            <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" asp-route-slug="@comment.Posts.Slug" class="catg_title">@comment.Body</a> </div>
+        </div>
+    </li>
+}

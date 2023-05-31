@@ -32,7 +32,9 @@ namespace DevBlog5.Controllers
             MasterViewModel vm = new MasterViewModel();
             
             vm.BlogUsers = _userManager.Users.ToList();
+
             vm.Blogs = _context.Blogs.ToList();
+
             vm.Posts = _context.Posts
                 .OrderByDescending(p => p.Updated != null)
                 .ThenByDescending(p => p.Updated)
@@ -54,7 +56,7 @@ namespace DevBlog5.Controllers
                 .Include(p => p.Posts)
                 .ToList();
 
-            //ViewData["BlogList"] = blogPosts;
+            //ViewData["ModelList"] = vm;
 
             return View(vm);
         }

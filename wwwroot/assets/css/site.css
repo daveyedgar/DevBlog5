@@ -194,9 +194,13 @@ input {
 .latest_post_container {
 	display: inline;
 	float: left;
-	height: 430px;
+	height: 420px;
 	position: relative;
 	width: 100%;
+}
+
+.category_nav_containier{
+	height: 500px;
 }
 
 ul {
@@ -820,9 +824,23 @@ button.btn-sm, a.btn-sm {
 }
 
 
+.cat-item-details {
+	padding: 2rem;
+}
+
+.tag-item span {
+	background-color: hsla(0,0%,0%,.75);
+	color: #aaa;
+	display: inline-block;
+	font: bold 15px/30px sans-serif;
+	line-height: 12px;
+	margin: 0 2px 2px 0;
+	padding: 12px 17px;
+	text-shadow: 0 1px 1px hsla(0,0%,100%,.25), 0 -1px 1px hsla(0,0%,0%,.75);
+}
 
 .cat-item a,
-.cat-item a:visited {
+.cat-item a:visited{
 	/*    background: none repeat scroll 0 0 #e4e4e4;*/
 	background-color: hsla(0,0%,0%,.75);
 	/*    border: 3px solid #d083cf;*/
@@ -961,9 +979,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	flex-direction: row;
 }
 
-.cat-item-details {
-	padding: 2rem;
-}
 
 .comment-count {
 	text-align: center;
@@ -1045,10 +1060,12 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 
 .post-detail img {
 	width: 100%;
+	/*pointer-events: none;*/
+	padding: 1rem;
 }
 
-.post-img {
-	padding: 1rem;
+.post-detail img:hover{
+	opacity: 1.0;
 }
 
 .post-title, .post-abstract, .post-content {
@@ -1170,6 +1187,11 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	}
 
 
+/* this is for the edit and back buttons at the bottom*/
+.nav-actions a {
+	/*width: 100%;*/
+	/*padding: 1rem;*/
+}
 
 /*****************************************************************************************
 	

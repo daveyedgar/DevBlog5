@@ -28,18 +28,18 @@
             <div class="card-image">
             @if (Model.ImageData != null)
             {
-                <img id="imageFileData" src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)">
+                    <img id="editBlogImage" src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)">
 
             }
             else
             {
-                <img id="imageFileData" src="~/img/DefaultContactImage.png">
+                    <img id="editBlogImage" src="~/assets/images/defaultUserImage.png">
             }
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input type="file" name="newImage" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp"
-                       onchange="document.getElementById('imageFileData').src=window.URL.createObjectURL(this.files[0])" />
+                <input type="file" name="newImage" id="imageInput" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp"
+                       onchange="document.getElementById('editBlogImage').src=window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -55,4 +55,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+@*    <script>
+        document.getElementById("imageInput").addEventListener('change', function (e) {
+            var url = window.URL.createObjectURL(e.target.files[0]);
+            //alert(url);
+            document.getElementById("imageFileData").src = url;
+        }, false);
+
+    </script>*@
 }

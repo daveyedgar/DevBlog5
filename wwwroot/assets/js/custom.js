@@ -16,6 +16,8 @@ jQuery(document).ready(function() {
         autoplaySpeed: 5000,
         cssEase: 'linear'
     });
+
+
     // latest post slider call 
     $('.latest_postnav').newsTicker({
         row_height: 64,
@@ -23,6 +25,60 @@ jQuery(document).ready(function() {
         prevButton: $('#prev-button'),
         nextButton: $('#next-button')
     });
+
+// jquery easy ticker for recent comments
+    $(document).ready(function () {
+
+        $('.spost_nav_container').easyTicker({
+            direction: 'up',
+            easing: 'swing',
+            speed: 'slow',
+            interval: 2000,
+            height: '320px',
+            visible: 0,
+            mousePause: true,
+            controls: {
+                up: '',
+                down: '',
+                toggle: '',
+                playText: 'Play',
+                stopText: 'Stop'
+            },
+            callbacks: {
+                before: false,
+                after: false
+            }
+        });
+
+    });
+// end ticker recent comments
+// jquery easy ticker for recent categories
+    $(document).ready(function () {
+
+        $('.category_nav_container').easyTicker({
+            direction: 'up',
+            easing: 'swing',
+            speed: 2000,
+            interval: 5000,
+            height: '320px',
+            visible: 0,
+            mousePause: true,
+            controls: {
+                up: '',
+                down: '',
+                toggle: '',
+                playText: 'Play',
+                stopText: 'Stop'
+            },
+            callbacks: {
+                before: false,
+                after: false
+            }
+        });
+
+    });
+// end ticker recent categories
+
     jQuery(".fancybox-buttons").fancybox({
         prevEffect: 'none',
         nextEffect: 'none',

@@ -49,7 +49,6 @@ namespace DevBlog5.Models
         [NotMapped]
         [Display(Name = "Image")]
         [DataType(DataType.Upload)]
-        [MaxFileSize(1024 * 1024)]
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".bmp", ".webp", ".gif", ".png", ".tif" })]
         public IFormFile? Image { get; set; }
 

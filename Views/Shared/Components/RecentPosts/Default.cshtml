@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DevBlog5.Models.Post>
+@using DevBlog5.Services
+
+@inject IImageService _imageService
+
+@foreach (var post in Model)
+{
+    <li>
+        <div class="media">
+            <a asp-area="" asp-controller="Posts" asp-action="Details" asp-route-slug="@post.Slug" class="media-left">
+                <img src="@_imageService.DecodeImage(post.ImageData, post.ContentType)" />
+            </a>
+            <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" asp-route-slug="@post.Slug" class="catg_title">@post.Title</a> </div>
+        </div>
+    </li>
+}
+

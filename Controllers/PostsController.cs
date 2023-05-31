@@ -57,7 +57,6 @@ namespace DevBlog5.Controllers
                 .ThenByDescending(p => p.Updated)
                 .ThenByDescending(p => p.Created);
 
-
             return View(await applicationDbContext.ToListAsync());
 
         }
@@ -71,7 +70,9 @@ namespace DevBlog5.Controllers
             //ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
             ViewData["BlogId"] = id;
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["BlogName"] = blog[0].Name; 
+
+            //ViewData["BlogName"] = blog[0].Name;
+
             return View();
         }
 
@@ -107,10 +108,65 @@ namespace DevBlog5.Controllers
             ViewData["PageCount"] = pageNumber;
             ViewData["UserName"] = blogPosts[0].BlogUser.FullName;
 
+            ViewData["BlogImageData"] = blogPosts[0].Blog.ImageData;
+            ViewData["BlogImageType"] = blogPosts[0].Blog.ContentType;
+
 
             TempData["CurrentPage"] = page;
 
             return View(blogPosts);
+
+        }
+
+        // GET: TagPostIndex
+        public async Task<IActionResult> TagPostIndex(string? tag, int? page)
+        {
+            if (tag is null)
+            {
+                return NotFound();
+            }
+
+            TempData["ReturnUrl"] = Request.GetReferrer();
+
+            var pageNumber = page ?? 1;  // null coelescing operator
+            var pageSize = 2;  // amount per page
+
+            //var blogId = id;
+
+            //var blogPosts = await _context.Posts
+            //    .Where(p => p.Tags.FirstOrDefault(t=>t.Id == id))
+            //    .Include(p => p.Blog)
+            //    .Include(u => u.BlogUser)
+            //    .OrderByDescending(p => p.Created)
+            //    .ToPagedListAsync(pageNumber, pageSize);
+
+            var tagPosts = await _context.Tags
+                .Where(p => p.Text == tag)
+                .Include(p => p.Posts)
+                .OrderByDescending(p => p.Posts.Created)
+                .ToPagedListAsync(pageNumber, pageSize);
+
+            if (tagPosts.Count < 1)
+            {
+                return RedirectToAction("PostsEmpty");
+                //return RedirectToAction("PostsEmpty", new { id = blogId });
+                //return RedirectToAction("PostsEmpty", blogId);
+            }
+
+            //ViewData["BlogName"] = blogPosts[0].Blog.Name;
+            //ViewData["BlogId"] = blogPosts[0].BlogId; 
+            //ViewData["PageCount"] = pageNumber;
+            //ViewData["UserName"] = blogPosts[0].BlogUser.FullName;
+
+            ViewData["PostImageData"] = tagPosts[0].Posts.ImageData;
+            ViewData["PostImageType"] = tagPosts[0].Posts.ContentType;
+
+
+            ViewData["TagText"] = tagPosts[0].Text;
+
+            TempData["CurrentPage"] = page;
+
+            return View(tagPosts);
 
         }
 
@@ -149,6 +205,9 @@ namespace DevBlog5.Controllers
             ViewData["SubText"] = post.Abstract;
 
             ViewData["BlogId"] = post.Blog.Name;
+
+            ViewData["BlogImageData"] = post.Blog.ImageData;
+            ViewData["BlogImageType"] = post.Blog.ContentType;
 
             return View(dataVM);
         }
