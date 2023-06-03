@@ -1,5 +1,6 @@
 ﻿using DevBlog5.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace DevBlog5.Components
                 .ThenByDescending(p => p.Created)
                 .Take(7)
                 .ToList();
+
 
             return View(recentPosts);
         }

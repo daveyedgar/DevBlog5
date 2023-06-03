@@ -32,14 +32,22 @@ namespace DevBlog5.Controllers
             var pageNumber = page ?? 1;
             var pageSize = 2;
 
-            var blogs = await _context.Blogs
-                .Include(b => b.BlogUsers)
-                .OrderByDescending(b => b.Created)
-                .ToPagedListAsync(pageNumber, pageSize);
+            //var blogs = await _context.Blogs
+            //    .Include(b => b.BlogUsers)
+            //    .OrderByDescending(b => b.Created)
+            //    .ToPagedListAsync(pageNumber, pageSize);
 
-            return View(blogs);
+            var applicationDbContext = await _context.Blogs
+              .Include(b => b.BlogUsers)
+              .Include(p => p.Posts)
+                .OrderByDescending(p => p.Updated != null)
+                .ThenByDescending(p => p.Updated)
+                .ThenByDescending(p => p.Created)
+              .ToPagedListAsync(pageNumber, pageSize);
 
+            return View(applicationDbContext);
 
+            //return View(blogs);
         }
 
         // Get Contact view
