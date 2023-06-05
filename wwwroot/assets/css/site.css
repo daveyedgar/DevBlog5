@@ -10,15 +10,19 @@ html {
 	font-size: 16px;
 	color: black;
 	position: relative;
-	min-height: 100%;
+	min-height: 100vh;
 	/*    font-family: 'Montserrat',sans-serif;*/
 }
 
 
 body {
+	position: relative;
+	min-height: 100vh;
 	margin: 0;
 	background-color: whitesmoke;
 	background-color: #efefef;
+	display: flex;
+	flex-direction: column;
 	/*    background-image: linear-gradient(45deg, hsla(0,0%,0%,.25) 25%, transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%, hsla(0,0%,0%,.25)), linear-gradient(45deg, hsla(0,0%,0%,.25) 25%, transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%, hsla(0,0%,0%,.25));
 	background-position: 0 0, 2px 2px;
 	background-size: 4px 4px;*/
@@ -368,6 +372,7 @@ button.btn-sm, a.btn-sm {
 
 *****************************************************************************************/
 .navbar {
+	margin-bottom: 0;
 	/*    margin: 0;*/
 	/*    padding: 0;*/
 }
@@ -702,12 +707,15 @@ button.btn-sm, a.btn-sm {
 	FOOTER                                                                  FOOTER
 
 *****************************************************************************************/
+
+
 .footer-container {
 	display: grid;
 	grid-template-columns: 1fr 15% 1fr;
 	grid-gap: 10px;
 	padding: 0.8rem 0;
 	position: static;
+	bottom: 0;
 	background-color: #303030;
 	color: #ccc;
 	width: 100%;
@@ -867,7 +875,7 @@ button.btn-sm, a.btn-sm {
 	}
 
 .tag-content {
-	margin-top: 10px
+	margin-top: 20px
 }
 
 

@@ -107,7 +107,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 .latest_postnav{height:auto !important; margin-top:20px}
 .latest_postnav li{margin-bottom:10px; float:left; width:100%;font-weight:bold;}
 .latest_post_container #prev-button, .latest_post_container #next-button{display:block}
-#prev-button{cursor:pointer; font-size:20px; left:0; position:absolute; text-align:center; top:-10px; width:100%; display:none}
+#prev-button{cursor:pointer; font-size:20px; left:0; position:absolute; text-align:center; top:0px; width:100%; display:none}
 #next-button{cursor:pointer; display:none; font-size:20px; left:0; position:absolute; text-align:center; bottom:0; width:100%}
 
 .left_content{float:left; display:inline; width:100%}
@@ -122,7 +122,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 .bsbig_fig > a img{width:100%}
 .bsbig_fig figcaption{color:#333; font-family:"Oswald",sans-serif; font-size:23px; font-weight:300; margin-top:10px; margin-bottom:10px}
 .single_post_content_right{float:right; display:inline; width:48%}
-.right_content{float:left; display:inline; width:100%; height:320px}
+/*.right_content{float:left; display:inline; width:100%; height:320px}*/
 .spost_nav{}
 .spost_nav li{float:left; display:block; width:100%; margin-bottom:10px}
 .spost_nav .media-left{width:100px; height:80px}
