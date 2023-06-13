@@ -75,17 +75,7 @@
                                     <a class="" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
                                     <a class="" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                                     <a class="" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
-                                    @*<ul class="">
-                                <li class="">
-                                <a class="" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
-                                </li>
-                                <li class="">
-                                <a class="" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
-                                </li>
-                                <li class="">
-                                <a class="" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
-                                </li>
-                                </ul>*@
+                                    <a class="" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
                                 </div>
                             </div>
                         }
@@ -164,7 +154,7 @@
                     </div>*@
                     <!-- test -->
                     <div class="ticker-wrapper-h">
-                        <div class="heading">Latest Tweets</div>
+                        <div class="heading">Latest News</div>
 
                         <ul class="news-ticker-h">
                             <li>
@@ -213,21 +203,6 @@
             </div>
         </section>
 
-        @*        <section class="search-section">
-        <form asp-action="SearchIndex" asp-controller="Posts">
-        <div class="search-input">
-        <input type="text" name="SearchTerm" class="form-control" placeholder="Search...">
-        <button class="btn-actions" type="submit"><i class="fa fa-search"></i></button>
-        </div>
-        </form>
-        </section>*@
-        <!-- try search bar-->
-        @*        <div class="search-bar">
-        <form>
-        <input type="text" /><button>search</button>
-        </form>
-        </div>*@
-
         @*-----------------------------------------------------------------------------------------
 
         =================      MAIN CONTENT
@@ -239,29 +214,6 @@
 
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     <!-- first column-->
-                    @*-----------------------------------------------------------------------------------------
-
-                    popup
-
-                    -----------------------------------------------------------------------------------------*@
-                    <div id="myModalSuccess" class="modal fade text-width:30%" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2>Information</h2>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div id="MyModalSuccessAlertBody" class="modal-body alert alert-success">
-                                    message
-                                </div>
-                                <div class="modal-footer">
-                                    &nbsp;
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                            <div class="modal-content"></div>
-                        </div>
-                    </div>
                     @RenderBody()
                 </div>
 
@@ -280,155 +232,53 @@
                             <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
                             <ul class="latest_postnav">
                                 @await Component.InvokeAsync("RecentPosts")
-                                @*<li>
-                                <div class="media">
-                                <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                                </div>
-                                </li>
-                                <li>
-                                <div class="media">
-                                <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                                </div>
-                                </li>
-                                <li>
-                                <div class="media">
-                                <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                                </div>
-                                </li>
-                                <li>
-                                <div class="media">
-                                <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                                </div>
-                                </li>
-                                <li>
-                                <div class="media">
-                                <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                                </div>
-                                </li>*@
                             </ul>
                             <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
                         </div>
                     </div>
+
                     @*-----------------------------------------------------------------------------------------
 
-                    ===============    RIGHT CONTENT
+                    COMMENTS
 
                     -----------------------------------------------------------------------------------------*@
-                    
-                        @*-----------------------------------------------------------------------------------------
+                    <div class="single_sidebar">
+                        <h2><span>Latest Comments</span></h2>
+                        <div class="spost_nav_container">
+                            <ul class="spost_nav">
+                                @await Component.InvokeAsync("RecentComments")
+                            </ul>
+                        </div>
+                    </div>
+                    @*-----------------------------------------------------------------------------------------
 
-                        COMMENTS
+                    CATEGORIES
 
-                        -----------------------------------------------------------------------------------------*@
-                        <div class="single_sidebar">
-                            <h2><span>Latest Comments</span></h2>
-                            <div class="spost_nav_container">
-                                <ul class="spost_nav">
-                                    @await Component.InvokeAsync("RecentComments")
-                                    @*<li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img2.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img2.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                                    </div>
-                                    </li>*@
+                    -----------------------------------------------------------------------------------------*@
+                    <div class="single_sidebar">
+                        <h2><span>Categories</span></h2>
+                        <div class="category_nav_container">
+                            <ul class="spost_nav">
+                                @await Component.InvokeAsync("RecentCategories")
+                            </ul>
+                        </div>
+                    </div>
+                    @*-----------------------------------------------------------------------------------------
+
+                    TAGS
+
+                    -----------------------------------------------------------------------------------------*@
+                    <div class="single_sidebar">
+                        <h2><span>Tags</span></h2>
+
+                        <div class="tag-content">
+                            <div role="tabpanel" class="tab-pane active" id="tag">
+                                <ul>
+                                    @await Component.InvokeAsync("RecentTags")
                                 </ul>
                             </div>
                         </div>
-                        @*-----------------------------------------------------------------------------------------
-
-                        CATEGORIES
-
-                        -----------------------------------------------------------------------------------------*@
-                        <div class="single_sidebar">
-                            <h2><span>Categories</span></h2>
-                            <div class="category_nav_container">
-                                <ul class="spost_nav">
-                                    @await Component.InvokeAsync("RecentCategories")
-                                    @*<li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img2.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="media wow fadeInDown">
-                                    <a asp-area="" asp-controller="Posts" asp-action="Details" class="media-left"> <img alt="" src="~/assets/images/post_img2.jpg"> </a>
-                                    <div class="media-body"> <a asp-area="" asp-controller="Posts" asp-action="Details" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                                    </div>
-                                    </li>*@
-                                </ul>
-                            </div>
-                        </div>
-                        @*-----------------------------------------------------------------------------------------
-
-                        TAGS
-
-                        -----------------------------------------------------------------------------------------*@
-                        <div class="single_sidebar">
-                            <h2><span>Tags</span></h2>
-
-                            <div class="tag-content">
-                                <div role="tabpanel" class="tab-pane active" id="tag">
-                                    <ul>
-                                        @await Component.InvokeAsync("RecentTags")
-@*                                        <li class="cat-item"><a href="#">Sports</a></li>
-                                        <li class="cat-item"><a href="#">Fashion</a></li>
-                                        <li class="cat-item"><a href="#">Business</a></li>
-                                        <li class="cat-item"><a href="#">Technology</a></li>
-                                        <li class="cat-item"><a href="#">Games</a></li>
-                                        <li class="cat-item"><a href="#">Life &amp; Style</a></li>
-                                        <li class="cat-item"><a href="#">Photography</a></li>*@
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        @* <div class="single_sidebar wow fadeInDown">
-                        <h2><span>Archive</span></h2>
-                        <select class="catgArchive">
-                        <option>Select Category</option>
-                        <option>Life styles</option>
-                        <option>Sports</option>
-                        <option>Technology</option>
-                        <option>Treads</option>
-                        </select>
-                        </div>*@
-
-                    
+                    </div>
                 </div>
             </div>
         </section>
@@ -496,6 +346,30 @@
             </div>
         </div>
     </div>
+
+    @*-----------------------------------------------------------------------------------------
+
+    CRUD POPUP MODAL                                                                CRUD POPUP MODAL
+
+    -----------------------------------------------------------------------------------------*@
+    <div id="myModalSuccess" class="modal fade text-width:30%" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Information</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div id="MyModalSuccessAlertBody" class="modal-body alert alert-success">
+                    message
+                </div>
+                <div class="modal-footer">
+                    &nbsp;
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <div class="modal-content"></div>
+        </div>
+    </div>
     @*-----------------------------------------------------------------------------------------
 
     FOOTER
@@ -504,7 +378,7 @@
 
     <div class="footer-container">
         <div class="footer-item">
-            <span>&copy;2022</span> David Bellerose |&nbsp;
+            <span>&copy;2022</span> &nbsp;David Bellerose |&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;|&nbsp;
@@ -515,9 +389,14 @@
         </div>
         <div class="footer-item">
             <a href="https://www.linkedin.com/in/david-bellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer">
+                <img src="~/assets/images/businessman-with-briefcase-icon.svg" style="width: 40px;height:auto;"/>
+            </a>
+            <a href="https://www.davidbellerose.com/#contact" target="_blank" rel="noopener noreferrer">
+                <img src="~/assets/images/envelope-at-fill.svg" />
+            </a>
             <a href="https://twitter.com/DavidEBellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
             <a href="https://github.com/daveyedgar" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
-
         </div>
     </div>
 

@@ -30,7 +30,7 @@ namespace DevBlog5.Controllers
         public async Task<IActionResult> Index(int? page)
         {
             var pageNumber = page ?? 1;
-            var pageSize = 2;
+            var pageSize = 6;
 
             //var blogs = await _context.Blogs
             //    .Include(b => b.BlogUsers)

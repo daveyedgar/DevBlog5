@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DevBlog5.Models.Tag>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tags</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table tags">
+    <thead>
+        <tr>
+            <th>
+                Tag
+            </th>
+            <th>
+                Created By
+            </th>
+            <th>
+                Posts
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlogUsers.FullName)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var item2 in Model)
+                        {
+                            @if (item2.Text == item.Text)
+                            {
+                                <li>
+                                    <a class="" asp-controller="Posts" asp-action="Details" asp-route-slug="@item2.Posts.Slug" target="_blank">
+                                        @item2.Posts.Title
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

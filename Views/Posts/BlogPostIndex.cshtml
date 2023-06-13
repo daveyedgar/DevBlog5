@@ -13,71 +13,70 @@
 
     var imageData = ViewData["BlogImageData"] as byte[];
     var contentType = ViewData["BlogImageType"] as string;
-
 }
 
 <h3>
-    <img src="@_imageService.DecodeImage(imageData, contentType)" style="width:60px;height:60px;margin-right:1rem;"/> @ViewData["BlogName"] Category<br />
+    <img src="@_imageService.DecodeImage(imageData, contentType)" style="width:60px;height:60px;margin-right:1rem;pointer-events:none;" />
+    @ViewData["BlogName"] Category
+    <br />
 </h3>
-<!--hidden input to pass blog id to posts controller get edit method-->
-@*<input hidden asp-for="@blogId     />*@
 
 
-@foreach (var item in Model)
-{
-    <div class="card-container">
-        <div class="cards">
-            <div class="card-item row row-cols-2">
-                <div class="card-image col-md-6 col-12">
-                    <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
-                </div>
-                <div class="card-info col-md-6 col-12">
-                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h2>
-                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Abstract)</p>
-                    <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)</p>
-                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
-                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
-                    <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.ReadyStatus)</p>
-                    @*<p class="card-intro">Posted by <a href="">@item.BlogUser.FullName</a> on @item.Created</p>*@
-                    <p class="card-intro">Posted by @item.BlogUser.FullName</p>
-                </div>
 
-            </div>
-            <div class="row card-text">
-                <div class="post-limited">
-                    @if (@item.Content.Length > 300)
+<div class="card-section">
+    @foreach (var item in Model)
+    {
+        <div class="card-wrapper">
+            <div class="card-image">
+                <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
+            </div> <!--card iamge-->
+            <div class="card-content">
+                <div class="card-header">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Abstract)
+                        @*<br />Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)*@
+                        <br /><br />Date Created: @Html.DisplayFor(modelItem => item.Created)
+                        <br />Date Updated: @Html.DisplayFor(modelItem => item.Updated)
+                        @*<br />Status: @Html.DisplayFor(modelItem => item.ReadyStatus)*@
+                        <br />Posted by @item.BlogUser.FullName
+                    </p>
+                </div><!--card header-->
+                <div class="card-body">
+                    @if (@item.Content.Length > 200)
                     {
                         <p>
-                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Content, 300))
-                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Content, 200))
+                            @*<a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>*@
                         </p>
                     }
                     else
                     {
                         <p>
-                            @Html.Raw(@item.Content)...
-                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                            @Html.Raw(@item.Content)
+                            @*<a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>*@
                         </p>
                     }
-                </div>
-            </div>
-            @if (User.IsInRole("Administrator"))
-            {
-                <div class="row card-actions">
-                    <div class="col">
-                        <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-                        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                        <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
-                        <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
-                    </div>
-                </div>
-            }
+                </div><!--card body-->
+                <div class="card-footer">
+                    <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <div class="row card-actions">
+                            <div class="col">
+                                <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+                                <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
+                                <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+                            </div>
+                        </div>
+                    }
+                </div><!--card footer-->
+            </div> <!--card content-->
         </div>
-    </div>
-}
 
-
-
+        <!--card wrapper-->
+    }
+</div><!--card section-->
 <hr />
 @*pagination controls*@
 <div class="pagination">
@@ -99,19 +98,17 @@
 </div>
 
 <div style="margin-bottom:2rem;">
-    @*<a asp-action="Index" asp-controller="Home" asp-route-id="2"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
-    @*<br /> <a id="backToPage" href="page=3" onclick="setPageNumber()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
     <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
 </div>
 
 @if (User.IsInRole("Administrator"))
 {
     <p>
-        <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]" asp-route-blogName="@ViewData["BlogName"]">Create New Post for @ViewData["BlogName"] Blog</a>
-
+        <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]" asp-route-blogName="@ViewData["BlogName"]">
+            Create New Post for @ViewData["BlogName"] Category
+        </a>
         <br>BlogId: @ViewData["BlogId"]<br />
         <br>Page: @Model.PageNumber
-        @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
     </p>
 }
 @section Scripts{

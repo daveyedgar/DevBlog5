@@ -8,9 +8,6 @@
 
 <h1>Comments</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-actions">Create New Comment</a>
-</p>
 
 
 @foreach (var item in Model)
@@ -20,18 +17,16 @@
             <div class="card-item row row-cols-2">
 
                 <div class="comment-image col-2 user-thumbnail">
-                    @*<img src="@imageService.DecodeImage(comment.BlogUsers.ImageData, comment.BlogUsers.ContentType)" alt="@comment.BlogUsers.FullName" class="">*@
+                    @*<img src="@_imageService.DecodeImage(item.BlogUsers.ImageData, item.BlogUsers.ContentType)" alt="@item.BlogUsers.FullName" class="">*@
                 </div>
                 <div class="card-info col-md-6 col-12">
-                    <h2 class="card-title">Posted By: @Html.DisplayFor(modelItem => item.BlogUsers.FullName)</h2>
-                    <p class="card-intro">Post: @Html.DisplayNameFor(model => model.Posts)</p>
-                    <p class="card-intro">Post Description: @Html.DisplayFor(modelItem => item.Posts.Abstract)</p>
+                    <h2 class="card-title">Posted By: @Html.DisplayFor(modelItem => item.Posts.BlogUser.FullName)</h2>
+                    <p class="card-intro">Post Title: @Html.DisplayFor(modelItem => item.Posts.Title)</p>
+                    <p class="card-intro">Post Abstract: @Html.DisplayFor(modelItem => item.Posts.Abstract)</p>
                     <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
                     <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
                     <p class="card-intro">Date Deleted:  @Html.DisplayFor(modelItem => item.Deleted)</p>
-                    @*<p class="card-intro">Posted by <a href="">@item.BlogUser.FullName</a> on @item.Created</p>*@
                 </div>
-
             </div>
             <div class="row card-text">
                 <div class="col">
@@ -39,22 +34,18 @@
                         @Html.DisplayFor(modelItem => item.Body)
                     </div>
                     <div>
-                        <h6>Moderated: @Html.DisplayFor(modelItem => item.Moderated) by @Html.DisplayFor(modelItem => item.Moderator.Id):  @Html.DisplayFor(modelItem => item.ModerationType)</h6>
+                        <h6>Moderated on @Html.DisplayFor(modelItem => item.Moderated) by @Html.DisplayFor(modelItem => item.Moderator.FullName) for  @Html.DisplayFor(modelItem => item.ModerationType)</h6>
                         <p>@Html.DisplayFor(modelItem => item.ModeratedBody)</p>
                     </div>
                </div>
-            </div>
-            <div class="row card-link">
-@*                <div class="col">
-                    <a class="btn btn-actions" asp-action="Details" asp-route-slug="@item.Slug">Read More...</a>
-                </div>*@
             </div>
             @if (User.IsInRole("Administrator"))
             {
                 <div class="row card-actions">
                     <div class="col">
-                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-                        <a asp-action="Details" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
+                        @*<a asp-action="Edit" asp-route-id="@item.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;*@
+                        @*<a asp-action="Details" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;*@
+                        <a class="btn btn-actions" asp-action="Details" asp-controller="Posts" asp-route-slug="@item.Posts.Slug">Go To Post</a> &nbsp;&nbsp;
                         <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
                     </div>
                 </div>

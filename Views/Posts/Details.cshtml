@@ -15,9 +15,14 @@
 
 }
 
+<h2 class="cat-link">
+    <img src="@imageService.DecodeImage(imageData, contentType)" style="width:60px;height:60px;margin-right:1rem;margin-bottom:2rem;" />
+    <a id="routeId" class="" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@Model.Post.BlogId">
+        @ViewData["BlogId"] Category
+    </a>
+</h2>
 <div class="post-detail col-8">
 
-    <h2><img src="@imageService.DecodeImage(imageData, contentType)" style="width:100px;height:100px;margin-right:1rem;" />@ViewData["BlogId"] Category</h2>
 
     @****************************************************************
     POST CONTENT
@@ -34,20 +39,12 @@
         <div class="cards">
             <div class="card-item">
                 <div class="card-info">
-                    @*                    <div>
-                    @ViewData["AfterLetter"]
-                    </div>
-                    <div>
-                    <p>@ViewData["FirstLetter"]</p>
-                    </div>*@
                     <div class="post-title">
-                        @*<p>@Html.Raw(Model.Post.Title)</p>*@
-                        <span class="first-letter">@ViewData["FirstLetter"]</span>
-                        <p>@ViewData["AfterLetter"]</p>
+                        <span>@Model.Post.Title</span>
                     </div>
                     <div class="post-abstract">
-                        <img src="~/assets/images/tutorial-icon.png" />
-                        <h3 class="post-abstract">@Html.Raw(Model.Post.Abstract)</h3>
+                        <img src="~/assets/images/tutorial-icon.png"/>
+                        <h3 class="post-abstract">@Model.Post.Abstract</h3>
                     </div>
                 </div>
 
@@ -59,6 +56,10 @@
                     </div>
                 </div>
             </div>
+            <p class="card-intro">
+                <img src="@imageService.DecodeImage(Model.Post.BlogUser.ImageData, Model.Post.BlogUser.ContentType)" style="width:100px;height:100px;" />
+                Posted by @Model.Post.BlogUser.FullName on @Model.Post.Created
+            </p>
         </div>
     </div>
 
@@ -71,9 +72,9 @@
         <hr />
     </div>
 
-    <div class="card-container">
-        <div class="cards">
-            <div class="row card-text">
+    <div class="tag-container">
+        <div class="tag-card">
+            <div class="row tag-text">
                 <div class="col">
                     <div class="cat-item">
                         @foreach (var tag in Model.Post.Tags.ToList())
@@ -103,7 +104,8 @@
 
                     <div class="form-group">
                         <hr />
-                        <textarea name="body" class="form-control" rows="4" placeholder="Add comment..."></textarea>
+                        <textarea id="commentInput" maxlength="2000" name="body" class="form-control" rows="4" placeholder="Add comment..."></textarea>
+                        <span id="chars">2000 characters remaining.</span>
                     </div>
                     <button type="submit" class="btn btn-actions btn-block btn-sm">Submit</button>
                 </form>
@@ -121,13 +123,13 @@
 
         @foreach (var comment in Model.Post.Comments.OrderByDescending(c => c.Created))
         {
-            <div class="card-container">
-                <div class="cards">
+            <div class="comment-container">
+                <div class="card-comment">
                     <div class="comment-item row row-cols-2">
                         <div class="comment-image col-2 user-thumbnail">
                             <img src="@imageService.DecodeImage(comment.BlogUsers.ImageData, comment.BlogUsers.ContentType)" alt="@comment.BlogUsers.FullName" class="">
                         </div>
-                        <div class="card-info col-10">
+                        <div class="comment-info col-10">
                             <h4>Posted By: @comment.BlogUsers.FullName</h4>
 
                             @****************************************************************
@@ -164,7 +166,8 @@
                         </div>
 
                     </div>
-                    <div class="row card-text">
+                    @*CARD TEXT*@
+                    <div class="row comment-text">
                         <div class="col">
 
                             <hr>
@@ -234,6 +237,9 @@
 
 
             @**********************************************
+
+        MODALS
+
         DELETE MODAL
         ************************************************@
             <div class="modal" id="deleteModal-@comment.Id">
@@ -351,7 +357,7 @@
         }
     </div>
 
-    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width:80px;cursor:pointer;" /></a>
+    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width:60px;cursor:pointer;" /></a>
 
     @if (User.IsInRole("Administrator"))
     {
@@ -364,39 +370,40 @@
     @****************************************************************
     BOTTOM SECTION
     *****************************************************************@
-    <div class="social_link">
-        <ul class="sociallink_nav">
-            <li><a href="https://www.davidbellerose.com" target="_blank"><i class="fa-solid fa-suitcase"></i></a></li>
-            <li><a href="https://twitter.com/DavidEBellerose" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/daveyedgar" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://www.davidbellerose.com/#contact" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
-        </ul>
-    </div>
-    <div class="related_post">
-        <h2>Related Posts <i class="fa fa-thumbs-o-up"></i></h2>
-        <ul class="spost_nav wow fadeInDown animated">
-            <li>
-                <div class="media">
-                    <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
-                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                </div>
-            </li>
-            <li>
-                <div class="media">
-                    <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img2.jpg" alt=""> </a>
-                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                </div>
-            </li>
-            <li>
-                <div class="media">
-                    <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
-                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+
 </div>
+@*<div class="social_link">
+    <ul class="sociallink_nav">
+        <li><a href="https://www.davidbellerose.com" target="_blank"><i class="fa-solid fa-suitcase"></i></a></li>
+        <li><a href="https://twitter.com/DavidEBellerose" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://github.com/daveyedgar" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="https://www.davidbellerose.com/#contact" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
+    </ul>
+</div>*@
+@*<div class="related_post">
+    <h2>Related Posts <i class="fa fa-thumbs-o-up"></i></h2>
+    <ul class="spost_nav wow fadeInDown animated">
+        <li>
+            <div class="media">
+                <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
+                <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+            </div>
+        </li>
+        <li>
+            <div class="media">
+                <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img2.jpg" alt=""> </a>
+                <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+            </div>
+        </li>
+        <li>
+            <div class="media">
+                <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
+                <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+            </div>
+        </li>
+    </ul>
+</div>*@
 <!--************************************************************************************
 
     NAVIGATION ARROWS ON SIDE OF PAGE

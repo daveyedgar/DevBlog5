@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -54,17 +55,16 @@ namespace DevBlog5.Helpers
 
                 if (strLen > maxlength)
                 {
-                    result = html.Substring(0, maxlength);
+                    result = html.Substring(0, maxlength) + "...";
                 }
                 else
                 {
-                    result = html;
+                    result = html + "...";
                 }
               
 
             }
-
-            return result + "...";
+            return result;
         }
     }
 }

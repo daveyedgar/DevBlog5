@@ -85,7 +85,7 @@ namespace DevBlog5.Controllers
             }
 
             var pageNumber = page ?? 1;  // null coelescing operator
-            var pageSize = 2;  // amount per page
+            var pageSize = 6;  // amount per page
 
             var blogId = id;
 
@@ -197,8 +197,8 @@ namespace DevBlog5.Controllers
                         .Distinct().ToList()
             };
 
-            ViewData["FirstLetter"] = post.Title.Substring(0, 1);
-            ViewData["AfterLetter"] = post.Title.Substring(1);
+            //ViewData["FirstLetter"] = post.Title.Substring(0, 1);
+            //ViewData["AfterLetter"] = post.Title.Substring(1);
 
             ViewData["HeaderImage"] = _imageService.DecodeImage(post.ImageData, post.ContentType);
             ViewData["MainText"] = post.Title;
@@ -341,6 +341,7 @@ namespace DevBlog5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Abstract,Content,ReadyStatus,BlogId")] Post post, IFormFile newImage, List<string> tagValues)
         {
+            var newSlug = "";
             if (id != post.Id)
             {
                 return NotFound();
@@ -361,13 +362,14 @@ namespace DevBlog5.Controllers
                     newPost.Updated = DateTime.Now;
 
                     // this is the new slug
-                    var newSlug = _slugService.UrlFriendly(post.Title);
+                    newSlug = _slugService.UrlFriendly(post.Title);
                     if (newSlug != newPost.Slug)
                     {
                         if (_slugService.IsUnique(newSlug))
                         {
                             newPost.Title = post.Title;
                             newPost.Slug = newSlug;
+
                         }
                         else
                         {
@@ -376,6 +378,7 @@ namespace DevBlog5.Controllers
                             return View(post);
                         }
                     }
+
 
                     if (newImage != null)
                     {
@@ -424,9 +427,9 @@ namespace DevBlog5.Controllers
                 //return RedirectToAction(nameof(Index));
                 //return RedirectToAction("Index", "Home", null);
                 //return RedirectToAction("BlogPostIndex", new { id = blogId, page = currentPage });
-                //return RedirectToAction("BlogPostIndex", new { id = blogId });
-                var returnUrl = TempData["ReturnUrl"].ToString();
-                return Redirect(returnUrl);
+                return RedirectToAction("Details", new { slug = newSlug });
+                //var returnUrl = TempData["ReturnUrl"].ToString();
+                //return Redirect(returnUrl);
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Description", post.BlogId);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", post.BlogUserId);

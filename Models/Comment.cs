@@ -12,7 +12,7 @@ namespace DevBlog5.Models
 
 
         [Required]
-        [StringLength(500, ErrorMessage = "The {0} must be betwen {2} and {1} characters.", MinimumLength = 2)]
+        [StringLength(2000, ErrorMessage = "The {0} must be betwen {2} and {1} characters.", MinimumLength = 2)]
         [Display(Name = "Comment")]
         public string Body { get; set; }
 

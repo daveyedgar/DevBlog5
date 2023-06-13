@@ -206,7 +206,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 .single_page_content h3{line-height:30px}
 .single_page_content h4{line-height:25px}
 .single_page_content h4{line-height:20px}
-.social_link{display:inline; float:left; margin-bottom:25px; margin-top:20px; width:100%}
+.social_link{display:inline-block;  margin-bottom:25px; margin-top:0px; width:100%}
 .sociallink_nav{text-align:center}
 .sociallink_nav li{display:inline-block}
 .sociallink_nav li a{color:#fff; display:inline-block; font-size:17px; padding:8px 12px; margin:0 3px; -webkit-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}

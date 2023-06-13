@@ -50,6 +50,41 @@ $(document).ready(function () {
 });
 
 
+
+// **************************************************
+//
+//              COMMENT CHARACTER COUNTER
+//
+// **************************************************
+const commentInput = document.getElementById("commentInput");
+const MAX_LENGTH = 2000;
+const CHARS = document.getElementById("chars");
+
+function countCharacters() {
+    let enteredChars = commentInput.value.length;
+    let charsLeft = MAX_LENGTH - enteredChars;
+
+    if (charsLeft > 1000) {
+        CHARS.textContent = charsLeft + " characters remaining.";
+        CHARS.style.color = "green";
+    } else if (charsLeft > 500) {
+        CHARS.textContent = charsLeft + " characters remaining.";
+        CHARS.style.color = "orange";
+    } else {
+        CHARS.textContent = charsLeft + " characters remaining.";
+        CHARS.style.color = "red";
+    }
+
+    if (commentInput.value.length == '') {
+        CHARS.style.color = "black";
+        CHARS.textContent = charsLeft + " characters remaining.";
+    }
+}
+
+countCharacters();
+commentInput.addEventListener("keyup", countCharacters);
+
+
 // **************************************************
 //
 //              COOKIE MODAL

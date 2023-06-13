@@ -9,39 +9,44 @@
 <h1>Details</h1>
 
 
-
-<div class="card-container">
-    <div class="cards">
-        <div class="card-Model row row-cols-2">
-            <div class="card-image col-md-6 col-12">
-                <img src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
-            </div>
-            <div class="card-info col-md-6 col-12">
-                <h2 class="card-title">@Html.DisplayFor(modelModel => Model.Name)</h2>
-                <p class="card-intro">@Html.DisplayFor(modelModel => Model.Description)</p>
-                <p class="card-intro">Id: @Html.DisplayFor(modelModel => Model.Id)</p>
-                <p class="card-intro">Date Created: @Html.DisplayFor(modelModel => Model.Created)</p>
-                <p class="card-intro">Date Updated: @Html.DisplayFor(modelModel => Model.Updated)</p>
-                @*<p class="card-intro">Posted by <a href="">@Model.BlogUsers.FullName</a> on @Model.Created</p>*@
-            </div>
-
-        </div>
-        <div class="row card-text">
-            <div class="col">
+<div class="card-section">
+    <div class="card-wrapper">
+        <div class="card-image">
+            <img src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)" />
+        </div> <!--card iamge-->
+        <div class="card-content">
+            <div class="card-header">
+                <h2 class="card-title">@Html.DisplayFor(modelItem => Model.Name)</h2>
+                <p class="card-intro">@Html.DisplayFor(modelItem => Model.Description)</p>
+            </div><!--card header-->
+            <div class="card-body recent-posts">
                 <h4>Recent Posts</h4>
-                <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
-                <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
-                <p>How to seed Data.<span>In this post I will explain a simple way to...</span></p>
-            </div>
-        </div>
-        <div class="row card-link">
-            <div>
-                <a asp-action="Edit" asp-route-id="@Model?.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+                <ul>
+                    @foreach (var item2 in Model.Posts)
+                    {
+                        <li>
+                            <a class="" asp-controller="Posts" asp-action="Details" asp-route-slug="@item2.Slug">@item2.Title</a>
+                        </li>
+                    }
+                </ul>
+            </div><!--card body-->
+            <div class="card-footer">
+                <div class="row card-actions">
+                    <div class="col">
 
-                <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
-            </div>
+                        <a id="routeId" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@Model.Id">Go to @Html.DisplayFor(modelItem => Model.Name)</a>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <a asp-action="Edit" asp-controller="Blogs" asp-route-id="@Model.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a>
+                            <a asp-action="Delete" asp-controller="Blogs" asp-route-id="@Model.Id"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+                        }
+                    </div>
+                </div>
+            </div><!--card footer-->
+        </div> <!--card content-->
+    </div><!--card wrapper-->
+</div><!--card section-->
 
-        </div>
-    </div>
+<div style="margin-top:2rem;">
+    <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
 </div>
-

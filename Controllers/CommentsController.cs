@@ -35,7 +35,14 @@ namespace DevBlog5.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var allComments = await _context.Comments.ToListAsync();
+            var allComments = await _context.Comments
+                .Include(c => c.Posts)
+                .Include(c => c.Posts.Blog)
+                .Include(c => c.Posts.BlogUser)
+                .OrderByDescending(p => p.Updated != null)
+                .ThenByDescending(p => p.Updated)
+                .ThenByDescending(p => p.Created)
+                .ToListAsync();
             return View(allComments);
         }
 
@@ -101,7 +108,7 @@ namespace DevBlog5.Controllers
             }
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", comment.BlogUserId);
             ViewData["ModeratorId"] = new SelectList(_context.Users, "Id", "Id", comment.ModeratorId);
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Abstract", comment.PostId);
+            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
 
@@ -216,7 +223,8 @@ namespace DevBlog5.Controllers
             var comment = await _context.Comments.FindAsync(id);
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details", "Posts", new { slug }, "commentSection");
+
+            return RedirectToAction("Index", "Comments");
         }
 
         private bool CommentExists(int id)
