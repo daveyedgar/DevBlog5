@@ -1,5 +1,7 @@
-﻿@model DevBlog5.Models.Post
+﻿@model PostDetailViewModel
 @using DevBlog5.Enums
+@using DevBlog5.Models
+@using DevBlog5.ViewModels
 
 
 @{
@@ -15,29 +17,23 @@
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                @*<br />Blog Name: <label asp-for="BlogId" class="control-label">@ViewData["BlogId"]</label>*@
-                @*<br />BlogId: @ViewData["BlogId"]*@
-                @*<input asp-for="BlogId" value="@ViewData["BlogId"]" />*@
-                <br /><label asp-for="BlogId" class="control-label"></label>
-                <select asp-for="BlogId" class="form-control" asp-items="ViewBag.BlogId"></select>
-
-                @*<br />Blog Id PassId: <input id="BlogId" type="number" asp-for="BlogId" value="" style="width: 50px;"/>  the passId function sets this value*@
-                
+                <br /><label asp-for="Post.BlogId" class="control-label"></label>
+                <select asp-for="Post.BlogId" class="form-control" asp-items="ViewBag.BlogId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <label asp-for="Post.Title" class="control-label"></label>
+                <input asp-for="Post.Title" class="form-control" />
+                <span asp-validation-for="Post.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Abstract" class="control-label"></label>
-                <textarea asp-for="Abstract" class="form-control"></textarea>
-                <span asp-validation-for="Abstract" class="text-danger"></span>
+                <label asp-for="Post.Abstract" class="control-label"></label>
+                <textarea asp-for="Post.Abstract" class="form-control"></textarea>
+                <span asp-validation-for="Post.Abstract" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <textarea id="summernote" asp-for="Content" class="form-control"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
+                <label asp-for="Post.Content" class="control-label"></label>
+                <textarea id="summernote" asp-for="Post.Content" class="form-control"></textarea>
+                <span asp-validation-for="Post.Content" class="text-danger"></span>
             </div>
 
             <div class="form-group tag-form">
@@ -51,7 +47,6 @@
                         <div class="row mb-2">
                             <div class="col tag-input">
                                 <input type="text" class="form-control" id="TagEntry" />
-
                             </div>
                         </div>
                         <div class="row tag-btn">
@@ -68,9 +63,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="ReadyStatus" class="control-label"></label>
-                <select asp-for="ReadyStatus" class="form-control" asp-items="@Html.GetEnumSelectList<ReadyStatus>()"></select>
-                <span asp-validation-for="ReadyStatus" class="text-danger"></span>
+                <label asp-for="Post.ReadyStatus" class="control-label"></label>
+                <select asp-for="Post.ReadyStatus" class="form-control" asp-items="@Html.GetEnumSelectList<ReadyStatus>()"></select>
+                <span asp-validation-for="Post.ReadyStatus" class="text-danger"></span>
             </div>
 
             <!--for create method set image to default-->
@@ -79,10 +74,10 @@
             </div>
             <!--update image after change-->
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input type="file" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp,.tif,.bmp"
+                <label asp-for="Post.Image" class="control-label"></label>
+                <input type="file" asp-for="Post.Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp,.tif,.bmp"
                        onchange="document.getElementById('createPostImage').src=window.URL.createObjectURL(this.files[0])" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+                <span asp-validation-for="Post.Image" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <button class="btn btn-actions" type="submit" value="Create">Create</button>
@@ -92,7 +87,6 @@
 </div>
 
 <div>
-    @*<a asp-action="Index"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
     <a onclick="javascript:history.back()"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>
 </div>
 
@@ -121,6 +115,7 @@
             ]
         });
     </script>
+
     <script src="~/assets/js/tags.js"></script>
 
 }

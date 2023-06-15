@@ -3,13 +3,24 @@
 @using DevBlog5.Services
 @inject IImageService _imageService
 @using DevBlog5.Helpers
+@using DevBlog5.Enums
 
 @{
     ViewData["Title"] = "Posts";
 }
 
 <h1>Posts</h1>
-
+<div>
+    <form asp-action="IndexFilter" asp-controller="Posts">
+        <div class="input-group  d-flex flex-md-row">
+            @*<label class="form-label me-2">Filter by Category:</label>*@
+            <select name="readyStatus" asp-items="@ViewBag.ReadyStatus" class="form-select w-50"
+                    onchange="this.form.submit()" onfocus="this.selectedIndex=-1;">
+                <option value="" selected disabled hidden>Filter By Status</option>
+            </select>
+        </div>
+    </form>
+</div>
 
 <div class="card-section">
     @foreach (var item in Model)

@@ -55,6 +55,7 @@ namespace DevBlog5.Controllers
         }
 
         // GET: Blogs/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
@@ -62,8 +63,6 @@ namespace DevBlog5.Controllers
         }
 
         // POST: Blogs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
@@ -80,18 +79,15 @@ namespace DevBlog5.Controllers
 
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-
 
                 var returnUrl = TempData["ReturnUrl"].ToString();
                 return Redirect(returnUrl);
-
-                //return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
             }
             return View(blog);
         }
 
         // GET: Blogs/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
@@ -111,10 +107,9 @@ namespace DevBlog5.Controllers
         }
 
         // POST: Blogs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Blog blog, IFormFile newImage)
         {
             if (id != blog.Id)
@@ -145,8 +140,6 @@ namespace DevBlog5.Controllers
                         newBlog.ContentType = _imageService.ContentType(newImage);
                     }
 
-
-                    //_context.Update(blog); removed to just custom update what has changed
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -168,6 +161,7 @@ namespace DevBlog5.Controllers
         }
 
         // GET: Blogs/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
@@ -190,6 +184,7 @@ namespace DevBlog5.Controllers
         // POST: Blogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Blogs == null)
@@ -203,8 +198,6 @@ namespace DevBlog5.Controllers
             }
 
             await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
-            //return RedirectToAction("Index", "Home");
             var returnUrl = TempData["ReturnUrl"].ToString();
             return Redirect(returnUrl);
         }

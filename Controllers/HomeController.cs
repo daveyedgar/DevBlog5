@@ -5,7 +5,6 @@ using DevBlog5.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,11 +31,6 @@ namespace DevBlog5.Controllers
             var pageNumber = page ?? 1;
             var pageSize = 6;
 
-            //var blogs = await _context.Blogs
-            //    .Include(b => b.BlogUsers)
-            //    .OrderByDescending(b => b.Created)
-            //    .ToPagedListAsync(pageNumber, pageSize);
-
             var applicationDbContext = await _context.Blogs
               .Include(b => b.BlogUsers)
               .Include(p => p.Posts)
@@ -46,8 +40,6 @@ namespace DevBlog5.Controllers
               .ToPagedListAsync(pageNumber, pageSize);
 
             return View(applicationDbContext);
-
-            //return View(blogs);
         }
 
         // Get Contact view
@@ -66,7 +58,6 @@ namespace DevBlog5.Controllers
             {
                 model.Message = $"{model.Message} <hr /> Phone: {model.Phone}";
                 await _emailSender.SendContactEmailAsync(model.Name, model.Email, model.Phone, model.Subject, model.Message);
-                //return RedirectToAction("Index");
                 return RedirectToAction("Contact", "Home", new { swalMessage = "Success: Email Sent." });
             }
             catch (System.Exception)

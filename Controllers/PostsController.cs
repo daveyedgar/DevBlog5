@@ -4,6 +4,7 @@ using DevBlog5.Helpers;
 using DevBlog5.Models;
 using DevBlog5.Services;
 using DevBlog5.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
@@ -58,7 +60,40 @@ namespace DevBlog5.Controllers
                 .ThenByDescending(p => p.Created);
 
             return View(await applicationDbContext.ToListAsync());
+        }
 
+        public async Task<IActionResult> IndexFilter(string? readyStatus)
+        {
+
+            var posts = new List<Post>();
+            if (readyStatus is null)
+            {
+                posts = await _context.Posts
+                .Include(p => p.Blog)
+                .Include(p => p.BlogUser)
+                .OrderByDescending(p => p.Updated != null)
+                .ThenByDescending(p => p.Updated)
+                .ThenByDescending(p => p.Created)
+                .ToListAsync();
+            }
+            else
+            {
+                int readyStatusInt = ((int)Enum.Parse(typeof(ReadyStatus), readyStatus));
+                // will need if readyStatus not found alert
+                posts = await _context.Posts?
+                .Where(p => p.ReadyStatus.Equals(readyStatusInt))
+                //.Where(p => p.ReadyStatus = readyStatusInt)
+                .Include(p => p.Blog)
+                .Include(p => p.BlogUser)
+                .OrderByDescending(p => p.Updated != null)
+                .ThenByDescending(p => p.Updated)
+                .ThenByDescending(p => p.Created)
+                .ToListAsync();
+            }
+
+            System.Diagnostics.Debug.WriteLine("hello");
+            ViewData["ReadyStatus"] = new SelectList(Enum.GetValues(typeof(ReadyStatus)).Cast<ReadyStatus>().ToList());
+            return View(posts);
         }
 
         public IActionResult PostsEmpty(int? id)
@@ -67,11 +102,8 @@ namespace DevBlog5.Controllers
                 .Where(p => p.Id == id)
                 .ToList();
 
-            //ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name");
             ViewData["BlogId"] = id;
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
-
-            //ViewData["BlogName"] = blog[0].Name;
 
             return View();
         }
@@ -98,9 +130,7 @@ namespace DevBlog5.Controllers
 
             if (blogPosts.Count < 1)
             {
-                //return RedirectToAction("PostsEmpty");
                 return RedirectToAction("PostsEmpty", new { id = blogId });
-                //return RedirectToAction("PostsEmpty", blogId);
             }
 
             ViewData["BlogName"] = blogPosts[0].Blog.Name;  // will get null error if no posts
@@ -131,15 +161,6 @@ namespace DevBlog5.Controllers
             var pageNumber = page ?? 1;  // null coelescing operator
             var pageSize = 2;  // amount per page
 
-            //var blogId = id;
-
-            //var blogPosts = await _context.Posts
-            //    .Where(p => p.Tags.FirstOrDefault(t=>t.Id == id))
-            //    .Include(p => p.Blog)
-            //    .Include(u => u.BlogUser)
-            //    .OrderByDescending(p => p.Created)
-            //    .ToPagedListAsync(pageNumber, pageSize);
-
             var tagPosts = await _context.Tags
                 .Where(p => p.Text == tag)
                 .Include(p => p.Posts)
@@ -149,14 +170,7 @@ namespace DevBlog5.Controllers
             if (tagPosts.Count < 1)
             {
                 return RedirectToAction("PostsEmpty");
-                //return RedirectToAction("PostsEmpty", new { id = blogId });
-                //return RedirectToAction("PostsEmpty", blogId);
             }
-
-            //ViewData["BlogName"] = blogPosts[0].Blog.Name;
-            //ViewData["BlogId"] = blogPosts[0].BlogId; 
-            //ViewData["PageCount"] = pageNumber;
-            //ViewData["UserName"] = blogPosts[0].BlogUser.FullName;
 
             ViewData["PostImageData"] = tagPosts[0].Posts.ImageData;
             ViewData["PostImageType"] = tagPosts[0].Posts.ContentType;
@@ -197,9 +211,6 @@ namespace DevBlog5.Controllers
                         .Distinct().ToList()
             };
 
-            //ViewData["FirstLetter"] = post.Title.Substring(0, 1);
-            //ViewData["AfterLetter"] = post.Title.Substring(1);
-
             ViewData["HeaderImage"] = _imageService.DecodeImage(post.ImageData, post.ContentType);
             ViewData["MainText"] = post.Title;
             ViewData["SubText"] = post.Abstract;
@@ -214,17 +225,17 @@ namespace DevBlog5.Controllers
 
 
         // GET: Posts/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create(int? id, string? blogName)
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
             var blogId = id;
 
-            //var blogName = Request.Form["BlogName"];
-
             ViewData["BlogIdNum"] = blogId;
             ViewData["BlogName"] = blogName;
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", id);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "FullName");
+
             return View();
         }
 
@@ -232,6 +243,7 @@ namespace DevBlog5.Controllers
         // POST: Posts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Title,Abstract,Content,ReadyStatus,Image,BlogId")] Post post, List<string> tagValues)
         {
 
@@ -291,10 +303,6 @@ namespace DevBlog5.Controllers
                 TempData["SuccessMessage"] = "Post created.";
 
                 return RedirectToAction("Details", new { slug = post.Slug });
-
-                //return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
-                //var returnUrl = TempData["ReturnUrl"].ToString();
-                //return Redirect(returnUrl);
             }
             else
             {
@@ -308,6 +316,7 @@ namespace DevBlog5.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(string slug, int? blogId)
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
@@ -339,6 +348,7 @@ namespace DevBlog5.Controllers
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Abstract,Content,ReadyStatus,BlogId")] Post post, IFormFile newImage, List<string> tagValues)
         {
             var newSlug = "";
@@ -399,8 +409,6 @@ namespace DevBlog5.Controllers
                         });
 
                     }
-
-                    //_context.Update(post); removed so the code can do a custom upate
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -424,12 +432,7 @@ namespace DevBlog5.Controllers
                 }
 
                 var blogId = id;
-                //return RedirectToAction(nameof(Index));
-                //return RedirectToAction("Index", "Home", null);
-                //return RedirectToAction("BlogPostIndex", new { id = blogId, page = currentPage });
                 return RedirectToAction("Details", new { slug = newSlug });
-                //var returnUrl = TempData["ReturnUrl"].ToString();
-                //return Redirect(returnUrl);
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Description", post.BlogId);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id", post.BlogUserId);
@@ -437,6 +440,7 @@ namespace DevBlog5.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string slug)
         {
             TempData["ReturnUrl"] = Request.GetReferrer();
@@ -462,6 +466,7 @@ namespace DevBlog5.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Posts == null)
@@ -485,8 +490,6 @@ namespace DevBlog5.Controllers
                 currentPage = (int)TempData["CurrentPage"];
             }
 
-
-            //return RedirectToAction("BlogPostIndex", new { id = post.BlogId, page = currentPage });
             var returnUrl = TempData["ReturnUrl"].ToString();
             return Redirect(returnUrl);
         }

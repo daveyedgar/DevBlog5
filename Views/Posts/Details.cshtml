@@ -43,7 +43,7 @@
                         <span>@Model.Post.Title</span>
                     </div>
                     <div class="post-abstract">
-                        <img src="~/assets/images/tutorial-icon.png"/>
+                        <img src="~/assets/images/tutorial-icon.png" />
                         <h3 class="post-abstract">@Model.Post.Abstract</h3>
                     </div>
                 </div>
@@ -104,10 +104,10 @@
 
                     <div class="form-group">
                         <hr />
-                        <textarea id="commentInput" maxlength="2000" name="body" class="form-control" rows="4" placeholder="Add comment..."></textarea>
-                        <span id="chars">2000 characters remaining.</span>
+                        <textarea onkeyup="countCharacters(this)" maxlength="2000" name="body" class="form-control commentBody" rows="4" placeholder="Add comment..."></textarea>
+                        <span>2000 characters remaining.</span>
                     </div>
-                    <button type="submit" class="btn btn-actions btn-block btn-sm">Submit</button>
+                    <button type="submit" id="addCommentBtn" class="btn btn-actions btn-block btn-sm">Submit</button>
                 </form>
             }
             else
@@ -215,20 +215,9 @@
                         *****************************************************************@
                             @if ((User.IsInRole(BlogRole.Moderator.ToString()) || User.IsInRole(BlogRole.Administrator.ToString())) && comment.Deleted is null)
                             {
-
                                 <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#moderateModal-@comment.Id">Moderate</button>
-
                                 <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#deleteModal-@comment.Id">Delete</button>
-
-                                @*<form id="deleteComment" asp-action="Delete" asp-controller="Comments">
-                        @Html.Hidden("id", comment.Id)
-                        @Html.Hidden("Slug", comment.Posts.Slug)
-                        <button class="btn-sm btn-actions font-weight-bold">DeleteOld</button>
-                        </form>*@
-
                             }
-
-
                         </div>
                     </div>
 
@@ -273,9 +262,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             @**********************************************
         EDIT MODAL
         ************************************************@
@@ -293,7 +279,8 @@
                                 @Html.Hidden("Id", comment.Id)
 
                                 <div class="form-group">
-                                    <textarea name="Body" class="form-control" required>@comment.Body</textarea>
+                                    <textarea onkeyup="countCharacters(this)" maxlength="2000" name="Body" class="form-control commentBody" required>@comment.Body</textarea>
+                                    <span>2000 characters remaining.</span>
                                 </div>
 
                                 <button class="btn-sm btn-actions border-success font-weight-bold" type="submit">Submit</button>
@@ -304,9 +291,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             @**********************************************
         MODERATE  MODAL
         ************************************************@
@@ -363,66 +347,47 @@
     {
         <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width:60px;" /></a>
     }
-    @*<a id="createRoute" asp-controller="Posts" asp-action="Index" asp-route-id=""><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
 
-    @*<a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@ViewData["BlogId"]"><img src="~/assets/images/skip-backward-fill.svg" style="width: 2rem;" /></a>*@
-
-    @****************************************************************
-    BOTTOM SECTION
-    *****************************************************************@
 
 </div>
-@*<div class="social_link">
-    <ul class="sociallink_nav">
-        <li><a href="https://www.davidbellerose.com" target="_blank"><i class="fa-solid fa-suitcase"></i></a></li>
-        <li><a href="https://twitter.com/DavidEBellerose" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="https://github.com/daveyedgar" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="https://www.davidbellerose.com/#contact" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
-    </ul>
-</div>*@
-@*<div class="related_post">
-    <h2>Related Posts <i class="fa fa-thumbs-o-up"></i></h2>
-    <ul class="spost_nav wow fadeInDown animated">
-        <li>
-            <div class="media">
-                <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
-                <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-            </div>
-        </li>
-        <li>
-            <div class="media">
-                <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img2.jpg" alt=""> </a>
-                <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-            </div>
-        </li>
-        <li>
-            <div class="media">
-                <a class="media-left" href="single_page.html"> <img src="~/assets/images/post_img1.jpg" alt=""> </a>
-                <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-            </div>
-        </li>
-    </ul>
-</div>*@
-<!--************************************************************************************
 
-    NAVIGATION ARROWS ON SIDE OF PAGE
+@section scripts{
 
-************************************************************************************-->
-@*<nav class="nav-slit">
-    <a class="prev" href="#">
-        <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
-        <div>
-            <h3>City Lights</h3>
-            <img src="~/assets/images/post_img1.jpg" alt="" />
-        </div>
-    </a> <a class="next" href="#">
-        <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
-        <div>
-            <h3>Street Hills</h3>
-            <img src="~/assets/images/post_img1.jpg" alt="" />
-        </div>
-    </a>
-</nav>*@
+    <script>
 
+        // **************************************************
+        //
+        //              COMMENT CHARACTER COUNTER
+        //
+        // **************************************************
+
+        function countCharacters(el) {
+            const MAX_LENGTH = 2000;
+            let nextSpan = el.nextElementSibling;
+            let enteredChars = el.value.length;
+            let charsLeft = MAX_LENGTH - enteredChars;
+
+            switch (true) {
+                case charsLeft > 1000 && charsLeft < 2000:
+                    nextSpan.textContent = charsLeft + " characters remaining.";
+                    nextSpan.style.color = "green";
+                    break;
+                case charsLeft > 500 && charsLeft < 1000:
+                    nextSpan.textContent = charsLeft + " characters remaining.";
+                    nextSpan.style.color = "orange";
+                    break;
+                case charsLeft < 500 && charsLeft > 1:
+                    nextSpan.textContent = charsLeft + " characters remaining.";
+                    nextSpan.style.color = "red";
+                    break;
+                case charsLeft < 0:
+                    nextSpan.textContent = charsLeft + " characters remaining.";
+                    break;
+                default:
+                    nextSpan.style.color = "black";
+                    nextSpan.textContent = charsLeft + " characters remaining.";
+            }
+        }
+    </script>
+}
 

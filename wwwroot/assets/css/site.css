@@ -11,7 +11,6 @@ html {
 	color: black;
 	position: relative;
 	min-height: 100vh;
-	/*    font-family: 'Montserrat',sans-serif;*/
 }
 
 
@@ -23,10 +22,6 @@ body {
 	background-color: #efefef;
 	display: flex;
 	flex-direction: column;
-	/*    background-image: linear-gradient(45deg, hsla(0,0%,0%,.25) 25%, transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%, hsla(0,0%,0%,.25)), linear-gradient(45deg, hsla(0,0%,0%,.25) 25%, transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%, hsla(0,0%,0%,.25));
-	background-position: 0 0, 2px 2px;
-	background-size: 4px 4px;*/
-	/*    padding: 100px;*/
 }
 
 .account-content {
@@ -54,9 +49,6 @@ input {
 
 .search-bar {
 	position: fixed;
-	/*    display: flex;
-	flex-direction: row;
-	justify-content: center;*/
 	width: 200px;
 	top: 10px;
 	left: 45%;
@@ -96,29 +88,6 @@ input {
 }
 
 /*search form to of layout page*/
-.search-bar {
-	/*    margin: 1rem 0;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: end;
-	border: 1px solid blue;*/
-}
-
-.search-section {
-	/*    background-color: red;*/
-}
-/*
-.search-input {
-	display: flex;
-	float: right;
-	margin-bottom: 1rem;
-}
-
-	.search-input button {
-		width: 40px;
-	}*/
 
 
 /*****************************************************************************************
@@ -189,11 +158,6 @@ input {
 	float: left;
 	display: inline;
 	width: 100%;
-	/*    background-color: #363636;
-	background-image: linear-gradient(45deg, hsla(0,0%,0%,.25) 25%, transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%, hsla(0,0%,0%,.25)), linear-gradient(45deg, hsla(0,0%,0%,.25) 25%, transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%, hsla(0,0%,0%,.25));
-	background-position: 0 0, 2px 2px;
-	background-size: 4px 4px;*/
-	/*    padding: 0 30px;*/
 }
 
 .latest_post {
@@ -208,7 +172,7 @@ input {
 	width: 100%;
 }
 
-.category_nav_containier{
+.category_nav_containier {
 	height: 500px;
 }
 
@@ -256,7 +220,6 @@ img {
 
 button.btn-sm, a.btn-sm {
 	line-height: 0.8;
-	/*    border-radius: 10px;*/
 }
 
 
@@ -285,12 +248,7 @@ button.btn-sm, a.btn-sm {
 
 /* post create view header*/
 .create-post-header {
-	/*display: flex;*/
-	/*flex-direction: row;*/
-	/*justify-content: start;*/
-	/*align-items: baseline;*/
 	font-size: 1.2rem;
-	/*font-weight: bold;*/
 }
 
 	.create-post-header span {
@@ -378,20 +336,11 @@ button.btn-sm, a.btn-sm {
 *****************************************************************************************/
 .navbar {
 	margin-bottom: 0;
-	/*    margin: 0;*/
-	/*    padding: 0;*/
 }
 /*  logout button on header*/
 .navbar-nav {
 	margin: 0;
-	/*    height: 52px;*/
 }
-
-
-.nav-item .nav-link {
-	/*    line-height: 82px;*/
-}
-
 
 .logout-form {
 	display: flex;
@@ -589,48 +538,11 @@ button.btn-sm, a.btn-sm {
 	}
 }
 
-
-/******************************************************************************************************
-//
-//          TICKER                                                                      TICKER
-//
-// *******************************************************************************************************/
-
-/*.latest_newsarea {
-	float: left;
-	display: inline;
-	width: 100%;
-	background-color: #000;
-	position: relative
-}
-
-	.latest_newsarea span {
-		color: #fff;
-		font-family: Oswald,sans-serif;
-		font-size: 15px;
-		left: 0;
-		line-height: 1.8em;
-		margin-right: 20px;
-		overflow: hidden;
-		padding: 2px 18px 1px 19px;
-		position: absolute;
-		z-index: 15
-	}*/
-
-/** {
-	box-sizing: border-box;
-}*/
-
-
-
-
 .ticker-wrapper-h {
 	display: flex;
 	position: relative;
 	overflow: hidden;
-	/*    border: 1px solid black;*/
 	background-color: black;
-	/*    margin-top: 5rem;*/
 }
 
 	.ticker-wrapper-h .heading {
@@ -645,22 +557,11 @@ button.btn-sm, a.btn-sm {
 		padding: 2px 18px 1px 19px;
 	}
 
-/*        .ticker-wrapper-h .heading:after {
-			content: "";
-			position: absolute;
-			top: 0;
-			border-left: 20px solid #1c6547;
-			border-top: 17px solid transparent;
-			border-bottom: 15px solid transparent;
-		}*/
-
-
 .news-ticker-h {
 	display: flex;
 	margin: 0;
 	padding: 0;
-	padding-left: 70%; /* adjust when the ticker starts*/
-	/*    z-index: 999;*/
+	padding-left: 70%;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	animation-name: tic-h;
@@ -728,11 +629,6 @@ button.btn-sm, a.btn-sm {
 	width: 100%;
 	margin-top: 2rem;
 }
-
-/*.footer-container-account {
-	flex-shrink: 0;
-}
-*/
 
 .footer-item {
 	display: flex;
@@ -835,7 +731,6 @@ button.btn-sm, a.btn-sm {
 		text-shadow: none;
 		background-color: #fff;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		/*        -webkit-text-stroke: 1px black;*/
 	}
 
 
@@ -865,15 +760,12 @@ button.btn-sm, a.btn-sm {
 }
 
 .cat-item a,
-.cat-item a:visited{
-	/*    background: none repeat scroll 0 0 #e4e4e4;*/
+.cat-item a:visited {
 	background-color: hsla(0,0%,0%,.75);
-	/*    border: 3px solid #d083cf;*/
 	color: #aaa;
 	display: block;
 	float: left;
 	font: bold 15px/30px sans-serif;
-	/*    font-size: 13px;*/
 	line-height: 12px;
 	margin: 0 2px 2px 0;
 	padding: 12px 17px;
@@ -888,7 +780,6 @@ button.btn-sm, a.btn-sm {
 	.cat-item a:hover,
 	.cat-item a:focus {
 		color: #fff;
-		/*        text-shadow: 0 0 20px hsla(240,75%,75%,.5), 0 1px 1px hsla(0,0%,100%,.25), 0 -1px 1px hsla(0,0%,0%,.75);*/
 	}
 
 .tag-content {
@@ -932,7 +823,6 @@ tag-form {
 	display: flex;
 	flex-wrap: nowrap;
 	background-color: white;
-/*	min-height: 300px;*/
 	box-shadow: -1px -2px 12px -4px rgba(16,14,14,0.61);
 	-webkit-box-shadow: -1px -2px 12px -4px rgba(16,14,14,0.61);
 	-moz-box-shadow: -1px -2px 12px -4px rgba(16,14,14,0.61);
@@ -947,7 +837,7 @@ tag-form {
 		color: darkblue;
 	}
 
-.tag-img img{
+.tag-img img {
 	height: 60px;
 	width: 60px;
 }
@@ -1017,9 +907,10 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	position: relative;
 	display: flex;
 	justify-content: center;
-	align-items:center;
+	align-items: center;
 	pointer-events: none;
 }
+
 	.card-image img {
 		display: block;
 		max-width: 100%;
@@ -1030,7 +921,7 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 
 .card-content {
 	display: flex;
-	flex-direction:column;
+	flex-direction: column;
 	padding: 0 1rem;
 }
 
@@ -1041,10 +932,10 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	flex-grow: 1;
 }
 
-.card-body h4 {
-	margin-bottom: 0.2rem;
-	margin-top: 2rem;
-}
+	.card-body h4 {
+		margin-bottom: 0.2rem;
+		margin-top: 2rem;
+	}
 
 .card-footer {
 }
@@ -1053,6 +944,7 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	.card-wrapper {
 		flex-wrap: wrap;
 	}
+
 		.card-wrapper > * {
 			flex: 1 340px;
 		}
@@ -1089,8 +981,8 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	padding: 0.5rem;
 }
 
-.comment-text{
-	margin-left:0.2rem;
+.comment-text {
+	margin-left: 0.2rem;
 }
 
 
@@ -1124,15 +1016,13 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 }
 
 
-
-
 /*****************************************************************************************
 	
 	POST DETAIL VIEW                                                        POST DETAIL VIEW
 
 *****************************************************************************************/
 
-.cat-link a{
+.cat-link a {
 	color: black;
 	cursor: pointer;
 }
@@ -1142,14 +1032,14 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	}
 
 
-.recent-posts li a{
+.recent-posts li a {
 	color: blue;
 	cursor: pointer;
 }
 
-.recent-posts li a:hover{
-	color: lightblue;
-}
+	.recent-posts li a:hover {
+		color: lightblue;
+	}
 
 
 .post-detail {
@@ -1162,20 +1052,19 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 }
 
 
-.post-detail hr {
-	border-top: 1px solid lightgray;
-	margin-top: 0;
-}
+	.post-detail hr {
+		border-top: 1px solid lightgray;
+		margin-top: 0;
+	}
 
-.post-detail img {
-	width: 100%;
-	/*pointer-events: none;*/
-	padding: 1rem;
-}
+	.post-detail img {
+		width: 100%;
+		padding: 1rem;
+	}
 
-.post-detail img:hover{
-	opacity: 1.0;
-}
+		.post-detail img:hover {
+			opacity: 1.0;
+		}
 
 
 .postTitle {
@@ -1275,14 +1164,10 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 
 
 .modal-dialog {
-	/*    position: absolute;*/
 	top: 20%;
 	right: 100px;
 	bottom: 0;
 	left: 0;
-	/*    z-index: 10040;*/
-	/*    overflow: auto;*/
-	/*    overflow-y: auto;*/
 }
 
 /* comment delete modal*/
@@ -1308,45 +1193,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	}
 
 
-/* this is for the edit and back buttons at the bottom*/
-.nav-actions a {
-	/*width: 100%;*/
-	/*padding: 1rem;*/
-}
-
-/*****************************************************************************************
-	
-	COMPONENTS																			COMPONENTS
-
-*****************************************************************************************/
-
-.cat-component a{
-/*	max-width: 90px;
-	max-height: 70px;
-	overflow: hidden;
-	object-fit: cover;
-	position: relative;
-	display: flex;
-	justify-content: start;
-	align-items: start;*/
-}
-
-.cat-component img {
-/*	display: block;
-	max-width: 100%;
-	max-height: 100%;
-	width: auto;
-	height: auto;
-	pointer-events: none;*/
-}
-
-	.cat-component{
-
-	}
-
-.spost_nav li{
-	/*max-height: 70px;*/
-}
 /*****************************************************************************************
 	
 	CONTACT FORM                                                      CONTACT FORM
@@ -1456,12 +1302,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	}
 }
 
-
-/* .cookieSwitches {
-	// width: 785px;
-	// border: 2px solid blue;
-	//
-}*/
 
 /*************************************************************
 //
@@ -1712,10 +1552,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	}
 
 	.post-abstract {
-		/*        flex-wrap: wrap;*/
-		/*        display: flex;*/
-		/*        flex-direction: row;*/
-		/*        align-items: center;*/
 		font-size: 1.1rem;
 		margin-right: 0;
 		padding: 0;
@@ -1771,10 +1607,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	}
 
 	.post-abstract {
-		/*        flex-wrap: wrap;*/
-		/*        display: flex;*/
-		/*        flex-direction: row;*/
-		/*        align-items: center;*/
 		font-size: 0.8rem;
 		margin-right: 0;
 		padding: 0;
@@ -1836,7 +1668,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	.post-title .first-letter {
 		color: black;
 		background-color: white;
-		/*        font: bold 100% sans-serif;*/
 		margin-bottom: 1.2rem;
 		padding: 0;
 		-webkit-transition: none;
