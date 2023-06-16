@@ -33,11 +33,6 @@
                 <div class="card-header">
                     <h2 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h2>
                     <p class="card-intro">@Html.DisplayFor(modelItem => item.Description)</p>
-                    @*<p class="card-intro">Id: @Html.DisplayFor(modelItem => item.Id)</p>*@
-                    @*  <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)
-                <br />Date Updated: @Html.DisplayFor(modelItem => item.Updated)
-                <br>Posted by <b>@item.BlogUsers.FullName</b>
-                </p>*@
                 </div><!--card header-->
                 <div class="card-body recent-posts">
                     <h4>Recent Posts</h4>
@@ -51,7 +46,6 @@
                     </ul>
                 </div><!--card body-->
                 <div class="card-footer">
-                    @*<a id="routeId" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Read More...</a>*@
                     <a id="routeId" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Go to @Html.DisplayFor(modelItem => item.Name)</a>
                     @if (User.IsInRole("Administrator"))
                     {
@@ -70,55 +64,6 @@
         <!--card wrapper-->
     }
 </div><!--card section-->
-@*@foreach (var item in Model)
-{
-    <div class="card-container">
-        <div class="cards">
-            <div class="card-item row row-cols-2">
-                <div class="card-image col-md-6 col-12">
-                    <img src="@_imageService.DecodeImage(item.ImageData, item.ContentType)" />
-                </div>
-                <div class="card-info col-md-6 col-12">
-                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h2>
-                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Description)</p>
-                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Created)</p>
-                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Updated)</p>
-                    <p class="card-intro">Posted by <b>@item.BlogUsers.FullName</b></p>
-                </div>
-            </div>
-            <div class="row card-text">
-                <div class="col">
-                    <h4>Recent Posts</h4>
-                    <ul>
-                        @foreach (var item2 in item.Posts.OrderByDescending(p => p.Updated != null).ThenByDescending(p => p.Updated).ThenByDescending(p => p.Created))
-                        {
-
-                            <li>
-                                @item2.Title
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="row card-link">
-                <div class="col">
-                    <a id="routeId" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Read More...</a>
-                </div>
-            </div>
-            @if (User.IsInRole("Administrator"))
-            {
-                <div class="row card-actions">
-                    <div class="col">
-                        <a asp-action="Edit" asp-controller="Blogs" asp-route-id="@item.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-                        <a asp-action="Details" asp-controller="Blogs" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
-                        <a asp-action="Delete" asp-controller="Blogs" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-}*@
-
 <div class="left_content">
 
 

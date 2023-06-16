@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DevBlog5.ViewModels
 {
@@ -13,7 +12,7 @@ namespace DevBlog5.ViewModels
         [Required]
         [StringLength(50, ErrorMessage = "The {0} must be betwen {2} and {1} characters.", MinimumLength = 2)]
         [Display(Name = "Comment")]
-        public string  Email { get; set; }
+        public string Email { get; set; }
 
         [Phone]
         public string? Phone { get; set; }

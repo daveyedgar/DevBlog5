@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -61,7 +59,7 @@ namespace DevBlog5.Helpers
                 {
                     result = html + "...";
                 }
-              
+
 
             }
             return result;

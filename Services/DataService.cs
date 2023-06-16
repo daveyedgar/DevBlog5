@@ -2,10 +2,10 @@
 using DevBlog5.Enums;
 using DevBlog5.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace DevBlog5.Services
 {

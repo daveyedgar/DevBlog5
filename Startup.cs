@@ -5,17 +5,11 @@ using DevBlog5.Services;
 using DevBlog5.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TheBlogProject.Services;
 
 namespace DevBlog5
@@ -32,9 +26,6 @@ namespace DevBlog5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApplicationDbContext>(options => options
-            //.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))); 
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(ConnectionHelper.GetConnectionString(Configuration),
                 o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
@@ -87,21 +78,8 @@ namespace DevBlog5
                 endpoints.MapControllerRoute(
                     name: "SlugRoute",
                     pattern: "BlogPosts/UrlFriendly/{slug}",
-                    defaults: new { controller = "Posts",  action = "Details" }
+                    defaults: new { controller = "Posts", action = "Details" }
                     );
-
-                //endpoints.MapControllerRoute(
-                //    name: "SlugRoute",
-                //    pattern: "BlogPosts/UrlFriendly/{slug}",
-                //    defaults: new { controller = "Posts", action = "Edit" }
-                //    );
-
-                //endpoints.MapControllerRoute(
-                //    name: "SlugRoute",
-                //    pattern: "BlogPosts/UrlFriendly/{slug}",
-                //    defaults: new { controller = "Posts", action = "Delete" }
-                //    );
-
 
                 endpoints.MapControllerRoute(
                     name: "default",

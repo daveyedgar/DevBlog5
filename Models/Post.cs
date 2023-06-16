@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-using System;
-using DevBlog5.Enums;
+﻿using DevBlog5.Enums;
 using DevBlog5.Helpers;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevBlog5.Models
 {

@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.Hosting;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+﻿using DevBlog5.Enums;
 using System;
-using DevBlog5.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace DevBlog5.Models
 {

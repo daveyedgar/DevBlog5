@@ -26,15 +26,15 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="card-image">
-            @if (Model.ImageData != null)
-            {
+                @if (Model.ImageData != null)
+                {
                     <img id="editBlogImage" src="@_imageService.DecodeImage(Model.ImageData, Model.ContentType)">
 
-            }
-            else
-            {
+                }
+                else
+                {
                     <img id="editBlogImage" src="~/assets/images/defaultUserImage.png">
-            }
+                }
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
@@ -54,5 +54,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

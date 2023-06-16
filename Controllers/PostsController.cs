@@ -42,9 +42,10 @@ namespace DevBlog5.Controllers
         {
             ViewData["SearchTerm"] = searchTerm;
             var pageNumber = page ?? 1;
-            var pageSize = 2;
+            var pageSize = 6;
 
             var posts = _blogSearchService.Search(searchTerm);
+
 
             return View(await posts.ToPagedListAsync(pageNumber, pageSize));
         }

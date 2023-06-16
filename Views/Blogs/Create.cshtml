@@ -24,11 +24,9 @@
                 <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <!--for create method set image to default-->
             <div class="card-image">
                 <img id="createBlogImage" src="~/assets/images/defaultUserImage.png">
             </div>
-            <!--update image after change-->
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
                 <input type="file" asp-for="Image" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp,.tif,.bmp"
@@ -47,5 +45,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

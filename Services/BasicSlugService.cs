@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Text;
-using DevBlog5.Data;
+﻿using DevBlog5.Data;
 using DevBlog5.Services;
+using System.Linq;
+using System.Text;
 
 namespace TheBlogProject.Services
 {

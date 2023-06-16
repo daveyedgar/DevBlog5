@@ -1,26 +1,28 @@
 ﻿using DevBlog5.Data;
 using DevBlog5.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DevBlog5.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DevBlog5.Services
 {
     public class BlogSearchService
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<BlogUser> _userManager;
 
-        public BlogSearchService(ApplicationDbContext context)
+        public BlogSearchService(ApplicationDbContext context, UserManager<BlogUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IQueryable<Post> Search(string searchTerm)
         {
 
-        var posts = _context.Posts.Where(p => p.ReadyStatus == ReadyStatus.ProductionReady).AsQueryable();
+            var posts = _context.Posts.Where(p => p.ReadyStatus == ReadyStatus.ProductionReady).AsQueryable();
 
             if (searchTerm != null)
             {
@@ -34,10 +36,15 @@ namespace DevBlog5.Services
                                         c.ModeratedBody.ToLower().Contains(searchTerm) ||
                                         c.BlogUsers.FirstName.ToLower().Contains(searchTerm) ||
                                         c.BlogUsers.LastName.ToLower().Contains(searchTerm) ||
-                                        c.BlogUsers.Email.ToLower().Contains(searchTerm)));
+                                        c.BlogUsers.Email.ToLower().Contains(searchTerm)))
+
+                .Include(p => p.BlogUser);
             }
 
-        return posts = posts.OrderByDescending(p => p.Created);
+            return posts = posts
+                .OrderByDescending(p => p.Updated != null)
+                .ThenByDescending(p => p.Updated)
+                .ThenByDescending(p => p.Created); ;
         }
     }
 }

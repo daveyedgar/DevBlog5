@@ -35,10 +35,8 @@
                     <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
                     <p>
                         @Html.DisplayFor(modelItem => item.Abstract)
-                        @*<br />Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)*@
                         <br /><br />Date Created: @Html.DisplayFor(modelItem => item.Created)
                         <br />Date Updated: @Html.DisplayFor(modelItem => item.Updated)
-                        @*<br />Status: @Html.DisplayFor(modelItem => item.ReadyStatus)*@
                         <br />Posted by @item.BlogUser.FullName
                     </p>
                 </div><!--card header-->
@@ -47,14 +45,12 @@
                     {
                         <p>
                             @Html.Raw(HtmlSubstring.RemoveHtml(item.Content, 200))
-                            @*<a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>*@
                         </p>
                     }
                     else
                     {
                         <p>
                             @Html.Raw(@item.Content)
-                            @*<a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>*@
                         </p>
                     }
                 </div><!--card body-->

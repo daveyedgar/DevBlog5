@@ -15,10 +15,6 @@
     <div class="card-container">
         <div class="cards">
             <div class="card-item row row-cols-2">
-
-                <div class="comment-image col-2 user-thumbnail">
-                    @*<img src="@_imageService.DecodeImage(item.BlogUsers.ImageData, item.BlogUsers.ContentType)" alt="@item.BlogUsers.FullName" class="">*@
-                </div>
                 <div class="card-info col-md-6 col-12">
                     <h2 class="card-title">Posted By: @Html.DisplayFor(modelItem => item.Posts.BlogUser.FullName)</h2>
                     <p class="card-intro">Post Title: @Html.DisplayFor(modelItem => item.Posts.Title)</p>
@@ -37,14 +33,12 @@
                         <h6>Moderated on @Html.DisplayFor(modelItem => item.Moderated) by @Html.DisplayFor(modelItem => item.Moderator.FullName) for  @Html.DisplayFor(modelItem => item.ModerationType)</h6>
                         <p>@Html.DisplayFor(modelItem => item.ModeratedBody)</p>
                     </div>
-               </div>
+                </div>
             </div>
             @if (User.IsInRole("Administrator"))
             {
                 <div class="row card-actions">
                     <div class="col">
-                        @*<a asp-action="Edit" asp-route-id="@item.Id"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;*@
-                        @*<a asp-action="Details" asp-route-id="@item.Id"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;*@
                         <a class="btn btn-actions" asp-action="Details" asp-controller="Posts" asp-route-slug="@item.Posts.Slug">Go To Post</a> &nbsp;&nbsp;
                         <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
                     </div>

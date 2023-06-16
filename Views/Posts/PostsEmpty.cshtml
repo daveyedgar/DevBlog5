@@ -3,7 +3,6 @@
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
 
-@*@model IPagedList<Blog>*@
 @model IPagedList<DevBlog5.Models.Post>
 
 
@@ -18,7 +17,7 @@
     <br />
 
     <div>
-        <a class="btn btn-actions" class="nav-link" onclick="javascript:history.back()">Go Back</a>
+        <a class="btn btn-actions nav-link" onclick="javascript:history.back()">Go Back</a>
     </div>
 </div>
 
@@ -29,7 +28,5 @@
         <a id="link" asp-action="Create" class="btn btn-actions" asp-route-id="@ViewData["BlogId"]" asp-route-blogName="@ViewData["BlogName"]">Create New Post for @ViewData["BlogName"] Blog</a>
 
         <br>BlogId: @ViewData["BlogId"]<br />
-        @*<br>Page: @Model.PageNumber*@
-        @*<a asp-action="CreateSpecificBlogPost" asp-route-id="@ViewData["BlogId"]">Create New</a>*@
     </p>
 }

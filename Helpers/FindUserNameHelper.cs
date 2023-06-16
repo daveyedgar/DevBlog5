@@ -2,7 +2,6 @@
 using DevBlog5.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace DevBlog5.Helpers
 {
