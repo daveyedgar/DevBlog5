@@ -17,7 +17,7 @@ namespace DevBlog5
 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-            // DataService service runs migrations and seeds database
+            // DataService service runs migrations and seeds database.
             await dataService.ManageDataAsync();
 
 
