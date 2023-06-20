@@ -80,6 +80,18 @@ namespace DevBlog5.Services
             };
             await _userManager.CreateAsync(modUser, "Abc&123!");
             await _userManager.AddToRoleAsync(modUser, BlogRole.Moderator.ToString());
+
+            var demoUser = new BlogUser()
+            {
+                Email = "blogUser@team633657.testinator.com",
+                UserName = "blogUser@team633657.testinator.com",
+                FirstName = "Victor",
+                LastName = "Mansfield",
+                DisplayName = "Victor Mansfield",
+                PhoneNumber = "1234567890",
+                EmailConfirmed = true,
+            };
+            await _userManager.CreateAsync(demoUser, "Abc&123!");
         }
     }
 }

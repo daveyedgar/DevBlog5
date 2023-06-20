@@ -1,7 +1,15 @@
 ﻿let index = 0;
 
 function AddTag() {
-    var tagEntry = document.getElementById("TagEntry");
+    var newTag = document.getElementById("NewTag");
+    var chooseTag = document.getElementById("ChooseTag");
+    //var tagEntry = document.getElementById("TagEntry");
+
+    if (newTag.value != "") {
+        tagEntry = newTag;
+    } else {
+        tagEntry = chooseTag;
+    }
 
     let searchResult = search(tagEntry.value);
     if (searchResult != null) {

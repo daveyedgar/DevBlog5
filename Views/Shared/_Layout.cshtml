@@ -66,6 +66,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                        </li>
                         @if (User.IsInRole("Administrator"))
                         {
                             <div class="dropdown">
@@ -73,7 +76,7 @@
                                 <div class="dropdown-content">
 
                                     <a class="" asp-area="" asp-controller="Blogs" asp-action="Index">Blogs</a>
-                                    <a class="" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                                    <a class="" asp-area="" asp-controller="Posts" asp-action="IndexFilter">Posts</a>
                                     <a class="" asp-area="" asp-controller="Comments" asp-action="Index">Comments</a>
                                     <a class="" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
                                 </div>
@@ -99,19 +102,7 @@
 
     -----------------------------------------------------------------------------------------*@
 
-    @*-----------------------------------------------------------------------------------------
 
-    =================      SEARCH FORM
-
-    -----------------------------------------------------------------------------------------*@
-
-    @*    <div class="search-bar">
-    <form asp-action="SearchIndex" asp-controller="Posts">
-    <input type="text" name="SearchTerm" class="form-control" placeholder="Search...">
-    <button class="btn-actions" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-
-    </div>*@
 
     <div class="container">
         @*-----------------------------------------------------------------------------------------
@@ -341,7 +332,7 @@
             <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;|&nbsp;
-            <button id="open-cookie" class="btn btn-actions js-change-cookie">Change Cookie Preferences</button>
+            <button id="open-cookie" class="js-change-cookie">Change Cookie Preferences</button>
         </div>
         <div class="footer-item">
             <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>

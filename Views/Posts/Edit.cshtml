@@ -57,7 +57,13 @@
                     <div class="col">
                         <div class="row">
                             <div class="col tag-input">
-                                <input type="text" class="form-control" id="TagEntry" />
+                                Add New Tag
+                                <br />
+                                <input type="text" class="form-control" id="NewTag" />
+                                <br />Choose Tag From List
+                                <select class="form-control" asp-items="ViewBag.TagId" id="ChooseTag">
+                                    <option value="" selected disabled hidden>Add tag...</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row tag-btn">

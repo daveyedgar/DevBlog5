@@ -34,9 +34,7 @@ namespace DevBlog5.Controllers
             var applicationDbContext = await _context.Blogs
               .Include(b => b.BlogUsers)
               .Include(p => p.Posts)
-                .OrderByDescending(p => p.Updated != null)
-                .ThenByDescending(p => p.Updated)
-                .ThenByDescending(p => p.Created)
+                .OrderBy(p => p.Name)
               .ToPagedListAsync(pageNumber, pageSize);
 
             return View(applicationDbContext);

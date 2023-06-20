@@ -346,6 +346,7 @@
     @if (User.IsInRole("Administrator"))
     {
         <a asp-action="Edit" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/pencil-fill.svg" style="width:60px;" /></a>
+        <a asp-action="Delete" asp-route-slug="@Model.Post.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 60px;" /></a>
     }
 
 

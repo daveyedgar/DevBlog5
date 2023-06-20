@@ -46,18 +46,24 @@
                     <div class="col">
                         <div class="row mb-2">
                             <div class="col tag-input">
-                                <input type="text" class="form-control" id="TagEntry" />
+                                Add New Tag
+                                <br />
+                                <input type="text" class="form-control" id="NewTag"/>
+                                <br />Choose Tag From List
+                                <select class="form-control" asp-items="ViewBag.TagId" id="ChooseTag">
+                                    <option value="" selected disabled hidden>Add tag...</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row tag-btn">
                             <div class="col">
-                                <button onclick="AddTag()" name="Add" type="button" class="btn btn-actions btn-sm btn-block">Add</button>
+                                <button onclick="AddTag()" name="Add" type="button" class="btn btn-sm btn-block btn-actions">Add</button>
                             </div>
                         </div>
                     </div>
                     <div class="col tag-values">
                         <select class="btn-block" name="TagValues" id="TagList" multiple></select>
-                        <button onclick="DeleteTag()" name="Delete" type="button" class="btn btn-actions btn-sm btn-block">Delete</button>
+                        <button onclick="DeleteTag()" name="Delete" type="button" class="btn btn-sm btn-block btn-actions">Delete</button>
                     </div>
                 </div>
             </div>

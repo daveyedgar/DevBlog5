@@ -4,6 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<UserSecretsId>aspnet-DevBlog5-2ff7e245-386e-4323-9f3a-8e89a0154e6a</UserSecretsId>
 		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+		<InvariantGlobilization>true</InvariantGlobilization>
 	</PropertyGroup>
 
 	<ItemGroup>

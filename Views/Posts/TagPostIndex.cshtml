@@ -19,56 +19,56 @@
 </h3>
 
 
-@foreach (var item in Model)
-{
-    <div class="card-container">
-        <div class="cards">
-            <div class="card-item row row-cols-2">
-                <div class="card-image col-md-6 col-12">
-                    <img src="@_imageService.DecodeImage(item.Posts.ImageData, item.Posts.ContentType)" />
-                </div>
-                <div class="card-info col-md-6 col-12">
-                    <h2 class="card-title">@Html.DisplayFor(modelItem => item.Posts.Title)</h2>
-                    <p class="card-intro">@Html.DisplayFor(modelItem => item.Posts.Abstract)</p>
-                    <p class="card-intro">Blog Name: @Html.DisplayFor(modelItem => item.Posts.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.Posts.BlogId)</p>
-                    <p class="card-intro">Date Created: @Html.DisplayFor(modelItem => item.Posts.Created)</p>
-                    <p class="card-intro">Date Updated: @Html.DisplayFor(modelItem => item.Posts.Updated)</p>
-                    <p class="card-intro">Status: @Html.DisplayFor(modelItem => item.Posts.ReadyStatus)</p>
-                </div>
-
-            </div>
-            <div class="row card-text">
-                <div class="post-limited">
-                    @if (@item.Posts.Content.Length > 300)
+<div class="card-section">
+    @foreach (var item in Model)
+    {
+        <div class="card-wrapper">
+            <div class="card-image">
+                <img src="@_imageService.DecodeImage(item.Posts.ImageData, item.Posts.ContentType)" />
+            </div> <!--card iamge-->
+            <div class="card-content">
+                <div class="card-header">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Posts.Title)</h4>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Posts.Abstract)
+                        <br /><br />Date Created: @Html.DisplayFor(modelItem => item.Posts.Created)
+                        <br />Date Updated: @Html.DisplayFor(modelItem => item.Posts.Updated)
+                        <br />Posted by @item.Posts.BlogUser.FullName
+                    </p>
+                </div><!--card header-->
+                <div class="card-body">
+                    @if (@item.Posts.Content.Length > 200)
                     {
                         <p>
-                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Posts.Content, 300))
-                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Posts.Slug">Read More</a>
+                            @Html.Raw(HtmlSubstring.RemoveHtml(item.Posts.Content, 200))
                         </p>
                     }
                     else
                     {
                         <p>
-                            @Html.Raw(@item.Posts.Content)...
-                            <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Posts.Slug">Read More</a>
+                            @Html.Raw(@item.Posts.Content)
                         </p>
                     }
-                </div>
-            </div>
-            @if (User.IsInRole("Administrator"))
-            {
-                <div class="row card-actions">
-                    <div class="col">
-                        <a asp-action="Edit" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
-                        <a asp-action="Details" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
-                        <a asp-action="Delete" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
-                    </div>
-                </div>
-            }
+                </div><!--card body-->
+                <div class="card-footer">
+                    <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Posts.Slug">Read More</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <div class="row card-actions">
+                            <div class="col">
+                                <a asp-action="Edit" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
+                                <a asp-action="Details" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
+                                <a asp-action="Delete" asp-route-slug="@item.Posts.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
+                            </div>
+                        </div>
+                    }
+                </div><!--card footer-->
+            </div> <!--card content-->
         </div>
-    </div>
-}
 
+        <!--card wrapper-->
+    }
+</div><!--card section-->
 
 
 <hr />

@@ -21,12 +21,12 @@
             <div class="card-content">
                 <div class="card-header">
                     <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
-                    <p>
+                    <p class="cat-link">
                         @Html.DisplayFor(modelItem => item.Abstract)
-                        <br />Blog Name: @Html.DisplayFor(modelItem => item.Blog.Name); Blog Id: @Html.DisplayFor(modelItem => item.BlogId)
+                        <br /><br />Category: <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@item.BlogId"><b>@Html.DisplayFor(modelItem => item.Blog.Name)</b></a>
                         <br /><br />Date Created: @Html.DisplayFor(modelItem => item.Created)
                         <br />Date Updated: @Html.DisplayFor(modelItem => item.Updated)
-                        <br />Status: @Html.DisplayFor(modelItem => item.ReadyStatus)
+                        @*<br />Status: @Html.DisplayFor(modelItem => item.ReadyStatus)*@
                         <br />Posted by @item.BlogUser.FullName
                     </p>
                 </div><!--card header-->
@@ -43,18 +43,21 @@
                             @Html.Raw(@item.Content)
                         </p>
                     }
+
                 </div><!--card body-->
+                <a class="btn btn-actions btn-sm" asp-action="Details" asp-route-slug="@item.Slug">Read More</a>
                 <div class="card-footer">
-                    @if (User.IsInRole("Administrator"))
+@*                    @if (User.IsInRole("Administrator"))
                     {
                         <div class="row card-actions">
                             <div class="col">
+
                                 <a asp-action="Edit" asp-route-slug="@item.Slug"><img src="~/assets/images/pencil-fill.svg" style="width: 1.5rem;" /></a> &nbsp;&nbsp;
                                 <a asp-action="Details" asp-route-slug="@item.Slug"><img src="~/assets/images/eye-fill.svg" style="width: 2rem;" /></a> &nbsp;&nbsp;
                                 <a asp-action="Delete" asp-route-slug="@item.Slug"><img src="~/assets/images/trash3-fill.svg" style="width: 1.5rem;" /></a>
                             </div>
                         </div>
-                    }
+                    }*@
                 </div><!--card footer-->
             </div> <!--card content-->
         </div>

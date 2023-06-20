@@ -46,7 +46,7 @@
                     </ul>
                 </div><!--card body-->
                 <div class="card-footer">
-                    <a id="routeId" class="btn btn-actions" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Go to @Html.DisplayFor(modelItem => item.Name)</a>
+                    <a id="routeId" class="btn btn-actions btn-sm" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@item.Id">Go to @Html.DisplayFor(modelItem => item.Name)</a>
                     @if (User.IsInRole("Administrator"))
                     {
                         <div class="row card-actions">

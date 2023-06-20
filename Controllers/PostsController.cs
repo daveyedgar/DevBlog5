@@ -79,20 +79,20 @@ namespace DevBlog5.Controllers
             }
             else
             {
-                int readyStatusInt = ((int)Enum.Parse(typeof(ReadyStatus), readyStatus));
-                // will need if readyStatus not found alert
+                ReadyStatus readyStatusInt = (ReadyStatus)Enum.Parse(typeof(ReadyStatus), readyStatus);
                 posts = await _context.Posts?
                 .Where(p => p.ReadyStatus.Equals(readyStatusInt))
-                //.Where(p => p.ReadyStatus = readyStatusInt)
                 .Include(p => p.Blog)
                 .Include(p => p.BlogUser)
                 .OrderByDescending(p => p.Updated != null)
                 .ThenByDescending(p => p.Updated)
                 .ThenByDescending(p => p.Created)
                 .ToListAsync();
+
+                ViewData["RS"] = readyStatus;
             }
 
-            System.Diagnostics.Debug.WriteLine("hello");
+            
             ViewData["ReadyStatus"] = new SelectList(Enum.GetValues(typeof(ReadyStatus)).Cast<ReadyStatus>().ToList());
             return View(posts);
         }
@@ -165,6 +165,7 @@ namespace DevBlog5.Controllers
             var tagPosts = await _context.Tags
                 .Where(p => p.Text == tag)
                 .Include(p => p.Posts)
+                .Include(u => u.BlogUsers)
                 .OrderByDescending(p => p.Posts.Created)
                 .ToPagedListAsync(pageNumber, pageSize);
 
@@ -236,6 +237,8 @@ namespace DevBlog5.Controllers
             ViewData["BlogName"] = blogName;
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Name", id);
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "FullName");
+            ViewData["TagId"] = new SelectList(_context.Tags.Select(t => t.Text).Distinct()).OrderBy(t=>t.Text).ToList();
+
 
             return View();
         }
@@ -343,6 +346,7 @@ namespace DevBlog5.Controllers
             ViewData["BlogList"] = new SelectList(_context.Blogs, "Id", "Name", post.BlogId);
             ViewData["TagValues"] = string.Join(",", post.Tags.Select(t => t.Text));
             ViewData["BlogName"] = post.Blog.Name;
+            ViewData["TagId"] = new SelectList(_context.Tags.Select(t => t.Text).Distinct()).OrderBy(t => t.Text).ToList();
             return View(post);
         }
 
@@ -444,7 +448,6 @@ namespace DevBlog5.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string slug)
         {
-            TempData["ReturnUrl"] = Request.GetReferrer();
 
             if (slug == null)
             {
@@ -491,8 +494,7 @@ namespace DevBlog5.Controllers
                 currentPage = (int)TempData["CurrentPage"];
             }
 
-            var returnUrl = TempData["ReturnUrl"].ToString();
-            return Redirect(returnUrl);
+            return RedirectToAction("BlogPostIndex", new { id = post.BlogId });
         }
 
         private bool PostExists(int id)
