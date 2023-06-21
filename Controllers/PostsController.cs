@@ -104,6 +104,7 @@ namespace DevBlog5.Controllers
                 .ToList();
 
             ViewData["BlogId"] = id;
+            ViewData["BlogName"] = blog[0].Name;
             ViewData["BlogUserId"] = new SelectList(_context.Users, "Id", "Id");
 
             return View();
