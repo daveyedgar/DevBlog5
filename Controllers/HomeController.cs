@@ -29,7 +29,7 @@ namespace DevBlog5.Controllers
         public async Task<IActionResult> Index(int? page)
         {
             var pageNumber = page ?? 1;
-            var pageSize = 6;
+            var pageSize = 5;
 
             var applicationDbContext = await _context.Blogs
               .Include(b => b.BlogUsers)
