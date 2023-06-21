@@ -42,7 +42,7 @@ namespace DevBlog5.Controllers
         {
             ViewData["SearchTerm"] = searchTerm;
             var pageNumber = page ?? 1;
-            var pageSize = 6;
+            var pageSize = 5;
 
             var posts = _blogSearchService.Search(searchTerm);
 
@@ -118,7 +118,7 @@ namespace DevBlog5.Controllers
             }
 
             var pageNumber = page ?? 1;  // null coelescing operator
-            var pageSize = 6;  // amount per page
+            var pageSize = 5;  // amount per page
 
             var blogId = id;
 
@@ -160,7 +160,7 @@ namespace DevBlog5.Controllers
             TempData["ReturnUrl"] = Request.GetReferrer();
 
             var pageNumber = page ?? 1;  // null coelescing operator
-            var pageSize = 2;  // amount per page
+            var pageSize = 5;  // amount per page
 
             var tagPosts = await _context.Tags
                 .Where(p => p.Text == tag)
