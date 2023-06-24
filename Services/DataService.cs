@@ -92,6 +92,42 @@ namespace DevBlog5.Services
                 EmailConfirmed = true,
             };
             await _userManager.CreateAsync(demoUser, "Abc&123!");
+
+            var demoUser1 = new BlogUser()
+            {
+                Email = "natya@mail.com",
+                UserName = "natya@mail.com",
+                FirstName = "Natya",
+                LastName = "Agapof",
+                DisplayName = "Natya Agapof",
+                PhoneNumber = "1234567890",
+                EmailConfirmed = true,
+            };
+            await _userManager.CreateAsync(demoUser1, "Abc&123!");
+
+            var demoUser2 = new BlogUser()
+            {
+                Email = "ian@mail.com",
+                UserName = "ian@mail.com",
+                FirstName = "Ian",
+                LastName = "Bartow",
+                DisplayName = "Ian Bartow",
+                PhoneNumber = "1234567890",
+                EmailConfirmed = true,
+            };
+            await _userManager.CreateAsync(demoUser2, "Abc&123!");
+
+            var demoUser3 = new BlogUser()
+            {
+                Email = "sarah@mail.com",
+                UserName = "sarah@mail.com",
+                FirstName = "Sarah",
+                LastName = "Cohen",
+                DisplayName = "Sarah Cohen",
+                PhoneNumber = "1234567890",
+                EmailConfirmed = true,
+            };
+            await _userManager.CreateAsync(demoUser3, "Abc&123!");
         }
     }
 }
