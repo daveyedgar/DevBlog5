@@ -1200,13 +1200,20 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 		font-family: 'Montserrat',sans-serif;
 	}
 
+.modal-btn {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
 
+	.modal-btn button {
+		margin-right: 1rem;
+	}
 /*****************************************************************************************
 	
 	PAGINATION																		PAGINATION
 
 *****************************************************************************************/
-
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,

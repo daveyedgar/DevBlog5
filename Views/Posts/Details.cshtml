@@ -127,7 +127,15 @@
                 <div class="card-comment">
                     <div class="comment-item row row-cols-2">
                         <div class="comment-image col-2 user-thumbnail">
-                            <img src="@imageService.DecodeImage(comment.BlogUsers.ImageData, comment.BlogUsers.ContentType)" alt="@comment.BlogUsers.FullName" class="">
+                            @if (comment.BlogUsers.ImageData != null)
+                            {
+                                <img src="@imageService.DecodeImage(comment.BlogUsers.ImageData, comment.BlogUsers.ContentType)">
+                            }
+                            else
+                            {
+                                <img src="~/assets/images/defaultUserImage.png">
+                            }
+                            
                         </div>
                         <div class="comment-info col-10">
                             <h4>Posted By: @comment.BlogUsers.FullName</h4>
@@ -201,13 +209,15 @@
                                 @comment.Body
                             }
 
+                            <hr class="hr-b">
+                            <div class="modal-btn">
                             @****************************************************************
                         SECTION 3: CAN WE RENDER THE EDIT BUTTON
                         *****************************************************************@
                             @if (comment.Moderated is null && comment.Deleted is null && comment.BlogUserId == userManager.GetUserId(User))
                             {
-                                <hr class="hr-b">
                                 <button data-toggle="modal" data-target="#editModal-@comment.Id" class="btn-sm btn-actions float-right font-weight-bold">Edit</button>
+                               
                             }
 
                             @****************************************************************
@@ -217,7 +227,9 @@
                             {
                                 <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#moderateModal-@comment.Id">Moderate</button>
                                 <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#deleteModal-@comment.Id">Delete</button>
+                                
                             }
+                            </div>
                         </div>
                     </div>
 
@@ -252,7 +264,7 @@
                                     <img src="~/assets/images/exclamation-octagon.svg">
                                     <span>Are you sure you want to delete this comment?</span>
                                 </div>
-                                <div>
+                                <div class="modal-btn">
                                     <button class="btn-danger font-weight-bold">Delete</button>&nbsp;&nbsp;&nbsp;
                                     <button type="button" class="btn-sm btn-actions font-weight-bold" data-dismiss="modal">Close</button>
                                 </div>
@@ -282,9 +294,10 @@
                                     <textarea onkeyup="countCharacters(this)" maxlength="2000" name="Body" class="form-control commentBody" required>@comment.Body</textarea>
                                     <span>2000 characters remaining.</span>
                                 </div>
-
-                                <button class="btn-sm btn-actions border-success font-weight-bold" type="submit">Submit</button>
-                                <button type="button" class="btn-sm btn-actions font-weight-bold" data-dismiss="modal">Close</button>
+                                <div class="modal-btn">
+                                    <button class="btn-sm btn-actions font-weight-bold" type="submit">Submit</button>
+                                    <button type="button" class="btn-sm btn-actions font-weight-bold" data-dismiss="modal">Close</button>
+                                </div>
                             </form>
                         </div>
                         <!-- Modal footer none -->
@@ -327,7 +340,7 @@
 
                                 <div class="form-group" style="margin-left:1rem;">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="modal-btn">
                                             <button class="btn-sm btn-actions border-success font-weight-bold" type="submit">Submit</button>
                                             <button class="btn-sm btn-actions font-weight-bold" type="button" data-dismiss="modal">Close</button>
                                         </div>
