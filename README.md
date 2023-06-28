@@ -1,15 +1,15 @@
 ###### <p align="right"><sub>top</sub></p>
-## The Blog Project
+# The Blog Project
 
 ![Blog](wwwroot/assets/images/blog03.png)
 ============
 
-# This is an ASP.NET MVC C# relational database application.
+### This is an ASP.NET MVC C# relational database application.
 
 ---
 
 
-[![Github Repo}](https://img.shields.io/badge/github_repo-3884FF?style=for-the-badge&logo=github)](https://github.com/daveyedgar/DevBlog5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![GitHub repo size](https://img.shields.io/github/repo-size/daveyedgar/DevBlog5?logo=github)
+[![Github Repo}](https://img.shields.io/badge/github_repo-3884FF?style=for-the-badge&logo=github)](https://github.com/daveyedgar/DevBlog5)
 
 
 ---
