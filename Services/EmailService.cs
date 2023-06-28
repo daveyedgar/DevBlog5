@@ -18,6 +18,7 @@ namespace DevBlog5.Services
             _mailSettings = mailSettings.Value;
         }
 
+        //for contact form
         public async Task SendContactEmailAsync(string name, string emailFrom, string? phone, string subject, string htmlMessage)
         {
 
@@ -52,11 +53,13 @@ namespace DevBlog5.Services
 
         }
 
+        // for email confirmation for new user registration
         public async Task SendEmailAsync(string emailTo, string subject, string htmlMessage)
         {
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(_mailSettings.Email);
             email.To.Add(MailboxAddress.Parse(emailTo));
+            email.Subject = subject;
 
             var builder = new BodyBuilder()
             {
