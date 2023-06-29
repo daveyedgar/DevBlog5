@@ -56,6 +56,38 @@ namespace DevBlog5.Services
         // for email confirmation for new user registration
         public async Task SendEmailAsync(string emailTo, string subject, string htmlMessage)
         {
+            var emailSender = _mailSettings.Email ?? Environment.GetEnvironmentVariable("Email");
+
+            var email = new MimeMessage();
+            email.Sender = MailboxAddress.Parse(_mailSettings.Email);
+            email.To.Add(MailboxAddress.Parse(emailTo));
+            email.Subject = subject;
+
+            var builder = new BodyBuilder()
+            {
+
+                HtmlBody = htmlMessage
+            };
+
+            email.Body = builder.ToMessageBody();
+
+            using var smtp = new SmtpClient();
+
+
+            var host = _mailSettings.EmailHost ?? Environment.GetEnvironmentVariable("EmailHost");
+            var port = _mailSettings.EmailPort != 0 ? _mailSettings.EmailPort : int.Parse(Environment.GetEnvironmentVariable("EmailPort")!);
+            var password = _mailSettings.EmailPassword ?? Environment.GetEnvironmentVariable("EmailPassword");
+
+            smtp.Connect(host, port, SecureSocketOptions.StartTls);
+            smtp.Authenticate(emailSender, password);
+
+            await smtp.SendAsync(email);
+            smtp.Disconnect(true);
+        }
+
+        //original
+        public async Task SendEmailAsync1(string emailTo, string subject, string htmlMessage)
+        {
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(_mailSettings.Email);
             email.To.Add(MailboxAddress.Parse(emailTo));
