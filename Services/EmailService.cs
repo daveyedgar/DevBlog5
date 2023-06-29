@@ -58,7 +58,7 @@ namespace DevBlog5.Services
 
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(emailSender);
-            email.To.Add(MailboxAddress.Parse(emailSender));
+            email.To.Add(MailboxAddress.Parse(emailTo));
             email.Subject = subject;
 
             var builder = new BodyBuilder()
