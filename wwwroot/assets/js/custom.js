@@ -1,8 +1,8 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     // for hover dropdown menu
-    $('ul.nav li.dropdown').hover(function() {
+    $('ul.nav li.dropdown').hover(function () {
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
-    }, function() {
+    }, function () {
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
     });
     // slick slider call 
@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
         nextButton: $('#next-button')
     });
 
-// jquery easy ticker for recent comments
+    // jquery easy ticker for recent comments
     $(document).ready(function () {
 
         $('.spost_nav_container').easyTicker({
@@ -51,15 +51,15 @@ jQuery(document).ready(function() {
         });
 
     });
-// end ticker recent comments
-// jquery easy ticker for recent categories
+    // end ticker recent comments
+    // jquery easy ticker for recent categories
     $(document).ready(function () {
 
         $('.category_nav_container').easyTicker({
             direction: 'up',
             easing: 'swing',
             speed: 2000,
-            interval: 5000,
+            interval: 0,
             height: '320px',
             visible: 0,
             mousePause: true,
@@ -77,7 +77,7 @@ jQuery(document).ready(function() {
         });
 
     });
-// end ticker recent categories
+    // end ticker recent categories
 
     jQuery(".fancybox-buttons").fancybox({
         prevEffect: 'none',
@@ -92,7 +92,7 @@ jQuery(document).ready(function() {
     });
     // jQuery('a.gallery').colorbox();
     //Check to see if the window is top if not then display button
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.scrollToTop').fadeIn();
         } else {
@@ -100,7 +100,7 @@ jQuery(document).ready(function() {
         }
     });
     //Click event to scroll to top
-    $('.scrollToTop').click(function() {
+    $('.scrollToTop').click(function () {
         $('html, body').animate({
             scrollTop: 0
         }, 800);
