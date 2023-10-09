@@ -1341,6 +1341,15 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	}
 }
 
+.link, .link a:active, .link a:visited, .link a:focus{
+	color: blue;
+	text-decoration: underline;
+}
+
+	.link a:visited {
+		color: blue;
+		text-decoration: underline;
+	}
 
 /*************************************************************
 //
