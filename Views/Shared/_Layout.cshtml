@@ -21,16 +21,16 @@
     <link href="~/assets/css/summernote-lite.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
-    <script src="https://kit.fontawesome.com/45e2949365.js" crossorigin="anonymous" asp-append-version="true"></script>
 </head>
 <body>
 
 
 
     <!-- preloader-->
-    <div id="preloader">
-        <div id="status">&nbsp;</div>
-    </div>
+    @*     <div id="preloader">
+    <div id="status">&nbsp;</div>
+    </div> *@
+
     <a id="back-top" class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     @*-----------------------------------------------------------------------------------------
 
@@ -242,60 +242,60 @@
     COOKIE MODAL                                                                  COOKIE MODAL
 
     -----------------------------------------------------------------------------------------*@
-    <div class="js-cookiebar cookiebar">
-        <div class="ccard">
-            <div class="ccard-inner">
-                <div class="ccard-content">
-                    <h4 class="ccard-title">Cookie Conset</h4>
-                    <p>
-                        https://davidbellerose.com uses cookies (and other techniques) to collect information about the use of the
-                        platform in order to analyze and improve your experience, for the use of social media, and to ensure that
-                        advertisements are relevant to you. See our <a href="https://www.davidbellerose.com/cookie.html" target="_blank" class="link">
-                            Cookie Policy
-                        </a>, <a href="https://davidbellerose.com/terms.html" target="_blank" class="link">Terms &#38; Conditions</a>,
-                        and <a href="https://davidbellerose.com/privacy.html" target="_blank" class="link">Privacy Statement</a> for more information.
-                        By continuing on this site and accepting our cookies you agree to the
-                        collection of information on this basis by us and by third parties
-                        on the platform.
-                        <h6>Please customize your cookie settings below.</h6>
-                        <hr>
-                        <div class="justify-content-center">
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="basic_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" disabled checked />
-                                    <span class="material-switch-control-indicator switch-basic"></span>
-                                    Basic
-                                </label>
-                            </div>
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="preferences_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
-                                    <span class="material-switch-control-indicator"></span>
-                                    Preferences
-                                </label>
-                            </div>
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="statistics_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
-                                    <span class="material-switch-control-indicator"></span>
-                                    Statistics
-                                </label>
-                            </div>
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="marketing_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
-                                    <span class="material-switch-control-indicator"></span>
-                                    Marketing
-                                </label>
-                            </div>
-                        </div>
-                        <div class="justify-content-center-btn">
-                            <button type="button" class="btn btn-actions" id="cookiebutton" onclick="onCookieButtonClick()">Accept</button>
-                        </div>
-                </div>
-            </div>
-        </div>
+    @* <div class="js-cookiebar cookiebar">
+    <div class="ccard">
+    <div class="ccard-inner">
+    <div class="ccard-content">
+    <h4 class="ccard-title">Cookie Conset</h4>
+    <p>
+    https://davidbellerose.com uses cookies (and other techniques) to collect information about the use of the
+    platform in order to analyze and improve your experience, for the use of social media, and to ensure that
+    advertisements are relevant to you. See our <a href="https://www.davidbellerose.com/cookie.html" target="_blank" class="link">
+    Cookie Policy
+    </a>, <a href="https://davidbellerose.com/terms.html" target="_blank" class="link">Terms &#38; Conditions</a>,
+    and <a href="https://davidbellerose.com/privacy.html" target="_blank" class="link">Privacy Statement</a> for more information.
+    By continuing on this site and accepting our cookies you agree to the
+    collection of information on this basis by us and by third parties
+    on the platform.
+    <h6>Please customize your cookie settings below.</h6>
+    <hr>
+    <div class="justify-content-center">
+    <div class="">
+    <label class="custom-control material-switch">
+    <input id="basic_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" disabled checked />
+    <span class="material-switch-control-indicator switch-basic"></span>
+    Basic
+    </label>
     </div>
+    <div class="">
+    <label class="custom-control material-switch">
+    <input id="preferences_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
+    <span class="material-switch-control-indicator"></span>
+    Preferences
+    </label>
+    </div>
+    <div class="">
+    <label class="custom-control material-switch">
+    <input id="statistics_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
+    <span class="material-switch-control-indicator"></span>
+    Statistics
+    </label>
+    </div>
+    <div class="">
+    <label class="custom-control material-switch">
+    <input id="marketing_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" checked />
+    <span class="material-switch-control-indicator"></span>
+    Marketing
+    </label>
+    </div>
+    </div>
+    <div class="justify-content-center-btn">
+    <button type="button" class="btn btn-actions" id="cookiebutton" onclick="onCookieButtonClick()">Accept</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div> *@
 
     @*-----------------------------------------------------------------------------------------
 
@@ -332,7 +332,7 @@
             <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;|&nbsp;
-            <button id="open-cookie" class="js-change-cookie">Change Cookie Preferences</button>
+            @* <button id="open-cookie" class="js-change-cookie">Change Cookie Preferences</button> *@
         </div>
         <div class="footer-item">
             <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
@@ -350,6 +350,7 @@
         </div>
     </div>
 
+    <script src="https://kit.fontawesome.com/45e2949365.js" crossorigin="anonymous" asp-append-version="true"></script>
     <script src="~/assets/js/jquery.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/wow.min.js" asp-append-version="true"></script>
@@ -361,7 +362,6 @@
     <script src="~/assets/js/jquery.fancybox.pack.js" asp-append-version="true"></script>
     <script src="~/assets/js/slick.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/summernote-lite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/assets/js/custom.js" asp-append-version="true"></script>
     <script src="~/assets/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
