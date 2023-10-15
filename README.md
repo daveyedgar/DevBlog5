@@ -1,7 +1,7 @@
 ###### <p align="right"><sub>top</sub></p>
 
 
-# [The Blog Project](https://david-bellerose-blog.up.railway.app/)
+# The Blog Project
 
 ![Blog](wwwroot/assets/images/blog03.png)
 ============
@@ -12,7 +12,7 @@
 
 
 [![Github Repo}](https://img.shields.io/badge/github_repo-3884FF?style=for-the-badge&logo=github)](https://github.com/daveyedgar/DevBlog5)
-
+[Go To Blog Website](https://david-bellerose-blog.up.railway.app/)
 
 ---
 <!-- TABLE OF CONTENTS -->
