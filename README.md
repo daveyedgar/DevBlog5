@@ -1,7 +1,9 @@
 ###### <p align="right"><sub>top</sub></p>
-# The Blog Project
+
 
 # [The Blog Project](https://david-bellerose-blog.up.railway.app/)
+
+# <a href="https://david-bellerose-blog.up.railway.app/" target="_blank">The Blog Project</a>
 
 ![Blog](wwwroot/assets/images/blog03.png)
 ============
