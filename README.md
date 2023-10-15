@@ -11,8 +11,8 @@
 ---
 
 
-[![Github Repo}](https://img.shields.io/badge/github_repo-3884FF?style=for-the-badge&logo=github)](https://github.com/daveyedgar/DevBlog5)
-          [Go To Blog Website](https://david-bellerose-blog.up.railway.app/)
+<pre>[![Github Repo}](https://img.shields.io/badge/github_repo-3884FF?style=for-the-badge&logo=github)](https://github.com/daveyedgar/DevBlog5)
+          [Go To Blog Website](https://david-bellerose-blog.up.railway.app/)</pre>
 
 ---
 <!-- TABLE OF CONTENTS -->
