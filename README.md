@@ -9,7 +9,7 @@
 ---
 
 
-[![Github Repo}](https://img.shields.io/badge/github_repo-3884FF?style=for-the-badge&logo=github)](https://github.com/daveyedgar/DevBlog5)
+[![Github Repo}](https://img.shields.io/badge/github_repo-3884FF?style=for-the-badge&logo=github)](https://github.com/davidbellerose/DevBlog5)
 
 
 ---
@@ -93,7 +93,7 @@ This project is a full-stack web application built with the ASP.NET framework us
 
 [![Twitter}](https://img.shields.io/badge/twitter-000000?style=for-the-badge&logo=twitter)](https://external.ink?to=https://twitter.com/DavidEBellerose)
 
-[![Github Repo}](https://img.shields.io/badge/github-3884FF?style=for-the-badge&logo=github)](https://external.ink?to=https://github.com/daveyedgar)
+[![Github Repo}](https://img.shields.io/badge/github-3884FF?style=for-the-badge&logo=github)](https://external.ink?to=https://github.com/davidbellerose)
 
 
 
