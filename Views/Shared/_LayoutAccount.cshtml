@@ -10,11 +10,11 @@
     <link href="~/assets/images/dblogo.svg" rel="apple-touch-icon" />
     <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" asp-append-version="true">
     <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true">
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true"> *@
     <link rel="stylesheet" type="text/css" href="~/assets/css/font.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/li-scroller.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.fancybox.css" asp-append-version="true">
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/li-scroller.css" asp-append-version="true"> *@
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css" asp-append-version="true"> *@
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.fancybox.css" asp-append-version="true"> *@
     <link rel="stylesheet" type="text/css" href="~/assets/css/theme.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/vendor/boxicons/css/boxicons.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/css/summernote-lite.min.css" />
@@ -54,13 +54,13 @@
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home" style="font-size: 1.5rem;"></span></a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="https://davidbellerose.com" target="_blank">About</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                             </li>
                             @if (User.IsInRole("Administrator"))
                             {
@@ -105,8 +105,7 @@
             <span>&copy;2022</span> David Bellerose |&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;|&nbsp;
-            <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;|&nbsp;
-            <button id="open-cookie" class="btn btn-actions js-change-cookie">Change Cookie Preferences</button>
+            <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a>
         </div>
         <div class="footer-item">
             <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
@@ -116,9 +115,7 @@
             <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer">
                 <img src="~/assets/images/businessman-with-briefcase-icon.svg" style="width: 40px;height:auto;" />
             </a>
-            <a href="https://www.davidbellerose.com/#contact" target="_blank" rel="noopener noreferrer">
-                <img src="~/assets/images/envelope-at-fill.svg" />
-            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Contact"><img src="~/assets/images/envelope-at-fill.svg" /></a>
             <a href="https://twitter.com/DavidEBellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
             <a href="https://github.com/davidbellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
         </div>
@@ -127,15 +124,15 @@
     <script src="https://kit.fontawesome.com/45e2949365.js" crossorigin="anonymous" asp-append-version="true"></script>
     <script src="~/assets/js/jquery.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/wow.min.js" asp-append-version="true"></script>
+    @* <script src="~/assets/js/wow.min.js" asp-append-version="true"></script> *@
     <script src="~/assets/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="~/assets/js/jquery.li-scroller.1.0.js" asp-append-version="true"></script>
-    <script src="~/assets/js/jquery.newsTicker.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/jquery.fancybox.pack.js" asp-append-version="true"></script>
-    <script src="~/assets/js/slick.min.js" asp-append-version="true"></script>
+    @* <script src="~/assets/js/jquery.li-scroller.1.0.js" asp-append-version="true"></script> *@
+    @* <script src="~/assets/js/jquery.newsTicker.min.js" asp-append-version="true"></script> *@
+    @* <script src="~/assets/js/jquery.fancybox.pack.js" asp-append-version="true"></script> *@
+    @* <script src="~/assets/js/slick.min.js" asp-append-version="true"></script> *@
     <script src="~/assets/js/summernote-lite.min.js"></script>
-    <script src="~/assets/js/custom.js" asp-append-version="true"></script>
+    @* <script src="~/assets/js/custom.js" asp-append-version="true"></script> *@
     <script src="~/assets/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

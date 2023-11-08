@@ -11,11 +11,11 @@
     <link href="~/assets/images/dblogo.svg" rel="apple-touch-icon" />
     <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" asp-append-version="true">
     <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true">
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css" asp-append-version="true"> *@
     <link rel="stylesheet" type="text/css" href="~/assets/css/font.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/li-scroller.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css" asp-append-version="true">
-    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.fancybox.css" asp-append-version="true">
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/li-scroller.css" asp-append-version="true"> *@
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css" asp-append-version="true"> *@
+    @* <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.fancybox.css" asp-append-version="true"> *@
     <link rel="stylesheet" type="text/css" href="~/assets/css/theme.css" asp-append-version="true">
     <link rel="stylesheet" href="~/assets/vendor/boxicons/css/boxicons.min.css" asp-append-version="true">
     <link href="~/assets/css/summernote-lite.min.css" rel="stylesheet" />
@@ -61,13 +61,13 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-home desktop-home" style="font-size: 1.5rem;"></span></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="https://davidbellerose.com" target="_blank">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                         </li>
                         @if (User.IsInRole("Administrator"))
                         {
@@ -118,13 +118,13 @@
 
                         <ul class="news-ticker-h">
                             <li>
-                                <a href="https://twitter.com/DavidEBellerose/status/1659634710442549274" target="_blank">
+                                <a href="https://www.davidbellerose.com" target="_blank">
                                     <img src="~/assets/images/dblogo.svg" alt="David Bellerose Logo">
                                     David Bellerose: ASP.NET Full Stack Web Developer
                                 </a>
                             </li>
                             <li>
-                                <a href="https://david-bellerose-blog.up.railway.app/BlogPosts/UrlFriendly/why-i-chose-to-code#commentSection" target="_blank">
+                                <a href="https://david-bellerose-blog.up.railway.app/BlogPosts/UrlFriendly/why-i-chose-to-code#commentSection">
                                     <i class="fa fa-file-invoice"></i>
                                     Why I chose to code
                                 </a>
@@ -149,7 +149,7 @@
                                 <li class="linkedin"><a href="https://www.linkedin.com/in/david-bellerose" target="_blank"></a></li>
                                 <li class="website"><a href="https://www.davidbellerose.com" target="_blank"></a></li>
                                 <li class="github"><a href="https://github.com/davidbellerose" target="_blank"></a></li>
-                                <li class="mail"><a href="https://www.davidbellerose.com/#contact" target="_blank"></a></li>
+                                <li class="mail"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -183,11 +183,13 @@
                     <div class="latest_post">
                         <h2><span>Latest posts</span></h2>
                         <div class="latest_post_container">
-                            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-                            <ul class="latest_postnav">
-                                @await Component.InvokeAsync("RecentPosts")
-                            </ul>
-                            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+                            <div class="prev-button" onclick="scrollPostUp()"><i class="fa fa-chevron-up"></i></div>
+                            <div id="latestPosts">
+                                <ul class="latest_postnav">
+                                    @await Component.InvokeAsync("RecentPosts")
+                                </ul>
+                            </div>
+                            <div class="next-button" onclick="scrollPostDown()"><i class="fa  fa-chevron-down"></i></div>
                         </div>
                     </div>
 
@@ -196,12 +198,16 @@
                     COMMENTS
 
                     -----------------------------------------------------------------------------------------*@
-                    <div class="single_sidebar">
+                    <div class="latest_post">
                         <h2><span>Latest Comments</span></h2>
-                        <div class="spost_nav_container">
-                            <ul class="spost_nav">
-                                @await Component.InvokeAsync("RecentComments")
-                            </ul>
+                        <div class="latest_post_container">
+                            <div class="prev-button" onclick="scrollCommentUp()"><i class="fa fa-chevron-up"></i></div>
+                            <div id="latestComments">
+                                <ul class="latest_postnav">
+                                    @await Component.InvokeAsync("RecentComments")
+                                </ul>
+                            </div>
+                            <div class="next-button" onclick="scrollCommentDown()"><i class="fa  fa-chevron-down"></i></div>
                         </div>
                     </div>
                     @*-----------------------------------------------------------------------------------------
@@ -209,12 +215,16 @@
                     CATEGORIES
 
                     -----------------------------------------------------------------------------------------*@
-                    <div class="single_sidebar">
-                        <h2><span>Categories</span></h2>
-                        <div class="category_nav_container">
-                            <ul class="spost_nav">
-                                @await Component.InvokeAsync("RecentCategories")
-                            </ul>
+                    <div class="latest_post">
+                        <h2><span>Latest Categories</span></h2>
+                        <div class="latest_post_container">
+                            <div class="prev-button" onclick="scrollCategoryUp()"><i class="fa fa-chevron-up"></i></div>
+                            <div id="latestCategories">
+                                <ul class="latest_postnav">
+                                    @await Component.InvokeAsync("RecentCategories")
+                                </ul>
+                            </div>
+                            <div class="next-button" onclick="scrollCategoryDown()"><i class="fa  fa-chevron-down"></i></div>
                         </div>
                     </div>
                     @*-----------------------------------------------------------------------------------------
@@ -236,65 +246,6 @@
                 </div>
             </div>
         </section>
-    </div>
-    @*-----------------------------------------------------------------------------------------
-
-    COOKIE MODAL                                                                  COOKIE MODAL
-
-    -----------------------------------------------------------------------------------------*@
-    <div class="js-cookiebar cookiebar">
-        <div class="ccard">
-            <div class="ccard-inner">
-                <div class="ccard-content">
-                    <h4 class="ccard-title">Cookie Conset</h4>
-                    <p>
-                        https://davidbellerose.com uses cookies (and other techniques) to collect information about the use of the
-                        platform in order to analyze and improve your experience, for the use of social media, and to ensure that
-                        advertisements are relevant to you. See our <a href="https://www.davidbellerose.com/cookie.html" target="_blank" class="link">
-                            Cookie Policy
-                        </a>, <a href="https://davidbellerose.com/terms.html" target="_blank" class="link">Terms &#38; Conditions</a>,
-                        and <a href="https://davidbellerose.com/privacy.html" target="_blank" class="link">Privacy Statement</a> for more information.
-                        By continuing on this site and accepting our cookies you agree to the
-                        collection of information on this basis by us and by third parties
-                        on the platform.
-                        <h6>Please customize your cookie settings below.</h6>
-                        <hr>
-                        <div class="justify-content-center">
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="basic_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="true" disabled checked />
-                                    <span class="material-switch-control-indicator switch-basic"></span>
-                                    Basic
-                                </label>
-                            </div>
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="preferences_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="false" />
-                                    <span class="material-switch-control-indicator"></span>
-                                    Preferences
-                                </label>
-                            </div>
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="statistics_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="false" />
-                                    <span class="material-switch-control-indicator"></span>
-                                    Statistics
-                                </label>
-                            </div>
-                            <div class="">
-                                <label class="custom-control material-switch">
-                                    <input id="marketing_chkbx" class="material-switch-control-input" type="checkbox" name="items" value="false" />
-                                    <span class="material-switch-control-indicator"></span>
-                                    Marketing
-                                </label>
-                            </div>
-                        </div>
-                        <div class="justify-content-center-btn">
-                            <button type="button" class="btn btn-actions" id="cookiebutton" onclick="onCookieButtonClick()">Accept</button>
-                        </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     @*-----------------------------------------------------------------------------------------
@@ -331,8 +282,7 @@
             <span>&copy;2022</span> &nbsp;David Bellerose |&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/privacy.html" target="_blank">Privacy</a> &nbsp;|&nbsp;
             <a class="ms-2" href="https://davidbellerose.com/terms.html" target="_blank">Terms & Conditions</a> &nbsp;|&nbsp;
-            <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a> &nbsp;|&nbsp;
-            <button id="open-cookie" class="js-change-cookie">Change Cookie Preferences</button>
+            <a class="ms-2" href="https://davidbellerose.com/cookies.html" target="_blank">Cookie Policy</a>
         </div>
         <div class="footer-item">
             <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer"><img src="~/assets/images/dblogo.svg" height="25" alt="David Bellerose Logo"></a>
@@ -342,9 +292,7 @@
             <a href="https://www.davidbellerose.com" target="_blank" rel="noopener noreferrer">
                 <img src="~/assets/images/businessman-with-briefcase-icon.svg" style="width: 40px;height:auto;" />
             </a>
-            <a href="https://www.davidbellerose.com/#contact" target="_blank" rel="noopener noreferrer">
-                <img src="~/assets/images/envelope-at-fill.svg" />
-            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Contact"><img src="~/assets/images/envelope-at-fill.svg" /></a>
             <a href="https://twitter.com/DavidEBellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
             <a href="https://github.com/davidbellerose" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
         </div>
@@ -353,16 +301,16 @@
     <script src="https://kit.fontawesome.com/45e2949365.js" crossorigin="anonymous" asp-append-version="true"></script>
     <script src="~/assets/js/jquery.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/wow.min.js" asp-append-version="true"></script>
+    @* <script src="~/assets/js/wow.min.js" asp-append-version="true"></script> *@
     <script src="~/assets/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="~/assets/js/jquery.li-scroller.1.0.js" asp-append-version="true"></script>
-    <script src="~/assets/js/jquery.newsTicker.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/jquery.easy-ticker.js" asp-append-version="true"></script>
+    @* <script src="~/assets/js/jquery.li-scroller.1.0.js" asp-append-version="true"></script> *@
+    @* <script src="~/assets/js/jquery.newsTicker.min.js" asp-append-version="true"></script> *@
+    @* <script src="~/assets/js/jquery.easy-ticker.js" asp-append-version="true"></script> *@
     <script src="~/assets/js/jquery.fancybox.pack.js" asp-append-version="true"></script>
-    <script src="~/assets/js/slick.min.js" asp-append-version="true"></script>
+    @* <script src="~/assets/js/slick.min.js" asp-append-version="true"></script> *@
     <script src="~/assets/js/summernote-lite.min.js"></script>
-    <script src="~/assets/js/custom.js" asp-append-version="true"></script>
+    @* <script src="~/assets/js/custom.js" asp-append-version="true"></script> *@
     <script src="~/assets/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

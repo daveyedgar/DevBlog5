@@ -1,5 +1,7 @@
 ﻿@page
 @model ResendEmailConfirmationModel
+@using DevBlog5.Areas.Identity.Pages.Account
+@using DevBlog5.Areas.Identity.Pages.Account.Manage
 @{
     ViewData["Title"] = "Resend email confirmation";
 }
@@ -16,7 +18,7 @@
                 <input asp-for="Input.Email" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Resend</button>
+            <button type="submit" class="btn btn-actions">Resend</button>
         </form>
     </div>
 </div>

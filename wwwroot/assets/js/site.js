@@ -19,7 +19,7 @@ function sendContact() {
 }
 
 function phoneNumber() {
-    phone = '91' + '7-' + '497-7' + '553';
+    phone = '77' + '2-' + '494-1' + '018';
     document.getElementsByClassName('showPhone')[0].title = phone;
     alert(phone);
 }
@@ -50,125 +50,97 @@ $(document).ready(function () {
 });
 
 
-
 // **************************************************
 //
-//              COOKIE MODAL
+//              BUTTON VISITED CLASS
+//
+//      overrides the button visited style
+//      there is no pseudo :visited class for buttons
 //
 // **************************************************
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// Setup GTM dataLayer -- load
-window.dataLayer = window.dataLayer || [];
 
-// see if cookie exists, if not show cookiebar -- recommended to do this in head of page
-if (!getCookie("CookieConsent")) {
+var btnActions = document.getElementsByClassName("btn-actions");
 
-    document.getElementsByClassName("js-cookiebar")[0].style.display = "block";
+var myFunction = function () {
+    //var attribute = this.getAttribute("data-myattribute");
+    //alert(attribute);
+    this.style.color = 'white';
+};
 
-    window.dataLayer = [{
-        'event': 'NoCookieExist'
-    }];
-} else {
-    var cookieValue =
-        "{" + '"cookieValue"' + ":" + getCookie("CookieConsent") + "}";
-    var jsonData = JSON.parse(cookieValue);
-    pushCookieValueToDataLayer(jsonData.cookieValue, "CookieBarStatus", false);
-}
-
-// get Cookie by name - credits to stackoverflow
-function getCookie(cname) {
-    var name = cname + "=",
-        decodedCookie = decodeURIComponent(document.cookie),
-        ca = decodedCookie.split(";");
-
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == " ") {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
+for (var i = 0; i < btnActions.length; i++) {
+    if (btnActions[i].tagName === "BUTTON") {
+        btnActions[i].addEventListener('click', myFunction, false);
     }
-    return "";
 }
 
-// push cookieValue to dataLayer - set array, set eventName
-function pushCookieValueToDataLayer(arr, eventName, boolean) {
-    var x = arr.filter(function (v) {
-        return v.value === true;
+// **************************************************
+//
+//
+//          VERTICAL CAROUSEL SLIDER FOR RECENT POSTS/COMMENTS/CATEGORIES
+//
+//
+//
+// **************************************************
+// latest posts
+function scrollPostDown(){
+    const div = document.getElementById("latestPosts");
+    let number = div.scrollTop;
+    div.scrollTo({
+        top: number + 80,
+        behavior: 'smooth'
     });
-    dataLayerType(x, eventName, boolean);
 }
 
-function dataLayerType(x, e, b) {
-    if (b) {
-        for (var i = 0; i < x.length; i++) {
-            window.dataLayer.push(_defineProperty({}, x[i].name, x[i].value));
-        }
-        window.dataLayer.push({
-            'event': e
-        });
-    } else {
-        var dataInit = [];
-        for (var i = 0; i < x.length; i++) {
-            dataInit.push(_defineProperty({}, x[i].name, x[i].value));
-        };
-        dataInit.push({
-            'event': e
-        });
-        window.dataLayer = dataInit;
-    }
+
+function scrollPostUp(){
+    const div = document.getElementById("latestPosts");
+    let number = div.scrollTop;
+    div.scrollTo({
+        top: number - 80,
+        behavior: 'smooth'
+    });
 }
 
-// set cookie on click this is the accept button in the modal
-function onCookieButtonClick() {
-    var basicValue = document.getElementById("basic_chkbx").checked,
-        preferencesValue = document.getElementById("preferences_chkbx").checked,
-        statisticsValue = document.getElementById("statistics_chkbx").checked,
-        marketingValue = document.getElementById("marketing_chkbx").checked,
-        options = [
-            { name: "basic", value: basicValue },
-            { name: "preferences", value: preferencesValue },
-            { name: "statistics", value: statisticsValue },
-            { name: "marketing", value: marketingValue }
-        ],
-        data = JSON.stringify(options),
-        date = new Date();
-
-    date.setTime(date.getTime() + 3650 * 24 * 60 * 60 * 1000);
-    var expires = "expires=" + date.toUTCString();
-
-    // set cookie
-    document.cookie = "CookieConsent=" + data + ";" + expires + ";";
-    pushCookieValueToDataLayer(options, "CookiePreferencesChange", true);
-
-    document.getElementsByClassName("js-cookiebar")[0].style.display = "none";
+// latest comments
+function scrollCommentDown() {
+    const div = document.getElementById("latestComments");
+    let number = div.scrollTop;
+    div.scrollTo({
+        top: number + 80,
+        behavior: 'smooth'
+    });
 }
 
-// show cookiebar on click
-var changeCookie = document.getElementById("open-cookie");
 
-// Get cookievalue, set checkboxes to right value and show cookiebar
-changeCookie.addEventListener(
-    "click",
-    function () {
-        if (getCookie("CookieConsent")) {
-            var cookieValue =
-                "{" + '"cookieValue"' + ":" + getCookie("CookieConsent") + "}";
-            var jsonData = JSON.parse(cookieValue);
-            var x = jsonData.cookieValue.filter(function (v) {
-                return v.value === true;
-            });
+function scrollCommentUp() {
+    const div = document.getElementById("latestComments");
+    let number = div.scrollTop;
+    div.scrollTo({
+        top: number - 80,
+        behavior: 'smooth'
+    });
+}
 
-            for (let i = 0; i < x.length; i++) {
-                let y = x[i].name + "_chkbx";
-                document.getElementById(y).checked = true;
-            }
-        }
 
-        document.getElementsByClassName("js-cookiebar")[0].style.display = "block";
-    },
-    false
-);
+
+// latest categories
+function scrollCategoryDown() {
+    const div = document.getElementById("latestCategories");
+    let number = div.scrollTop;
+    div.scrollTo({
+        top: number + 80,
+        behavior: 'smooth'
+    });
+}
+
+
+function scrollCategoryUp() {
+    const div = document.getElementById("latestCategories");
+    let number = div.scrollTop;
+    div.scrollTo({
+        top: number - 80,
+        behavior: 'smooth'
+    });
+}
+

@@ -160,21 +160,17 @@ input {
 	width: 100%;
 }
 
-.latest_post {
-	margin: 1rem 0;
-}
-
-.latest_post_container {
-	display: inline;
-	float: left;
-	height: 420px;
-	position: relative;
-	width: 100%;
-}
-
 .category_nav_containier {
 	height: 500px;
 }
+
+
+/*****************************************************************************************
+	
+	DEFAULTS																			DEFAULTS
+
+*****************************************************************************************/
+
 
 ul {
 	padding: 0;
@@ -193,7 +189,6 @@ a {
 	}
 
 	a:visited {
-		color: inherit;
 		text-decoration: none
 	}
 
@@ -201,6 +196,19 @@ a {
 		outline: none;
 		text-decoration: none
 	}
+
+	a:focus-visible {
+		outline: none;
+		text-decoration: none;
+		border: 4px solid green;
+	}
+
+button:focus-visible {
+	outline: none;
+	text-decoration: inherit;
+	border: 4px solid green;
+	color: white;
+}
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Oswald',sans-serif
@@ -221,6 +229,10 @@ img {
 button.btn-sm, a.btn-sm {
 	line-height: 0.8;
 	display: block;
+}
+
+button:visited{
+	color: white;
 }
 
 
@@ -637,14 +649,30 @@ button.btn-sm, a.btn-sm {
 	justify-content: start;
 }
 
-	.footer-item a:hover {
-		color: blue;
+	.footer-item a {
+		color: white;
 	}
 
-	.footer-item a img {
-		width: 30px;
-		height: auto;
-	}
+		.footer-item a:hover {
+			color: #d083cf;
+		}
+
+		.footer-item a:visited {
+			color: white;
+		}
+
+		.footer-item a:active {
+			color: white;
+		}
+
+		.footer-item a:focus {
+			color: white;
+		}
+
+		.footer-item a img {
+			width: 30px;
+			height: auto;
+		}
 
 	.footer-item:nth-child(1) {
 		flex-wrap: wrap;
@@ -703,6 +731,14 @@ button.btn-sm, a.btn-sm {
 	color: black !important;
 }
 
+
+/*****************************************************************************************
+	
+	CRUD BUTTONS																CRUD BUTTONS 
+
+*****************************************************************************************/
+
+
 /* for the crud buttons*/
 .btn-actions {
 	border: 2px solid #d083cf;
@@ -725,21 +761,34 @@ button.btn-sm, a.btn-sm {
 	padding: 1px 4px;
 }
 
+
+	.btn:hover,
+	.btn:visited,
+	.btn:active,
 	.btn-actions:hover,
 	.btn-actions:visited,
 	.btn-actions:active,
 	.btn-readmore:hover,
 	.btn-readmore:visited,
-	.btn-readmore:active,
-	.btn:hover,
-	.btn:visited,
-	.btn:active {
+	.btn-readmore:active {
 		border: 2px solid #d083cf;
 		color: #d083cf;
 		text-shadow: none;
 		background-color: #fff;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
+
+.btn:link:not(:hover) {
+	color: white;
+}
+
+.btn-readmore:link:not(:hover) {
+	color: white;
+}
+
+.btn-actions:link:not(:hover) {
+	color: white;
+}
 
 
 /*****************************************************************************************
@@ -1039,16 +1088,59 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 		text-decoration: underline;
 	}
 
-
-.recent-posts li a {
-	color: blue;
-	cursor: pointer;
+.recent-posts ul li {
+	margin: 3px;
 }
 
-	.recent-posts li a:hover {
-		color: lightblue;
+	.recent-posts ul li a {
+		color: #333333;
+		padding: 2px 4px;
+		border-radius: 4px;
+		font-size: 1rem;
+		cursor: pointer;
+		font-style: italic;
+		text-decoration: underline;
 	}
 
+		.recent-posts ul li a:visited {
+			color: #333333;
+			padding: 2px 4px;
+			border-radius: 4px;
+			font-size: 1rem;
+			cursor: pointer;
+			font-style: italic;
+			text-decoration: underline;
+		}
+
+		.recent-posts ul li a:hover {
+			color: white !important;
+			background-color: #d083cf;
+			text-shadow: 1px 1px 2px black;
+		}
+
+		.recent-posts ul li a:focus {
+			color: #333333;
+			padding: 2px 4px;
+			border-radius: 4px;
+			font-size: 1rem;
+			cursor: pointer;
+			font-style: italic;
+			text-decoration: underline;
+		}
+
+		.recent-posts ul li a:active {
+			color: #333333;
+			padding: 2px 4px;
+			border-radius: 4px;
+			font-size: 1rem;
+			cursor: pointer;
+			font-style: italic;
+			text-decoration: underline;
+		}
+
+		.recent-posts ul li a:link:not(:hover) {
+			color: #333333;
+		}
 
 .post-detail {
 	background-color: white;
@@ -1204,6 +1296,7 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	margin-top: 2rem;
 }
 
 	.modal-btn button {
@@ -1258,98 +1351,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 		background-color: #d083cf;
 	}
 
-/*****************************************************************************************
-	
-	COOKIE MODAL                                                      COOKIE MODAL
-
-*****************************************************************************************/
-
-
-/*@custom-media --max-md (width <= 48em);*/
-
-.cookiebar {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	display: none;
-	width: 100%;
-	padding: 3px;
-	z-index: 999;
-}
-
-	.cookiebar .ccard {
-		position: relative;
-		margin: 0 2rem;
-		padding: 10px;
-		border-radius: 2px;
-		background: transparent;
-	}
-
-.ccard-inner {
-	font-size: 0.8rem;
-	margin: 0 auto;
-	background-color: white;
-	box-shadow: 0 9px 9px 0 rgba(0,0,0,0.5), -3px -4px 5px 0 rgba(0,0,0,0.3), 0 3px 1px -2px rgba(0,0,0,03);
-}
-
-.ccard-content {
-	padding: 24px;
-	border-radius: 0 0 2px 2px;
-}
-
-
-.justify-content-center, .justify-content-center-btn {
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	flex-wrap: wrap;
-	gap: 2rem;
-	flex-grow: 0;
-	flex-shrink: 0;
-	flex-basis: 100%;
-}
-
-.justify-content-center {
-}
-
-
-/*button on footer for cookie consent banner*/
-
-.js-change-cookie {
-	font-size: 0.8rem;
-	padding: 0px 4px;
-	background-color: #303030;
-	border: 1px solid #d083cf;
-	color: #d083cf;
-}
-
-	.js-change-cookie:hover {
-		background-color: #d083cf;
-		color: white;
-	}
-
-@media (max-width: 685px) {
-	.justify-content-center {
-		justify-content: start;
-		max-width: 300px;
-	}
-
-	.justify-content-center-btn {
-		justify-content: center;
-		align-content: center;
-		align-items: center;
-	}
-}
-
-.link, .link a:active, .link a:visited, .link a:focus{
-	color: blue;
-	text-decoration: underline;
-}
-
-	.link a:visited {
-		color: blue;
-		text-decoration: underline;
-	}
 
 /*************************************************************
 //
@@ -1563,6 +1564,113 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 .container {
 	width: 90%;
 }
+
+/*****************************************************************************************
+	
+	SLIDER																			SLIDER
+
+*****************************************************************************************/
+
+
+
+#latestPosts, #latestComments, #latestCategories {
+	width: 100%;
+	height: 320px;
+	/*	overflow-y: scroll;*/
+	overflow: hidden;
+}
+
+
+.latest_post {
+	margin-top: 1rem;
+	float: left;
+	display: inline;
+	width: 100%;
+	overflow: hidden;
+}
+
+	.latest_post > h2 {
+		background: none repeat scroll 0 0 #151515;
+		color: #fff;
+		font-family: 'Oswald',sans-serif;
+		font-size: 18px;
+		margin-top: 5px;
+		font-weight: 400;
+		margin-bottom: 10px;
+		margin-left: 0;
+		padding: 0;
+		position: relative;
+		text-align: center;
+		text-transform: uppercase
+	}
+
+		.latest_post > h2 span {
+			padding: 4px 10px;
+			background: none repeat scroll 0 0 #d083cf;
+		}
+
+.latest_post .view-all-icon {
+	height: 30px;
+	width: 30px;
+	margin-left: 20px;
+}
+
+.latest_postnav {
+	height: auto !important;
+/*	margin-top: 20px;*/
+}
+
+	.latest_postnav li {
+		margin-bottom: 10px;
+		float: left;
+		width: 100%;
+		font-weight: bold;
+	}
+
+.latest_post_container .prev-button, next-button {
+	display: block
+}
+
+
+
+.latest_post_container {
+	display: inline;
+	float: left;
+	height: 380px;
+	position: relative;
+	width: 100%;
+	overflow: hidden
+}
+
+
+.prev-button {
+	cursor: pointer;
+	font-size: 20px;
+	left: 0;
+	/*    position: absolute;*/
+	text-align: center;
+	top: 0px;
+	width: 100%;
+	/*    display: none*/
+}
+
+.next-button {
+	color: #d083cf;
+	cursor: pointer;
+	/*	display: none;*/
+	font-size: 20px;
+	left: 0;
+	/*    position: absolute;*/
+	text-align: center;
+	bottom: 0;
+	width: 100%
+}
+
+	.prev-button i, .next-button i {
+		color: #d083cf;
+	}
+
+
 /*****************************************************************************************
 	*****************************************************************************************
 	*****************************************************************************************

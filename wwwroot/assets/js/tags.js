@@ -1,4 +1,6 @@
-﻿let index = 0;
+﻿//this is for the add tags form when creating a post
+
+let index = 0;
 
 function AddTag() {
     var newTag = document.getElementById("NewTag");

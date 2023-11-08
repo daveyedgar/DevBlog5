@@ -546,70 +546,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         opacity: 0.5
     }
 
-.latest_post {
-    float: left;
-    display: inline;
-    width: 100%;
-    overflow: hidden;
-}
-
-    .latest_post > h2 {
-        background: none repeat scroll 0 0 #151515;
-        color: #fff;
-        font-family: 'Oswald',sans-serif;
-        font-size: 18px;
-        margin-top: 5px;
-        font-weight: 400;
-        margin-bottom: 10px;
-        margin-left: 0;
-        padding: 0;
-        position: relative;
-        text-align: center;
-        text-transform: uppercase
-    }
-
-        .latest_post > h2 span {
-            padding: 4px 10px
-        }
-
-.latest_postnav {
-    height: auto !important;
-    margin-top: 20px
-}
-
-    .latest_postnav li {
-        margin-bottom: 10px;
-        float: left;
-        width: 100%;
-        font-weight: bold;
-    }
-
-.latest_post_container #prev-button, .latest_post_container #next-button {
-    display: block
-}
-
-#prev-button {
-    cursor: pointer;
-    font-size: 20px;
-    left: 0;
-    position: absolute;
-    text-align: center;
-    top: 0px;
-    width: 100%;
-    display: none
-}
-
-#next-button {
-    cursor: pointer;
-    display: none;
-    font-size: 20px;
-    left: 0;
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    width: 100%
-}
-
 .left_content {
     float: left;
     display: inline;
@@ -1508,11 +1444,6 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 
         .nav > li > a {
             padding: 8px 8px
-        }
-
-        .latest_post_container {
-            height: 380px;
-            overflow: hidden
         }
 
         #next-button {

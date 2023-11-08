@@ -1,5 +1,5 @@
 .scrollToTop{background-color:#d083cf; color:#fff}
-.scrollToTop:hover, .scrollToTop:focus{background-color:#fff; color:#d083cf; border-color:1px solid #d083cf}
+.scrollToTop:hover, .scrollToTop:focus{background-color:#fff; color:#d083cf; border:1px solid #d083cf}
 .logo > span{color:#d083cf}
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus{background-color:#d083cf}
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus{background-color:#d083cf}
@@ -8,7 +8,6 @@
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{background-color:#d083cf}
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{background-color:#d083cf}
 .latest_newsarea span{background:none repeat scroll 0 0 #d083cf}
-.latest_post > h2 span{background:none repeat scroll 0 0 #d083cf}
 #prev-button{color:#d083cf}
 #next-button{color:#d083cf}
 .single_post_content > h2 span{background:none repeat scroll 0 0 #d083cf}

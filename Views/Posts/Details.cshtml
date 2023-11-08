@@ -209,26 +209,26 @@
                                 @comment.Body
                             }
 
-                            <hr class="hr-b">
+                            @* <hr class="hr-b"> *@
                             <div class="modal-btn">
-                            @****************************************************************
-                        SECTION 3: CAN WE RENDER THE EDIT BUTTON
-                        *****************************************************************@
-                            @if (comment.Moderated is null && comment.Deleted is null && comment.BlogUserId == userManager.GetUserId(User))
-                            {
-                                <button data-toggle="modal" data-target="#editModal-@comment.Id" class="btn-sm btn-actions float-right font-weight-bold">Edit</button>
+                                @****************************************************************
+                                SECTION 3: RENDER THE EDIT BUTTON
+                                *****************************************************************@
+                                @if (comment.Moderated is null && comment.Deleted is null && comment.BlogUserId == userManager.GetUserId(User))
+                                {
+                                    <button data-toggle="modal" data-target="#editModal-@comment.Id" class="btn-sm btn-actions float-right font-weight-bold">Edit</button>
                                
-                            }
+                                }
 
-                            @****************************************************************
-                        SECTION 4: CAN WE RENDER THE MODERATE AND DELETE BUTTONS
-                        *****************************************************************@
-                            @if ((User.IsInRole(BlogRole.Moderator.ToString()) || User.IsInRole(BlogRole.Administrator.ToString())) && comment.Deleted is null)
-                            {
-                                <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#moderateModal-@comment.Id">Moderate</button>
-                                <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#deleteModal-@comment.Id">Delete</button>
+                                @****************************************************************
+                                SECTION 4: RENDER THE MODERATE AND DELETE BUTTONS
+                                *****************************************************************@
+                                @if ((User.IsInRole(BlogRole.Moderator.ToString()) || User.IsInRole(BlogRole.Administrator.ToString())) && comment.Deleted is null)
+                                {
+                                    <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#moderateModal-@comment.Id">Moderate</button>
+                                    <button class="btn-sm btn-actions font-weight-bold" data-toggle="modal" data-target="#deleteModal-@comment.Id">Delete</button>
                                 
-                            }
+                                }
                             </div>
                         </div>
                     </div>

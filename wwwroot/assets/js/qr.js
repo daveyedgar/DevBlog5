@@ -1,4 +1,6 @@
-﻿window.addEventListener("load", () => {
+﻿//for the qr code for alternate login
+
+window.addEventListener("load", () => {
     const uri = document.getElementById("qrCodeData").getAttribute('data-url');
     new QRCode(document.getElementById("qrCode"),
         {

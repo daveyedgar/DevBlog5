@@ -61,21 +61,20 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group userimage">
-                <img alt="User Image"src="Input.ImageFile" id="imageFileData" class="img-fluid" style="max-width:200px;"/>
+                <img id="imageFileData" class="img-fluid" src="~/assets/images/defaultUserImage.png" alt="User Image" style="max-width:200px;" />
             </div>
             <div class="form-group">
                 <label>Select Image</label>
                 <div class="custom-file">
                     <input type="file" asp-for="Input.ImageFile" class="form-control" accept=".jpg,.png,.jpeg,.gif,.webp,.tif,.bmp"
                            onchange="document.getElementById('imageFileData').src=window.URL.createObjectURL(this.files[0])" />
-
                     <span asp-validation-for="Input.ImageFile" class="text-danger"></span>
                 </div>
             </div><br />
             <button type="submit" class="btn btn-actions">Register</button>
         </form>
     </div>
-
+@* 
     <div class="col-md-6">
         <section>
             <h4>Use another service to register.</h4>
@@ -106,7 +105,7 @@
             }
         </section>
     </div>
-
+ *@
 </div>
 
 @section Scripts {
