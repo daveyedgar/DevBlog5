@@ -10,6 +10,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System.IO;
+using System.Reflection;
+using System;
 using TheBlogProject.Services;
 
 namespace DevBlog5
@@ -46,6 +50,37 @@ namespace DevBlog5
 
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
+
+            // Add API configs
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Blog",
+                    Version = "v1",
+                    Description = "David Bellerose Blog",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "David Belleorse",
+                        Email = "david@davidbellerose.com",
+                        Url = new Uri("https://davidbellerose.com/")
+                    }
+                });
+
+                var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
+            });
+
+            services.AddCors(obj =>
+            {
+                obj.AddPolicy("DefaultPolicy",
+                    builder => builder.AllowAnyOrigin()
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader());
+            });
+
+            services.AddMvc();
+            //app.UseCors("DefaultPolicy");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
