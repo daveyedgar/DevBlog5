@@ -83,17 +83,17 @@ for (var i = 0; i < btnActions.length; i++) {
 //
 // **************************************************
 // latest posts
-function scrollPostDown(){
+function scrollPostDown() {
     const div = document.getElementById("latestPosts");
     let number = div.scrollTop;
     div.scrollTo({
-        top: number + 80,
+        top: number + 74,
         behavior: 'smooth'
     });
 }
 
 
-function scrollPostUp(){
+function scrollPostUp() {
     const div = document.getElementById("latestPosts");
     let number = div.scrollTop;
     div.scrollTo({
@@ -107,7 +107,7 @@ function scrollCommentDown() {
     const div = document.getElementById("latestComments");
     let number = div.scrollTop;
     div.scrollTo({
-        top: number + 80,
+        top: number + 98,
         behavior: 'smooth'
     });
 }
@@ -117,7 +117,7 @@ function scrollCommentUp() {
     const div = document.getElementById("latestComments");
     let number = div.scrollTop;
     div.scrollTo({
-        top: number - 80,
+        top: number - 98,
         behavior: 'smooth'
     });
 }
@@ -129,7 +129,7 @@ function scrollCategoryDown() {
     const div = document.getElementById("latestCategories");
     let number = div.scrollTop;
     div.scrollTo({
-        top: number + 80,
+        top: number + 76,
         behavior: 'smooth'
     });
 }
@@ -139,7 +139,7 @@ function scrollCategoryUp() {
     const div = document.getElementById("latestCategories");
     let number = div.scrollTop;
     div.scrollTo({
-        top: number - 80,
+        top: number - 82,
         behavior: 'smooth'
     });
 }

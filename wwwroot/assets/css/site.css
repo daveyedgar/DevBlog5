@@ -1573,14 +1573,6 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 
 
 
-#latestPosts, #latestComments, #latestCategories {
-	width: 100%;
-	height: 320px;
-	/*	overflow-y: scroll;*/
-	overflow: hidden;
-}
-
-
 .latest_post {
 	margin-top: 1rem;
 	float: left;
@@ -1636,10 +1628,28 @@ div.swal2-container.swal2-center.swal2-backdrop-show > div {
 .latest_post_container {
 	display: inline;
 	float: left;
-	height: 380px;
+/*	height: 282px;*/
 	position: relative;
 	width: 100%;
 	overflow: hidden
+}
+
+
+
+#latestPosts {
+	width: 100%;
+	height: 303px;
+	overflow: hidden;
+}
+#latestComments{
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+}
+#latestCategories {
+	width: 100%;
+	height: 303px;
+	overflow: hidden;
 }
 
 
