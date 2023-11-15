@@ -11,9 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
 using System.Reflection;
-using System;
 using TheBlogProject.Services;
 
 namespace DevBlog5
@@ -80,8 +80,8 @@ namespace DevBlog5
             });
 
             services.AddMvc();
-            //app.UseCors("DefaultPolicy");
         }
+        // END API CONFIGS
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -98,6 +98,18 @@ namespace DevBlog5
                 app.UseHsts();
             }
 
+            // API
+            app.UseCors("DefaultPolicy");
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "PublicAPI, v1");
+                c.InjectStylesheet("/css/swagger.css");
+                c.InjectJavascript("/js/swagger.js");
+
+                c.DocumentTitle = "Blog";
+            });
+            // end API
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
