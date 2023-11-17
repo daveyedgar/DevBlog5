@@ -28,7 +28,12 @@ namespace DevBlog5.Controllers.API
                 return NotFound();
             }
 
-            IEnumerable<Post>? result = await _context.Posts.Take(count.Value).ToListAsync();
+            //IEnumerable<Post>? result = await _context.Posts.Take(count.Value).ToListAsync();
+            IEnumerable<Post>? result = await _context.Posts
+                                    .Where(p => p.Id == 5 || p.Id == 8 || p.Id == 7)
+                                    .OrderByDescending(p => p.Title)
+                                    .ToListAsync();
+            // change above line to include specific posts
 
             if (result.Any())
             {
