@@ -34,6 +34,7 @@ namespace DevBlog5.Models
         public DateTime? Updated { get; set; }
 
         //public bool IsReady { get; set; }
+        [Required]
         public ReadyStatus ReadyStatus { get; set; }
 
         public string? Slug { get; set; }

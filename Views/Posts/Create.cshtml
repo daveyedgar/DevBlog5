@@ -1,7 +1,5 @@
-﻿@model PostDetailViewModel
+﻿@model DevBlog5.ViewModels.PostDetailViewModel
 @using DevBlog5.Enums
-@using DevBlog5.Models
-@using DevBlog5.ViewModels
 
 
 @{
@@ -14,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-10">
-        <form asp-action="Create" enctype="multipart/form-data">
+        <form asp-controller="Posts" asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <br /><label asp-for="Post.BlogId" class="control-label"></label>
@@ -30,10 +28,10 @@
                 <textarea asp-for="Post.Abstract" class="form-control"></textarea>
                 <span asp-validation-for="Post.Abstract" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div id="article" class="form-group">
                 <label asp-for="Post.Content" class="control-label"></label>
                 <textarea id="summernote" asp-for="Post.Content" class="form-control"></textarea>
-                <span asp-validation-for="Post.Content" class="text-danger"></span>
+                <span id="contentVal" class="text-danger"></span>
             </div>
 
             <div class="form-group tag-form">
@@ -62,7 +60,10 @@
                         </div>
                     </div>
                     <div class="col tag-values">
-                        <select class="btn-block" name="TagValues" id="TagList" multiple></select>
+                        <select class="btn-block" name="TagValues" id="TagList" multiple >
+                            <option>Default Tag(remove)</option>
+                        </select>
+                        <span id="tagVal" class="text-danger"></span>
                         <button onclick="DeleteTag()" name="Delete" type="button" class="btn btn-sm btn-block btn-actions">Delete</button>
                     </div>
                 </div>
@@ -70,10 +71,8 @@
 
             <div class="form-group">
                 <label asp-for="Post.ReadyStatus" class="control-label"></label>
-                <select asp-for="Post.ReadyStatus" class="form-control" asp-items="@(Html.GetEnumSelectList<ReadyStatus>())">
-                    <option>Select Level ...</option>
-                </select>
-                <span asp-validation-for="Post.ReadyStatus" class="text-danger"></span>
+                <select id="readyStatus" asp-for="Post.ReadyStatus" class="form-control" asp-items="@(Html.GetEnumSelectList<ReadyStatus>())"></select>
+                <span id="readyVal" asp-validation-for="Post.ReadyStatus" class="text-danger"></span>
             </div>
 
             <!--for create method set image to default-->
@@ -88,7 +87,7 @@
                 <span asp-validation-for="Post.Image" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <button class="btn btn-actions" type="submit" value="Create">Create</button>
+                <button id="createBtn" class="btn btn-actions" type="submit" value="Create">Create</button>
             </div>
         </form>
     </div>
@@ -108,7 +107,7 @@
     </script>
 
     <script>
-        $('#summernote').summernote({
+        $('#summernote').summernote("code", "<p>Content required</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>", {
             placeholder: 'Post body',
             tabsize: 2,
             height: 120,
@@ -125,5 +124,4 @@
     </script>
 
     <script src="~/assets/js/tags.js"></script>
-
 }

@@ -80,27 +80,61 @@ for (var i = 0; i < btnActions.length; i++) {
 //          VERTICAL CAROUSEL SLIDER FOR RECENT POSTS/COMMENTS/CATEGORIES
 //
 //
-//
 // **************************************************
 // latest posts
-function scrollPostDown() {
-    const div = document.getElementById("latestPosts");
-    let number = div.scrollTop;
-    div.scrollTo({
-        top: number + 74,
-        behavior: 'smooth'
-    });
-}
+
+var $allElements = $("#latestPosts").find("li").not($("div").has("ul"));
+var curIndex = 0;
 
 
-function scrollPostUp() {
-    const div = document.getElementById("latestPosts");
-    let number = div.scrollTop;
-    div.scrollTo({
-        top: number - 80,
-        behavior: 'smooth'
-    });
-}
+$("#scrollElDown").click(function () {
+    //alert("current: " + curIndex + " of " + $allElements.length);
+    let position = window.scrollY;
+    if (curIndex >= $allElements.length - 4) {
+        return;
+    } else if (curIndex < $allElements.length - 1) {
+        $(".selected").removeClass("selected");
+        curIndex++;
+        $allElements.eq(curIndex).addClass("selected");
+        $(".selected").get(0).scrollIntoView({ behavior: 'smooth' });
+        window.scrollTo(0, position + .965);
+    }
+});
+
+
+$("#scrollElUp").click(function () {
+    let position = window.scrollY;
+    if (curIndex == 0) {
+        return;
+    } else {
+        curIndex--;
+        if (curIndex >= 0) {
+            $(".selected").removeClass("selected");
+            $allElements.eq(curIndex).addClass("selected");
+            $(".selected").get(0).scrollIntoView({ behavior: 'smooth' });
+            window.scrollTo(0, position + .965);
+        }
+    }
+});
+
+//function scrollPostDown() {
+//    const div = document.getElementById("latestPosts");
+//    let number = div.scrollTop;
+//    div.scrollTo({
+//        top: number + 74,
+//        behavior: 'smooth'
+//    });
+//}
+
+
+//function scrollPostUp() {
+//    const div = document.getElementById("latestPosts");
+//    let number = div.scrollTop;
+//    div.scrollTo({
+//        top: number - 80,
+//        behavior: 'smooth'
+//    });
+//}
 
 // latest comments
 function scrollCommentDown() {
